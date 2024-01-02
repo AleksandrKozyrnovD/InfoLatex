@@ -1,0 +1,534 @@
+\documentclass{report}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{amssymb}
+\usepackage{euscript}
+\usepackage{stmaryrd}
+\usepackage{mathrsfs}
+\usepackage{cancel}
+\usepackage{esint}
+
+\usepackage[T2A,T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+
+
+
+\usepackage{hyperref}
+\hypersetup{
+       colorlinks=true,
+       linkcolor=blue,
+}
+
+\usepackage{geometry}
+\geometry{papersize={15cm, 11in}, left=1.5cm, right=2cm, top=2cm, bottom=3cm}
+
+\usepackage{graphicx}
+
+\usepackage{titlesec}
+\titleformat{\chapter}[display]{\fontsize{12pt}{-10pt}\bfseries}{}{-20pt}{}
+\titleformat{\section}[display]{\fontsize{10pt}{0pt}\bfseries}{}{0pt}{}
+
+\newcommand*\task[1]{
+       \chapter{#1}
+       \section{Условие}
+}
+\newcommand*\doubleint[2]{\iint\limits_{#1}#2}
+\newcommand*\tripleint[2]{\iiint\limits_{#1}#2}
+\newcommand*\doubleintlabel[3]{
+       \begin{equation}
+              \label{#3}
+              \iint\limits_{#1}#2
+       \end{equation}
+}
+\newcommand*\tripleintlabel[3]{
+       \begin{equation}
+              \label{#3}
+              \iiint\limits_{#1}#2
+       \end{equation}
+}
+\newcommand*\coordchtwo[2]{
+       \begin{cases}
+              x = #1\\
+              y = #2
+       \end{cases}
+}
+\newcommand*\coordchthree[3]{
+       \begin{cases}
+              x = #1\\
+              y = #2\\
+              z = #3
+       \end{cases}
+}
+\newcommand*\partialofby[2]{\frac{\partial #1}{\partial #2}}
+
+\newco
+
+\title{БДЗ\\вариант 10}
+\author{Козырнов Никита Дмитриевич Б22-504}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\task{Задание 1}
+
+\doubleintlabel{\bf{G}}{f(x,y)dx dy}{1:usl}
+
+\begin{equation}
+    \label{1:ogr}
+    {\bf{G}}: x^2 + (y - 1)^2 \leq 1
+\end{equation}
+
+\section{Решение}
+
+Уравнение задает окружность с радиусом $1$, смещенную вверх на $1$.
+Уравнение связывающее $(x,y)$ и полярные координаты с полюсом в $(0,0)$:
+$$
+    \coordchtwo{r \cos \varphi}{r \sin \varphi}
+$$
+
+Подставляя в \Ref{1:ogr} получаем:
+$$
+    r^2 \cos^2 \varphi + r^2 \sin^2 \varphi - 2 r \sin \varphi + \cancel{1} \leq \cancel{1} \mbox{, } r \cos \varphi \geq 0
+$$
+
+Отсюда получаем:
+$$
+    \begin{cases}
+        r = 2 \sin \varphi \\
+        r \cos \varphi = 0 \implies \varphi = -\frac{\pi}{2} \mbox{ или } \varphi = \frac{\pi}{2}
+    \end{cases}
+$$
+
+Таким образом,
+\begin{align*}
+     & r \in [0;2 \sin \varphi]                   \\
+     & \varphi \in [-\frac{\pi}{2};\frac{\pi}{2}]
+\end{align*}
+
+Якобиан выражения равен $r$
+
+
+Подставляем в \ref{1:usl}
+\begin{align*}
+     & I = \iint\limits_{\Omega} r f(r \cos \varphi, r \sin \varphi)dr d \varphi =                                       \\
+     & = \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} d \varphi \int_{0}^{2 \sin \varphi} r f(r \cos \varphi, r \sin \varphi)dr
+\end{align*}
+
+\section{Ответ}
+
+\begin{align*}
+     & I = \iint\limits_{\Omega} r f(r \cos \varphi, r \sin \varphi)dr d \varphi =                                       \\
+     & = \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} d \varphi \int_{0}^{2 \sin \varphi} r f(r \cos \varphi, r \sin \varphi)dr
+\end{align*}
+
+\task{Задание 2}
+
+\begin{equation}
+    \label{2:usl}
+    \left( \frac{x}{2} \right)^2 + \left( \frac{y}{3} \right)^2 = 1
+\end{equation}
+
+\begin{equation}
+    \label{2:ogr}
+    z = xy \mbox{, } z = 0 \mbox{, } x > 0 \mbox{, } y > 0
+\end{equation}
+
+\section{Решение}
+
+Область ограничена цилиндрической поверхностью:
+
+$$
+    \coordchthree{2 r \cos \varphi}{3 r \sin \varphi}{h}
+$$
+
+Подставляя в \ref{2:ogr} получаем следующие ограничения:
+$$
+    \begin{cases}
+         & 2 r^2 = 1 \implies r = \frac{\sqrt{2}}{2}                                                                                                       \\
+         & h = r^2 \sin \varphi \cos \varphi \implies \sin \varphi \cos \varphi \geq 0 \mbox{ (при } x > 0, y > 0) \implies \varphi \in [0; \frac{\pi}{2}]
+    \end{cases}
+$$
+
+Таким образом,
+\begin{align*}
+     & r \in \left[ 0;\frac{\sqrt{2}}{2} \right]           \\
+     & \varphi \in \left[0;\frac{\pi}{2}\right]            \\
+     & h \in \left[0; r^2 \sin \varphi \cos \varphi\right]
+\end{align*}
+
+Якобиан выражения равен $6r$
+
+
+Подставляем в \ref{2:usl}
+\begin{align*}
+     & \tripleint{{\bf{V}}}{dx dy dz} = 6 \tripleint{{\bf{\Omega}}}{dr d \varphi dh} =                                       \\
+     & = 6 \int_{0}^{\frac{\sqrt{2}}{2}} r dr \int_{0}^{\frac{\pi}{2}} d \varphi \int_{0}^{r^2 \sin \varphi \cos \varphi} dh \\
+     & = 6 \int_{0}^{\frac{\sqrt{2}}{2}} r dr \int_{0}^{\frac{\pi}{2}} \sin \varphi d (\sin \varphi) =                       \\
+     & = 6 \frac{r^4}{4} \Biggr|_{0}^{\frac{\sqrt{2}}{2}} \cdot \frac{\sin^2 \varphi}{2} \Biggr|_{0}^{\frac{\pi}{2}} =       \\
+     & = \frac{3}{8}
+\end{align*}
+
+\section{Ответ}
+
+$\frac{3}{8}$
+
+\task{Задание 3}
+
+\begin{equation}
+    \label{3:usl}
+    \int\limits_{C} (x - y)ds
+\end{equation}
+
+\begin{equation}
+    \label{3:ogr}
+    {\bf{G}}: x^2 + y^2 = 2y
+\end{equation}
+
+\section{Решение}
+
+Сначала преобразуем \ref{3:ogr}:
+$$
+    x^2 + y^2 = 2y \implies x^2 + y^2 - 2y = 0 \implies x^2 + (y - 1)^2 = 1
+$$
+
+Контур представляет собой окружность радиуса $1$, смещенную по $y$ на $1$ вверх.
+
+
+Окружность вида $x^2 + y^2 = 2y$ параметризуется следующим образом:
+$$
+    \coordchtwo{2 \cos t \sin t}{2 \cos^2 t}
+$$
+
+Тогда $t \in [0; 2\pi]$.
+
+Частные производные равны:
+$
+    \begin{cases}
+         & \varphi^{\prime}(t) = 2(cos^2 t - sin^2 t) \\
+         & \psi^{\prime}(t) = -4 \sin t \cos t
+    \end{cases}
+$
+
+Отсюда считаем:
+\begin{align*}
+    ds = \sqrt{(\varphi^{\prime}(t))^2 + (\psi^{\prime}(t))^2} = 4
+\end{align*}
+
+Подставляя в \ref{3:usl}:
+\begin{align*}
+     & \int\limits_{C} (x - y)ds = \int_{0}^{2\pi}2\cdot 4 (\cos t \sin t - \cos^2 t)dt =                              \\
+     & = 8 \left[ \cancelto{0}{\int_{0}^{2\pi} \sin t d(\sin t)} + \int_{0}^{2\pi} \cos^2 t dt \right] =               \\
+     & = 8 \int_{0}^{2\pi} \frac{1 + 2\cos 2t}{2} dt = 4 \cdot \left( 2\pi + \sin 2t \Biggr|_{0}^{2\pi} \right) = 8\pi
+\end{align*}
+
+\section{Ответ}
+
+$8\pi$
+
+\task{Задание 4}
+
+\doubleintlabel{{\bf{S}}}{|xy|z dS}{4:usl}
+\begin{equation}
+    \label{4:ogr}
+    {\bf{S}}: z = x^2 + y^2 \mbox{, } z \leq 1
+\end{equation}
+
+\section{Решение}
+
+Из \ref{4:ogr} вычисляем частные производные:
+\begin{align*}
+     & \partialofby{z}{x} = 2x \\
+     & \partialofby{z}{y} = 2y
+\end{align*}
+
+Отсюда можем вычислить $dS$ по формуле $dS = \sqrt{1 + (\partialofby{z}{x})^2 + (\partialofby{z}{y})^2}dx dy$
+Тогда:
+$$
+    dS = \sqrt{1 + 4x^2 + 4y^2}dx dy
+$$
+
+Параметризуем плоскость ${\bf{S}}$ следующим образом:
+$$
+    \coordchtwo{r \cos \varphi}{r \sin \varphi}
+$$
+
+Якобиан выражения будет $r$.
+
+
+Причем
+$$
+    \Omega \mbox{: } \begin{cases}
+        r \in [0;1] \\
+        \varphi \in [0; 2\pi]
+    \end{cases}
+$$
+
+
+При подстановке в \ref{4:usl}:
+\begin{align*}
+     & \doubleint{{\bf{S}}}{|xy|z dS} = \doubleint{{\bf{\Omega}}}{r^5|\sin \varphi \cdot \cos \varphi| \cdot \sqrt{1 + 4r^2} dr d \varphi} = \\
+     & = \int_{0}^{2\pi} |\sin \varphi \cdot \cos \varphi| d \varphi \int_{0}^{1} r^5 \sqrt{1 + 4r^2} dr
+\end{align*}
+
+Посчитаем эти итегралы по отдельности.
+
+\begin{align*}
+     & \int_{0}^{2\pi} |\sin \varphi \cdot \cos \varphi| d \varphi = 4 \int_{0}^{\frac{\pi}{2}} \sin \varphi \cdot \cos \varphi d \varphi = \\
+     & = 4 \int_{0}^{\frac{\pi}{2}} \sin \varphi d(\sin \varphi) = 4 \cdot \frac{\sin^2 \varphi}{2}\Biggr|_{0}^{\frac{\pi}{2}} = 2
+\end{align*}
+
+$$
+    \int_{0}^{1} r^5 \sqrt{1 + 4r^2} dr = \left[ \begin{matrix}
+            r = \frac{1}{2}\tan \theta            & \implies \theta = \arctan(2r) \\
+            dr = \frac{1}{2 \cos \theta} d \theta &
+        \end{matrix} \right] =
+$$
+$$
+    = \int_{0}^{\arctan(2r)} \frac{\tan^5 \theta}{ 64 \cos^3 \theta} d \theta =
+    \int_{0}^{\arctan(2r)} \frac{\sin^4 \theta \sin \theta}{ 64 \cos^8 } d\theta =
+$$
+$$
+    = -\frac{1}{64} \int_{0}^{\arctan(2r)} \frac{(1 - \cos^2 \theta)^2}
+    {64 \cos^8 \theta} d(\cos \theta) =
+$$
+$$
+    = -\frac{1}{64}\left(
+    - \frac{1}{3 \cos^3 \theta}
+    + \frac{2}{5 \cos^5 \theta}
+    - \frac{1}{7 \cos^7 \theta}
+    \right) \Biggr|_{0}^{\arctan(2r)} = \frac{35 \cos^4 \theta - 42 \cos^2 \theta + 15}
+    {6720 \cos^7 \theta}\Biggr|_{0}^{\arctan(2r)} =
+$$
+$$
+    = \left( \frac{x^6 \sqrt{4x^2 + 1}}{7} + \frac{x^4 \sqrt{4x^2 + 1}}{140} - \frac{x^2 \sqrt{4x^2 + 1}}{420} + \frac{\sqrt{4x^2 + 1}}{840} \right)\Biggr|_{0}^{1} = \frac{25\sqrt{2}}{168} - \frac{1}{840}
+$$
+
+Тогда
+$$
+    2 \cdot \left(\frac{25\sqrt{2}}{168} - \frac{1}{840}\right) = \frac{25\sqrt{2}}{84} - \frac{1}{420}
+$$
+
+\section{Ответ}
+
+$\frac{25\sqrt{2}}{84} - \frac{1}{420}$
+
+\task{Задание 5}
+
+\begin{equation}
+    \label{5:usl}
+    \vec{F} = \left\{ y^4 - 6xz^3, 3y^2z^2 + 4xy^3, 2y^3z - 9x^2z^2 \right\}
+\end{equation}
+
+\section{Решение}
+
+Сначала проверяем, что поле $\vec{F}$ потенциально:
+\begin{align*}
+     & \operatorname{rot} \vec{F} = \left| \begin{matrix}
+                                               \vec{i}           & \vec{j}           & \vec{k}           \\
+                                               \partialofby{}{x} & \partialofby{}{y} & \partialofby{}{z} \\
+                                               F_x               & F_y               & F_z
+                                           \end{matrix} \right| = \\
+     & = \left\{ 6y^2z - 6y^2z, -18xz^2 - (-18xz^2), 4y^3 - 4y^3 \right\} = \left\{ 0, 0, 0 \right\}
+\end{align*}
+
+Поле потенциально.
+
+
+Теперь найдем функцию $u(x, y, z)$.
+По определению:
+$$
+    \partialofby{u}{x} = F_x = y^4 - 6xz^2
+$$
+
+Значит
+\begin{align*}
+     & u(x, y, z) = \int \left( \partialofby{u}{x} + C_1(y, z) \right)dx = xy^4 - 3x^2z^3 + \varphi(y, z)                                                                \\
+     &                                                                                                                                                                   \\
+     & \partialofby{u}{y} = \partialofby{(xy^4 - 3x^2z^3 + \varphi(y, z))}{y} = \cancel{4xy^3} + \partialofby{\varphi(y,z)}{y} = F_y = 3y^2z^2 + \cancel{4xy^3} \implies \\
+     & \implies \varphi(y, z) = \int \left( 3y^2z^2 + C_2(z) \right)dy = y^3z^2 + \psi(z)                                                                                \\
+     &                                                                                                                                                                   \\
+     & \partialofby{u}{z} = \partialofby{(xy^4 - 3x^2z^3 + y^3z^2 + \psi(z))}{z} =                                                                                       \\
+     & = \cancel{-9x^2z^2} + \cancel{2y^3z} + \partialofby{\psi(z)}{z} = F_z = \cancel{-9x^2z^2} + \cancel{2y^3z} \implies                                               \\
+     & \implies \psi(z) = C \mbox{ - const}
+\end{align*}
+
+Тогда $u(x, y, z) = xy^4 - 3x^2z^3 + y^3z^2 + C$
+
+Чтобы найти потенциал, необходимо посчитать $u(4, 3 , 2) - u(1, 2, 1)$.
+\begin{align*}
+    \begin{cases}
+        u(4, 3 , 2) = 4 \cdot 3^4 - 3 \cdot 4^2 \cdot 2^3 + 3^2 \cdot 2^2 + C = 48 + C \\
+        u(1, 2, 1) = 1 \cdot 2 - 3 \cdot 1 \cdot 1 + 8 \cdot 1 + C = 21 + C
+    \end{cases}
+\end{align*}
+
+Тогда $u(4, 3 , 2) - u(1, 2, 1) = 48 + C - 21 - C = 27$
+
+\section{Ответ}
+
+$27$
+
+\task{Задание 6}
+
+\begin{equation}
+    \label{6:usl}
+    \vec{F} = x^2 \vec{i} + y^2 \vec{j} + z^2 \vec{k}
+\end{equation}
+\begin{equation}
+    \label{6:ogr}
+    {\bf{S}}: (x - 1)^2 + (y - 1)^2 + z^2 = R^2
+\end{equation}
+
+\section{Решение}
+
+Так как ${\bf{S}}$ это замкнутая поверхность (сфера), то \ref{6:usl} выражается таким образом
+
+\begin{align*}
+     & \doubleint{{\bf{S}}}{\vec{F} \cdot \vec{n} dS} = \doubleint{{\bf{S}}}{x^2 dz \wedge dy + y^2 dz \wedge dx + z^2 dx \wedge dy} = \\
+     & = 2\tripleint{{\bf{V}}}{(x + y + z)dx dy dz}
+\end{align*}
+
+Поверхность можно параметризовать следующим образом:
+
+$$
+    \begin{cases}
+        x - 1 = r \cos \varphi \cos \psi \\
+        y - 1 = r \sin \varphi \cos \psi \\
+        z = r \sin \psi
+    \end{cases}
+$$
+
+Отсюда при подстановке в \ref{6:ogr} получаем следующее
+$$
+    \begin{cases}
+        \varphi \in [0; 2\pi]                    \\
+        \psi \in [-\frac{\pi}{2}; \frac{\pi}{2}] \\
+        r \in [0; R]
+    \end{cases}
+$$
+
+Якобиан выражения $r^2 \cos \psi$.
+
+При подстановке в интеграл:
+\begin{align*}
+     & 2\tripleint{{\bf{V}}}{(x + y + z)dx dy dz} =                                                                                                          \\
+     & = 2\tripleint{{\bf{V^\prime}}}{r^2 \cos \psi \left(r \cos \varphi \cos \psi + r \sin \varphi \cos \psi + r \sin \psi + 2\right)d \varphi d \psi dr} = \\
+     & \begin{matrix}
+            & = 2\left[ \cancelto{0}{\tripleint{{\bf{V^\prime}}}{r^3 \cos \varphi \cos^2 \psi d \varphi d \psi dr}} \right. \\
+            & + \cancelto{0}{\tripleint{{\bf{V^\prime}}}{r^3 \sin \varphi \cos^2 \psi d \varphi d \psi dr}}                 \\
+            & + \cancelto{0}{\tripleint{{\bf{V^\prime}}}{r^3 \cos \psi \cos \psi d \varphi d \psi dr}}                      \\
+            & \left.+ 2 \tripleint{{\bf{V^\prime}}}{r^2\cos \psi d \varphi d \psi dr} \right] =
+       \end{matrix}                                                                            \\
+     & =4 \cdot 2\pi \cdot \frac{R^3}{3} \cdot 2 = \frac{16\pi R^3}{3}
+\end{align*}
+
+\section{Ответ}
+
+$\frac{16\pi R^3}{3}$
+
+\task{Задание 7}
+
+\begin{equation}
+    \label{7:usl}
+    \vec{F} = 4x \vec{i} - 2y \vec{j} - z \vec{k}
+\end{equation}
+\begin{equation}
+    \label{7:ogr}
+    {\bf{S}}: 3x + 2y = 12 \mbox{, } 3x + y = 6 \mbox{, } y = 0 \mbox{, } x + y + z = 6 \mbox{, }
+\end{equation}
+
+\section{Решение}
+
+По формуле Остроградского-Гаусса, необходимо посчитать дивергенцию $\vec{F}$:
+$$
+    \operatorname{div}\vec{F} = 4 - 2 - 1 = 1
+$$
+
+В таком случае
+\begin{equation}
+    \label{7:temp}
+    \oiint\limits_{{\bf{S}}} (\vec{F} \cdot \vec{n})dS = \tripleint{{\bf{V}}}{1 \cdot dx dy dz}
+\end{equation}
+
+Из \ref{7:ogr} получаем следующие ограничения:
+$$
+    \begin{cases}
+        x \in \left[\frac{6 - y}{3}; \frac{12 - 2y}{3}\right] \\
+        y \in \left[0; 6\right]                               \\
+        z \in \left[0; 6 - x - y\right]
+    \end{cases}
+$$
+
+Тогда разбиваем \ref{7:temp} на повторные интегралы:
+\begin{align*}
+     & \tripleint{{\bf{V}}}{dx dy dz} = \int_{0}^{6} dy \int_{\frac{6 - y}{3}}^{\frac{12 - 2y}{3}} dx \int_{0}^{6 - x - y} dz = \\
+     & = \int_{0}^{6} dy \int_{\frac{6 - y}{3}}^{\frac{12 - 2y}{3}}(6 - x - y)dz =                                              \\
+     & = \int_{0}^{6} \left( 6 - \frac{4y}{3} \right) dy = 6y \Biggr|_{0}^{6} - \frac{2y^2}{3}\Biggr|_{0}^{6} = 36 - 24 = 12
+\end{align*}
+
+\section{Ответ}
+
+$12$
+
+\task{Задание 8}
+
+\begin{equation}
+    \label{8:usl}
+    \vec{F} = y \vec{i} - x \vec{j} - z^2 \vec{k}
+\end{equation}
+\begin{equation}
+    \label{8:ogr}
+    {\gamma: x^2 + y^2 = 1 \mbox{, } z = 4}
+\end{equation}
+
+\section{Решение}
+
+Для начала необходимо посчитать ротор $\vec{F}$:
+$$
+    \operatorname{rot}\vec{F} = \left| \begin{matrix}
+        \vec{i}           & \vec{j}           & \vec{k}           \\
+        \partialofby{}{x} & \partialofby{}{y} & \partialofby{}{z} \\
+        F_x               & F_y               & F_z
+    \end{matrix} \right| = \left\{ 0, 0, -2 \right\}
+$$
+
+Возьмем нормальный вектор $\vec{n} = \left\{ 0, 0, 1 \right\}$, тогда
+\begin{align*}
+    \oint \vec{F} d\vec{r} = -2 \doubleint{{\bf{S}}}{dS}
+\end{align*}
+
+Также $dS = \sqrt{1 + (\partialofby{z}{x})^2 + (\partialofby{z}{y})^2}dx dy = \sqrt{1 + 0 + 0} dx dy = 1 \cdot dx dy$
+
+${\bf{S}}$ можно параметризовать следующим образом:
+$$
+    \coordchtwo{r \cos \varphi}{r \sin \varphi}
+$$
+
+Тогда из \ref{8:ogr} получаем следующие ограничения:
+$$
+    \begin{cases}
+        r \in [0;1] \\
+        \varphi \in [0; 2\pi]
+    \end{cases}
+$$
+
+Якобиан выражения равен $r$.
+
+Подставляя в полученный раньше интеграл получаем:
+\begin{align*}
+     & -2 \doubleint{{\bf{S}}}{dS} = -2 \doubleint{{\bf{\Omega}}}{r dr d\varphi} =             \\
+     & = -2 \int_{0}^{2\pi}d\varphi \int_{0}^{1}r dr = -2 \cdot 2\pi \cdot \frac{1}{2} = -2\pi
+\end{align*}
+
+\section{Ответ}
+
+$-2\pi$
+
+\end{document}

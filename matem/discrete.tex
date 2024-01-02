@@ -1,0 +1,295 @@
+\documentclass{report}
+
+\usepackage{amssymb, amsmath, amsthm, amscd}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage{bookmark}
+
+\usepackage{hyperref}
+\hypersetup{
+       colorlinks=true,
+       linkcolor=blue,
+}
+
+\usepackage{geometry}
+\geometry{papersize={15cm, 11in}, left=1.5cm, lmargin=1.5cm,right=2cm, top=2cm, bottom=3cm}
+
+\usepackage{graphicx}
+
+\usepackage{titlesec}
+\titleformat{\chapter}[display]{\fontsize{17pt}{0pt}\bfseries}{}{-20pt}{}
+\titleformat{\subsubsection}[display]{\fontsize{12pt}{0pt}\bfseries}{}{0pt}{}
+
+\newcounter{mylabelcounter}
+
+\makeatletter
+\newcommand{\labelText}[2]{%
+#1\refstepcounter{mylabelcounter}%
+\immediate\write\@auxout{%
+    \string\newlabel{#2}{{1}{\thepage}{{\unexpanded{#1}}}{mylabelcounter.\number\value{mylabelcounter}}{}}%
+}%
+}
+\makeatother
+
+\newcommand{\bslash}{\space \backslash \space}
+\newcommand{\band}{\mbox{ } \& \mbox{ }}
+
+
+\title{Дискретная математика}
+\author{Козырнов Александр Дмитриевич, ИУ7-32Б}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\chapter{Множества, отношения, алгебры}
+\section{Опр. множества и операций над ним}
+
+\subsection{Условие}
+Множества, подмножества. Способы определения множеств. Равенство множеств.
+Операции над множествами (объединение, пересечение, разность, симметрическая
+разность, дополнение). Методы доказательства теоретико-множественных тождеств.
+
+\subsection{Определение множества}
+\textbf{Множества} мы будем обозначать большими буквами латинского алфавита $(X, Y, Z,...)$,
+элементы множества малыми буквами $(x, y, z,...)$.
+При­надлежность элемента х множеству X (неопределяемое понятие) будем обозначать $x \in X$.
+Аналогично $x \notin X$ обозначает, что элемент х не принадлежит множеству X.
+
+По определению считается $\varnothing \subseteq A$ и $A \subseteq U$
+
+\subsection{Равенство множеств}
+\textbf{$A = B \leftrightharpoons (\forall x)(x \in A \Leftrightarrow x \in B)$} \newline
+Пример:\newline
+$\{1,3,5\} = \{5,1,3\} = \{1,1,3,3,5,5\}$ \newline
+Также возможно определить равенство через подмножество. \newline
+$A \subseteq B \leftrightharpoons (\forall x)(x \in A \Rightarrow x \in B)$ - опр. нестрогого включения A в B.\newline
+Тогда \newline
+\textbf{$A = B \Leftrightarrow (A \subseteq B) \and (B \subseteq A)$}
+
+\subsection{Операции над множествами}
+\begin{itemize}
+    \item объединение $A \cup B \leftrightharpoons \{x: x \in A \lor x \in B\}$
+    \item
+          пересечение $A \cap B \leftrightharpoons \{x: x \in A \space \& \space x \in B\}$
+    \item
+          разность
+          $ A \bslash B \leftrightharpoons \{x:x \in A \band x \notin B\}$
+    \item
+          симметрическая разность
+          $A \triangle B \leftrightharpoons (A \bslash B) \cup (B \bslash A) = (A \cup B) \bslash (A \cap B)$
+    \item
+          дополнение
+          $ \overline{A} \leftrightharpoons \{x: x \notin A\} = U \bslash A$
+\end{itemize}
+
+\subsection{Методы доказательства теоретико-множественных тождеств}
+
+
+\begin{itemize}
+    \item Метод двух включений (На примере декартового умножения)\newline
+          $A \times (B \cap C) = (A \times B) \cap (A \times C)$\newline
+          Доказательство\newline
+          $(x,y) \in A \times (B \cap C) \Leftrightarrow (x \in A) \band (y \in (B \cap C)) \Leftrightarrow (x \in A) \band (y \in B) \band (y \in C) \Leftrightarrow ((x,y) \in A \times B) \band ((x,y) \in A \times C) \Leftrightarrow (x,y) \in (A \times B) \cap (A \times C)$
+    \item Методом Характеристических функций ($\chi_{A \times {B \cap C}}$)
+    \item Методом эквивалетных преобазований ($\cap, \cup, \band, \bslash, ...$)
+\end{itemize}
+\newpage
+
+\section{Неупорядоченная и упорядоченная пары, кортеж, Декартово произведение.}
+\subsection{Условие}
+Неупорядоченная пара, упорядоченная пара, кортеж. Декартово произведение множеств
+
+\subsection{Виды вар}
+\subsubsection{Неупорядоченная пара}
+$A, B \neq 0, a \in A, b \in B$
+
+Тогда $\{a,b\}$ - неупорядоченная пара на множествах A и B
+
+
+$$
+    \begin{cases}
+        \left\{a,b\right\} = \{a\},|\{a\}| = 1 \mbox{, если $a = b$} \\
+        |\left\{a,b\right\}| = 2 \mbox{, если $a \neq b$}            \\
+    \end{cases}
+$$
+
+$\left\{a,b\right\} = \left\{c,d\right\} \leftrightharpoons ((a = c) \band (b = d)) \lor ((a = d) \band (b = c))$
+
+То есть $\left\{1,2\right\} = \left\{2,1\right\}$
+
+\subsubsection{Упорядоченная пара}
+$A, B \neq 0, a \in A, b \in B$
+
+Тогда $(a,b)$ - упорядоченная пара на множествах A и B
+
+$(a,b) = (c,d) \leftrightharpoons (a = c) \band (b = d)$
+
+То есть $(a,b) \neq (b,a)$
+
+
+Ее можно свести к множеству: $(a,b) \leftrightharpoons \{\{a\}, \{a,b\}\}$
+
+\subsection{Кортеж}
+$A_1,A_2,\ldots,A_n, n \geq 1$
+
+Тогда $(a_1,a_2,\ldots,a_n)$, где $a_1 \in A_1, a_2 \in A_2, \ldots, a_n \in A_n$ - кортеж
+
+\begin{itemize}
+    \item Равенство кортежей:\newline$(a_1,a_2,\ldots,a_n) = (b_1, b_2,\ldots,b_n) \leftrightharpoons (\forall i = \overline{1,n})(a_i = b_i)$
+    \item Определение:\newline$A_1 \times A_2 \times \ldots \times A_n \leftrightharpoons \{(x_1, x_2, \ldots, x_n):(\forall i = \overline{1,n})(x_i \in A_i)\}$\newline
+          По определению если $(\exists i = \overline{1,n})(A_i = \varnothing)$, то $A_1 \times A_1 \times \ldots \times A_n = \varnothing$
+    \item Степень кортежа:\newlineЕсли $A_1 = A_2 = \ldots = A_n, n \geq 1$, то $A_1 \times A_2 \ldots \times A_n = A^n$\newline
+          $A^0 \leftrightharpoons \{\lambda\}$, где $\lambda$ - пустой кортеж, $A \neq \varnothing$
+\end{itemize}
+
+Некоторые свойства декартового умножения:
+\begin{itemize}
+    \item $\overline{A \times B} = (\overline{A} \times \overline{B}) \cup (\overline{A} \times B) \cup (A \times \overline{B})$
+    \item $A \times (B \bslash C) = (A \times B) \bslash (A \times C)$
+    \item $A \times B \neq B \times A$
+\end{itemize}
+\newpage
+
+\section{Отображение, частичное отображение}
+\subsection{Условие}
+Отображения: область определения, область значений. Инъективное, сюръективное и биективное отображения. Частичное отображение
+
+\subsection{Отображение}
+Отображение - это \underline{соответствие}, которое всюду определено и функционально по второй компоненте
+
+\medskip
+
+Пусть $\rho \subseteq A \times B$, тогда
+\begin{itemize}
+    \item Область определения: $D(\rho) \leftrightharpoons \{x:x \in A, (x,y) \in \rho\}$
+    \item Область значений: $R(\rho) \leftrightharpoons \{y:y \in B, (x,y) \in \rho\}$
+\end{itemize}
+
+$f: A \underset{\bullet}{\rightarrow} B$ - частичное отображение, или отображение, где $D(\rho) \neq A$
+
+Виды отобажений:
+\begin{itemize}
+    \item Инъективное отображение:\newline Если отображение функционально и по первой компоненте, то она называется инъекцией\newline
+          $f: A \rightarrow B, (\forall x \in A)(\exists!\space y = f(x)) \band (\forall y \in R(f))(\exists!\space x \in A)(y = f(x))$
+    \item Сюръективное отображение:\newline Это такое отображение, где $R(f) = B$, то есть\newline
+          $(\forall y \in B)(\exists x \in A)(y = f(x))$
+    \item Биективное отображение:\newline Это такое отображение, которое инъективно и сюръективно.\newline
+          $(\forall x \in A)(\exists! y = f(x)) \band (\forall y \in B)(\exists! y = f(x))$
+\end{itemize}
+\newpage
+
+\section{Соответствие}
+\subsubsection{Условие}
+Соответствия. График и граф соответствия, область определения, область значения.
+Сечение соответствия. Сечение соответствия по множеству. Функциональность
+соответствия по компоненте. Бинарные и n-арные отношения. Связь между
+отношениями, соответствиями и отображениями.
+
+\subsection{Соответствие}
+$\rho \subseteq A \times B$ - соответствие из A в множество B, причем $A,B \neq \varnothing$
+
+
+\begin{itemize}
+    \item Область определения: $D(\rho) \leftrightharpoons \{x:x \in A, (x,y) \in \rho\}$
+    \item Область значений: $R(\rho) \leftrightharpoons \{y:y \in B, (x,y) \in \rho\}$
+    \item Сечение по $a \in A: \rho(a) \leftrightharpoons \{y: (a,y) \in \rho\}$
+    \item Сечение по множеству $C \subseteq D(\rho): \rho(C) \leftrightharpoons \{(x,y):x \in C, (x,y) \in \rho\}$
+\end{itemize}
+
+Соответствие $\rho = A \times B$ называют функциональным по второй компоненте,
+если $\forall (x,y)$ и $(x^\prime, y^\prime): x = x^\prime \Rightarrow y = y^\prime$
+
+Соответствие $\rho = A \times B$ называют функциональным по первой компоненте,
+если $\forall (x,y)$ и $(x^\prime, y^\prime): y = y^\prime \Rightarrow x = x^\prime$
+
+\subsection{График и граф соответствия}
+СДЕЛАТЬ
+
+\subsection{Бинарные и н-арные (н-местные) отношения}
+
+Н-местное (н-арное) отношение на множествах $A_1, A_2, \ldots, A_n, n \geq 1: \rho \subseteq A_1 \times A_2 \times \ldots \times A_n$
+
+Бинарное отношение: $\rho = A^2, A \neq \varnothing$, иногда записывается как $x\rho y$
+
+Свойства
+\begin{itemize}
+    \item Рефлексивность\newline
+          $(\forall x \in A)(x\rho x)$, то есть диагональ $id_A \subseteq \rho$
+    \item Иррефлексивность\newline
+          $id_A \cap \rho = \varnothing$
+    \item Симметричность\newline
+          $\forall (x,y) \in A, x\rho y \Rightarrow y\rho x$, то есть $\rho = \rho^{-1}$
+    \item  Антисимметричность\newline
+          $\forall (x,y) \in A, x\rho y \band y\rho x \Rightarrow x = y$, например $x \leq y \band y \leq x \Rightarrow x = y$
+    \item Транзитивность\newline
+          $(\forall x,y,z \in A)(x\rho z \band z\rho y \Rightarrow x\rho y)$, например $x = z, z = y \Rightarrow x = y$
+\end{itemize}
+
+\subsection{Связь отношения, соответствия, отображения}
+Соответствие - это бинарное отношения вида $\rho = A \times B$ или $\rho = A \times A$.
+Отображение - это соответствие, которое всюду определено и функционально по второй компоненте.
+
+\section{Композиция соответсвий, их свойства}
+\subsection{Условие}
+Композиция соответствий, обратное соответствие и их свойства (с доказательством)
+
+\subsection{Композиция соответсвий}
+$\rho \subseteq A \times B, \sigma \subseteq C \times D$
+
+Тогда композиция:
+\begin{itemize}
+    \item $\rho \circ \sigma \rightleftharpoons \{(x,y): (x,z) \in \rho \band (z,y) \in \sigma\}$
+    \item  $\rho = A \times B, \sigma = B \times C, \rho \circ \sigma = A \times C$
+    \item $f: A \rightarrow B, g: B \rightarrow C, f \circ g: A \rightarrow C$
+\end{itemize}
+причем $R(\rho) \cap D(\sigma) \neq \varnothing$
+
+\medskip
+
+Покажем, что $f \circ g(x) = g(f(x))$
+
+$f \circ g = \{(x,y): (\exists z)((x,z) \in f) \band ((z,y) \in g)\} = \{(x,y):(\exists z)(z = f(x), y = g(z))\} = \{(x,y): y = g(f(x))\}$
+
+\subsection{Обратное соответствие}
+$\rho^{-1} \rightleftharpoons \{(x,y): (y,x) \in \rho\}$ - обратное соответствие
+
+Если $\rho = A \times B$, то $\rho^{-1} = B \times A$
+
+\subsection{Свойства и их доказательства}
+\begin{itemize}
+    \item $\rho \circ (\sigma \circ \tau) = (\rho \circ \sigma) \circ \tau$\newline
+          Рассмотрим $(\rho \circ (\sigma \circ \tau))(x)$: $(\rho \circ (\sigma \circ \tau))(x) = \rho((\sigma \circ \tau)(x)) = \rho(\sigma(\tau(x)))$\newline
+          Рассмотрим $((\rho \circ \sigma) \circ \tau)(x)$: $((\rho \circ \sigma) \circ \tau)(x) = ((\rho \circ \sigma)(f(x)) = \rho(\sigma(\tau(x)))$\newline
+          Как можем заметить, результат получен одинаковый
+    \item $\rho \circ \sigma \neq \sigma \circ \rho$\newline
+          Пусть $\rho = A \times B, f: A \rightarrow B$ и $\sigma = B \times C, g: B \rightarrow C$\newline
+          Тогда $\rho \circ \sigma: A \rightarrow C$\newline
+          Получаем $\sigma \circ \rho: B \rightarrow B$ при условии, что $B \cap A \neq \varnothing$, иначе $\sigma \circ \rho = \varnothing$\newline
+          В обоих случаях $R(\rho \circ \sigma) \neq R(\sigma \circ \rho),
+              D(\rho \circ \sigma) \neq D(\sigma \circ \rho) \Rightarrow
+              \rho \circ \sigma \neq \sigma \circ \rho$ в общем случае
+    \item $\rho \circ (\sigma \cup \tau) = (\rho \circ \sigma) \cup (\rho \circ \tau)$\newline
+          $(x,y) \in \rho \circ (\sigma \circ \tau) \Rightarrow
+              (\exists z)(((x,z) \in \rho) \land ((z,y) \in \sigma \cup \tau)) \Rightarrow
+              (\exists z)((((x,z) \in \rho) \land ((z,y) \in \sigma) \lor ((z,y) \in \tau))) \Rightarrow
+              (\exists u)(((x,u) \in \rho) \land ((u,y) \in \sigma) \lor (\exists v)((x,v) \in \rho \land (v,y) \in \tau))$
+    \item  $\rho \circ (\sigma \cap \tau) \subseteq (\rho \circ \sigma) \cap (\rho \circ \tau)$\newline
+          Доказательство Аналогично прошлому доказательству
+    \item $(\rho^{-1})^{-1} = \rho$\newline
+          $\rho^{-1} \rightleftharpoons \{(y,x): (x,y) \in \rho\}$\newline
+          Тогда $(\rho^{-1})^{-1} \rightleftharpoons
+              \{(x,y): (y,x) \in \rho^{-1}\} \rightleftharpoons
+              \{(x,y): (x,y) \in \rho\} \rightleftharpoons \rho$
+    \item $(\rho \circ \sigma)^{-1} = \sigma^{-1} \circ \rho^{-1}$\newline
+          Пусть $\rho: A \rightarrow B, \sigma: B \rightarrow C$, тогда $\rho \circ \sigma: A \rightarrow C$\newline
+          Тогда $(\rho \circ \sigma)^{-1}: C \rightarrow A$\newline
+          $\rho^{-1}: B \rightarrow A,\mbox{ } \sigma^{-1}: C \rightarrow B$\newline
+          Из этого следует $\sigma^{-1} \circ \rho^{-1}: C \rightarrow A$, что равно $(\rho \circ \sigma)^{-1}:C \rightarrow A$
+    \item $\rho \subseteq A^{2}$
+
+\end{itemize}
+
+\end{document}
