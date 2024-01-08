@@ -2,8 +2,11 @@
 
 \usepackage{amssymb, amsmath, amsthm, amscd}
 \usepackage[utf8]{inputenc}
-\usepackage[english, russian]{babel}
+\usepackage[russian]{babel}
 \usepackage{bookmark}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,positioning,decorations.pathmorphing}
 
 \usepackage{listings}
 
@@ -57,49 +60,52 @@
 Операции над множествами (объединение, пересечение, разность, симметрическая
 разность, дополнение). Методы доказательства теоретико-множественных тождеств.
 
-\subsection{Определение множества}
-\textbf{Множества} мы будем обозначать большими буквами латинского алфавита $(X, Y, Z,...)$,
-элементы множества малыми буквами $(x, y, z,...)$.
-При­надлежность элемента х множеству X (неопределяемое понятие) будем обозначать $x \in X$.
-Аналогично $x \notin X$ обозначает, что элемент х не принадлежит множеству X.
+\subsection{Множество}
+\paragraph*{Определение.}
+Множество - это свойства, которые объединяют что-то. Явного определения нет.
 
-По определению считается $\varnothing \subseteq A$ и $A \subseteq U$
+\paragraph*{Способы определения.}
+Можно задать как предикат: $A = \{x: P(x)\} $.
 
-\subsection{Равенство множеств}
-\textbf{$A = B \leftrightharpoons (\forall x)(x \in A \Leftrightarrow x \in B)$} \newline
-Пример:\newline
-$\{1,3,5\} = \{5,1,3\} = \{1,1,3,3,5,5\}$ \newline
-Также возможно определить равенство через подмножество. \newline
-$A \subseteq B \leftrightharpoons (\forall x)(x \in A \Rightarrow x \in B)$ - опр. нестрогого включения A в B.\newline
-Тогда \newline
-\textbf{$A = B \Leftrightarrow (A \subseteq B) \band (B \subseteq A)$}
+\medskip
+
+Если $a$ - элемент множества  $A$, то можно записать  $a \in A$.
+
+Множество называется конечным, если он состоит из конечного количества элементов:
+$A = \{a_1,a_2,\ldots,a_{n}\} $
+
+\subsection{Подмножество}
+\paragraph*{Определение.}
+Можно задать в виде формулы: $A \subseteq B \leftrightharpoons
+(\forall x)(x \in  A \implies x \\in  B)$
 
 \subsection{Операции над множествами}
 \begin{itemize}
-    \item объединение $A \cup B \leftrightharpoons \{x: x \in A \lor x \in B\}$
-    \item
-          пересечение $A \cap B \leftrightharpoons \{x: x \in A \band x \in B\}$
-    \item
-          разность
-          $ A \bslash B \leftrightharpoons \{x:x \in A \band x \notin B\}$
-    \item
-          симметрическая разность
-          $A \triangle B \leftrightharpoons (A \bslash B) \cup (B \bslash A) = (A \cup B) \bslash (A \cap B)$
-    \item
-          дополнение
-          $ \overline{A} \leftrightharpoons \{x: x \notin A\} = U \bslash A$
+	\item объединение $A \cup B \leftrightharpoons \{x: x \in A \lor x \in B\}$
+	\item
+	      пересечение $A \cap B \leftrightharpoons \{x: x \in A \band x \in B\}$
+	\item
+	      разность
+	      $ A \bslash B \leftrightharpoons \{x:x \in A \band x \notin B\}$
+	\item
+	      симметрическая разность
+	      $A \triangle B \leftrightharpoons (A \bslash B) \cup (B \bslash A) = (A \cup B) \bslash (A \cap B)$
+	\item
+	      дополнение
+	      $ \overline{A} \leftrightharpoons \{x: x \notin A\} = U \bslash A$
 \end{itemize}
 
 \subsection{Методы доказательства теоретико-множественных тождеств}
 
 
 \begin{itemize}
-    \item Метод двух включений (На примере декартового умножения)\newline
-          $A \times (B \cap C) = (A \times B) \cap (A \times C)$\newline
-          Доказательство\newline
-          $(x,y) \in A \times (B \cap C) \Leftrightarrow (x \in A) \band (y \in (B \cap C)) \Leftrightarrow (x \in A) \band (y \in B) \band (y \in C) \Leftrightarrow ((x,y) \in A \times B) \band ((x,y) \in A \times C) \Leftrightarrow (x,y) \in (A \times B) \cap (A \times C)$
-    \item Методом Характеристических функций ($\chi_{A \times {B \cap C}}$)
-    \item Методом эквивалетных преобазований ($\cap, \cup, \band, \bslash, ...$)
+	\item Метод двух включений (На примере декартового умножения)\newline
+	      $A \times (B \cap C) = (A \times B) \cap (A \times C)$\newline
+	      Доказательство\newline
+	      $(x,y) \in A \times (B \cap C) \Leftrightarrow (x \in A) \band (y \in (B \cap C)) \Leftrightarrow (x \in A) \band (y \in B) \band (y \in C) \Leftrightarrow ((x,y) \in A \times B) \band ((x,y) \in A \times C) \Leftrightarrow (x,y) \in (A \times B) \cap (A \times C)$
+	\item Методом Характеристических функций ($\chi_{A \times {B \cap C}}$)
+	\item Методом эквивалетных преобазований ($\cap, \cup, \band, \bslash, ...$, а также
+		ранее доказанными тождествами)
 \end{itemize}
 \newpage
 
@@ -115,10 +121,10 @@ $A, B \neq 0, a \in A, b \in B$
 
 
 $$
-    \begin{cases}
-        \left\{a,b\right\} = \{a\},|\{a\}| = 1 \mbox{, если $a = b$} \\
-        |\left\{a,b\right\}| = 2 \mbox{, если $a \neq b$}            \\
-    \end{cases}
+	\begin{cases}
+		\left\{a,b\right\} = \{a\},|\{a\}| = 1 \mbox{, если $a = b$} \\
+		|\left\{a,b\right\}| = 2 \mbox{, если $a \neq b$}            \\
+	\end{cases}
 $$
 
 $\left\{a,b\right\} = \left\{c,d\right\} \leftrightharpoons ((a = c) \band (b = d)) \lor ((a = d) \band (b = c))$
@@ -143,18 +149,18 @@ $A_1,A_2,\ldots,A_n, n \geq 1$
 Тогда $(a_1,a_2,\ldots,a_n)$, где $a_1 \in A_1, a_2 \in A_2, \ldots, a_n \in A_n$ - кортеж
 
 \begin{itemize}
-    \item Равенство кортежей:\newline$(a_1,a_2,\ldots,a_n) = (b_1, b_2,\ldots,b_n) \leftrightharpoons (\forall i = \overline{1,n})(a_i = b_i)$
-    \item Определение:\newline$A_1 \times A_2 \times \ldots \times A_n \leftrightharpoons \{(x_1, x_2, \ldots, x_n):(\forall i = \overline{1,n})(x_i \in A_i)\}$\newline
-          По определению если $(\exists i = \overline{1,n})(A_i = \varnothing)$, то $A_1 \times A_1 \times \ldots \times A_n = \varnothing$
-    \item Степень кортежа:\newlineЕсли $A_1 = A_2 = \ldots = A_n, n \geq 1$, то $A_1 \times A_2 \ldots \times A_n = A^n$\newline
-          $A^0 \leftrightharpoons \{\lambda\}$, где $\lambda$ - пустой кортеж, $A \neq \varnothing$
+	\item Равенство кортежей:\newline$(a_1,a_2,\ldots,a_n) = (b_1, b_2,\ldots,b_n) \leftrightharpoons (\forall i = \overline{1,n})(a_i = b_i)$
+	\item Определение:\newline$A_1 \times A_2 \times \ldots \times A_n \leftrightharpoons \{(x_1, x_2, \ldots, x_n):(\forall i = \overline{1,n})(x_i \in A_i)\}$\newline
+	      По определению если $(\exists i = \overline{1,n})(A_i = \varnothing)$, то $A_1 \times A_1 \times \ldots \times A_n = \varnothing$
+	\item Степень кортежа:\newlineЕсли $A_1 = A_2 = \ldots = A_n, n \geq 1$, то $A_1 \times A_2 \ldots \times A_n = A^n$\newline
+	      $A^0 \leftrightharpoons \{\lambda\}$, где $\lambda$ - пустой кортеж, $A \neq \varnothing$
 \end{itemize}
 
 Некоторые свойства декартового умножения:
 \begin{itemize}
-    \item $\overline{A \times B} = (\overline{A} \times \overline{B}) \cup (\overline{A} \times B) \cup (A \times \overline{B})$
-    \item $A \times (B \bslash C) = (A \times B) \bslash (A \times C)$
-    \item $A \times B \neq B \times A$
+	\item $\overline{A \times B} = (\overline{A} \times \overline{B}) \cup (\overline{A} \times B) \cup (A \times \overline{B})$
+	\item $A \times (B \bslash C) = (A \times B) \bslash (A \times C)$
+	\item $A \times B \neq B \times A$
 \end{itemize}
 \newpage
 
@@ -163,14 +169,18 @@ $A_1,A_2,\ldots,A_n, n \geq 1$
 Отображения: область определения, область значений. Инъективное, сюръективное и биективное отображения. Частичное отображение
 
 \subsection{Отображение}
-Отображение - это \underline{соответствие}, которое всюду определено и функционально по второй компоненте
+\paragraph*{Определение.}
+Отображение - это \underline{соответствие},
+которое всюду определено и функционально по второй компоненте
+
+
 
 \medskip
 
 Пусть $\rho \subseteq A \times B$, тогда
 \begin{itemize}
-    \item Область определения: $D(\rho) \leftrightharpoons \{x:x \in A, (x,y) \in \rho\}$
-    \item Область значений: $R(\rho) \leftrightharpoons \{y:y \in B, (x,y) \in \rho\}$
+	\item Область определения: $D(\rho) \leftrightharpoons \{x:x \in A, (x,y) \in \rho\}$
+	\item Область значений: $R(\rho) \leftrightharpoons \{y:y \in B, (x,y) \in \rho\}$
 \end{itemize}
 
 $f: A \underset{\bullet}{\rightarrow} B$ - частичное отображение, или отображение, где $D(\rho) \neq A$
@@ -179,12 +189,14 @@ $f: A \rightarrow B$ - просто отображение
 
 Виды отображений:
 \begin{itemize}
-    \item Инъективное отображение:\newline Если отображение функционально и по первой компоненте, то она называется инъекцией\newline
-          $(\forall x \in A)(\exists!\space y = f(x)) \band (\forall y \in R(f))(\exists!\space x \in A)(y = f(x))$
-    \item Сюръективное отображение:\newline Это такое отображение, где $R(f) = B$, то есть\newline
-          $(\forall y \in B)(\exists x \in A)(y = f(x))$
-    \item Биективное отображение:\newline Это такое отображение, которое инъективно и сюръективно.\newline
-          $(\forall x \in A)(\exists! y = f(x)) \band (\forall y \in B)(\exists! x)(y = f(x))$
+	\item Инъективное отображение:\newline
+		Если отображение функционально и по первой компоненте,
+		то она называется инъекцией. то есть $f(x_1) = f(x_2) \implies x_1 = x_2$\newline
+	      $(\forall x \in A)(\exists!\space y = f(x)) \band (\forall y \in R(f))(\exists!\space x \in A)(y = f(x))$
+	\item Сюръективное отображение:\newline Это такое отображение, где $R(f) = B$, то есть\newline
+	      $(\forall y \in B)(\exists x \in A)(y = f(x))$
+	\item Биективное отображение:\newline Это такое отображение, которое инъективно и сюръективно.\newline
+	      $(\forall x \in A)(\exists! y = f(x)) \band (\forall y \in B)(\exists! x)(y = f(x))$
 \end{itemize}
 \newpage
 
@@ -200,14 +212,16 @@ $\rho \subseteq A \times B$ - соответствие из A в множест�
 
 
 \begin{itemize}
-    \item Область определения: $D(\rho) \leftrightharpoons \{x:x \in A, (x,y) \in \rho\}$
-    \item Область значений: $R(\rho) \leftrightharpoons \{y:y \in B, (x,y) \in \rho\}$
-    \item Сечение по $a \in A: \rho(a) \leftrightharpoons \{y: (a,y) \in \rho\}$
-    \item Сечение по множеству $C \subseteq D(\rho): \rho(C) \leftrightharpoons \{(x,y):x \in C, (x,y) \in \rho\}$
+	\item Область определения: $D(\rho) \leftrightharpoons \{x:x \in A, (x,y) \in \rho\}$
+	\item Область значений: $R(\rho) \leftrightharpoons \{y:y \in B, (x,y) \in \rho\}$
+	\item Сечение по $a \in A: \rho(a) \leftrightharpoons \{y: (a,y) \in \rho\}$
+	\item Сечение по множеству $C \subseteq D(\rho): \rho(C) \leftrightharpoons \{(x,y):x \in C, (x,y) \in \rho\}$
 \end{itemize}
 
 Соответствие $\rho = A \times B$ называют функциональным по второй компоненте,
 если $\forall (x,y)$ и $(x^\prime, y^\prime): x = x^\prime \Rightarrow y = y^\prime$
+
+\medskip
 
 Соответствие $\rho = A \times B$ называют функциональным по первой компоненте,
 если $\forall (x,y)$ и $(x^\prime, y^\prime): y = y^\prime \Rightarrow x = x^\prime$
@@ -221,18 +235,20 @@ $\rho \subseteq A \times B$ - соответствие из A в множест�
 
 Бинарное отношение: $\rho = A^2, A \neq \varnothing$, иногда записывается как $x\rho y$
 
+\medskip
+
 Свойства
 \begin{itemize}
-    \item Рефлексивность\newline
-          $(\forall x \in A)(x\rho x)$, то есть диагональ $id_A \subseteq \rho$
-    \item Иррефлексивность\newline
-          $id_A \cap \rho = \varnothing$
-    \item Симметричность\newline
-          $\forall (x,y) \in A, x\rho y \Rightarrow y\rho x$, то есть $\rho = \rho^{-1}$
-    \item  Антисимметричность\newline
-          $\forall (x,y) \in A, x\rho y \band y\rho x \Rightarrow x = y$, например $x \leq y \band y \leq x \Rightarrow x = y$
-    \item Транзитивность\newline
-          $(\forall x,y,z \in A)(x\rho z \band z\rho y \Rightarrow x\rho y)$, например $x = z, z = y \Rightarrow x = y$
+	\item Рефлексивность\newline
+	      $(\forall x \in A)(x\rho x)$, то есть диагональ $id_A \subseteq \rho$
+	\item Иррефлексивность\newline
+	      $id_A \cap \rho = \varnothing$
+	\item Симметричность\newline
+	      $\forall (x,y) \in A, x\rho y \Rightarrow y\rho x$, то есть $\rho = \rho^{-1}$
+	\item  Антисимметричность\newline
+	      $\forall (x,y) \in A, x\rho y \band y\rho x \Rightarrow x = y$, например $x \leq y \band y \leq x \Rightarrow x = y$
+	\item Транзитивность\newline
+	      $(\forall x,y,z \in A)(x\rho z \band z\rho y \Rightarrow x\rho y)$, например $x = z, z = y \Rightarrow x = y$
 \end{itemize}
 
 \subsection{Связь отношения, соответствия, отображения}
@@ -246,11 +262,13 @@ $\rho \subseteq A \times B$ - соответствие из A в множест�
 \subsection{Композиция соответсвий}
 $\rho \subseteq A \times B, \sigma \subseteq C \times D$
 
+\medskip
+
 Тогда композиция:
 \begin{itemize}
-    \item $\rho \circ \sigma \rightleftharpoons \{(x,y): (x,z) \in \rho \band (z,y) \in \sigma\}$
-    \item  $\rho = A \times B, \sigma = B \times C, \rho \circ \sigma = A \times C$
-    \item $f: A \rightarrow B, g: B \rightarrow C, f \circ g: A \rightarrow C$
+	\item $\rho \circ \sigma \rightleftharpoons \{(x,y): (x,z) \in \rho \band (z,y) \in \sigma\}$
+	\item  $\rho = A \times B, \sigma = B \times C, \rho \circ \sigma = A \times C$
+	\item $f: A \rightarrow B, g: B \rightarrow C, f \circ g: A \rightarrow C$
 \end{itemize}
 причем $R(\rho) \cap D(\sigma) \neq \varnothing$
 
@@ -258,45 +276,48 @@ $\rho \subseteq A \times B, \sigma \subseteq C \times D$
 
 Покажем, что $f \circ g(x) = g(f(x))$
 
+\medskip
+
 $f \circ g = \{(x,y): (\exists z)((x,z) \in f) \band ((z,y) \in g)\} = \{(x,y):(\exists z)(z = f(x), y = g(z))\} = \{(x,y): y = g(f(x))\}$
 
 \subsection{Обратное соответствие}
 $\rho^{-1} \rightleftharpoons \{(x,y): (y,x) \in \rho\}$ - обратное соответствие
 
+
 Если $\rho = A \times B$, то $\rho^{-1} = B \times A$
 
 \subsection{Свойства и их доказательства}
 \begin{itemize}
-    \item $\rho \circ (\sigma \circ \tau) = (\rho \circ \sigma) \circ \tau$\newline
-          Рассмотрим $(\rho \circ (\sigma \circ \tau))(x)$: $(\rho \circ (\sigma \circ \tau))(x) = \rho((\sigma \circ \tau)(x)) = \rho(\sigma(\tau(x)))$\newline
-          Рассмотрим $((\rho \circ \sigma) \circ \tau)(x)$: $((\rho \circ \sigma) \circ \tau)(x) = ((\rho \circ \sigma)(f(x)) = \rho(\sigma(\tau(x)))$\newline
-          Как можем заметить, результат получен одинаковый
-    \item $\rho \circ \sigma \neq \sigma \circ \rho$\newline
-          Пусть $\rho = A \times B, f: A \rightarrow B$ и $\sigma = B \times C, g: B \rightarrow C$\newline
-          Тогда $\rho \circ \sigma: A \rightarrow C$\newline
-          Получаем $\sigma \circ \rho: B \rightarrow B$ при условии, что $B \cap A \neq \varnothing$, иначе $\sigma \circ \rho = \varnothing$\newline
-          В обоих случаях $R(\rho \circ \sigma) \neq R(\sigma \circ \rho),
-              D(\rho \circ \sigma) \neq D(\sigma \circ \rho) \Rightarrow
-              \rho \circ \sigma \neq \sigma \circ \rho$ в общем случае
-    \item $\rho \circ (\sigma \cup \tau) = (\rho \circ \sigma) \cup (\rho \circ \tau)$\newline
-          $(x,y) \in \rho \circ (\sigma \circ \tau) \Rightarrow
-              (\exists z)(((x,z) \in \rho) \land ((z,y) \in \sigma \cup \tau)) \Rightarrow
-              (\exists z)((((x,z) \in \rho) \land ((z,y) \in \sigma) \lor ((z,y) \in \tau))) \Rightarrow
-              (\exists u)(((x,u) \in \rho) \land ((u,y) \in \sigma) \lor (\exists v)((x,v) \in \rho \land (v,y) \in \tau)) \Rightarrow
-              (\rho \circ \sigma) \cup \rho \circ \tau$
-    \item  $\rho \circ (\sigma \cap \tau) \subseteq (\rho \circ \sigma) \cap (\rho \circ \tau)$\newline
-          Доказательство Аналогично прошлому доказательству
-    \item $(\rho^{-1})^{-1} = \rho$\newline
-          $\rho^{-1} \rightleftharpoons \{(y,x): (x,y) \in \rho\}$\newline
-          Тогда $(\rho^{-1})^{-1} \rightleftharpoons
-              \{(x,y): (y,x) \in \rho^{-1}\} \rightleftharpoons
-              \{(x,y): (x,y) \in \rho\} \rightleftharpoons \rho$
-    \item $(\rho \circ \sigma)^{-1} = \sigma^{-1} \circ \rho^{-1}$\newline
-          Пусть $\rho: A \rightarrow B, \sigma: B \rightarrow C$, тогда $\rho \circ \sigma: A \rightarrow C$\newline
-          Тогда $(\rho \circ \sigma)^{-1}: C \rightarrow A$\newline
-          $\rho^{-1}: B \rightarrow A,\mbox{ } \sigma^{-1}: C \rightarrow B$\newline
-          Из этого следует $\sigma^{-1} \circ \rho^{-1}: C \rightarrow A$, что равно $(\rho \circ \sigma)^{-1}:C \rightarrow A$
-    \item $\rho \subseteq A^{2}$
+	\item $\rho \circ (\sigma \circ \tau) = (\rho \circ \sigma) \circ \tau$\newline
+	      Рассмотрим $(\rho \circ (\sigma \circ \tau))(x)$: $(\rho \circ (\sigma \circ \tau))(x) = \rho((\sigma \circ \tau)(x)) = \rho(\sigma(\tau(x)))$\newline
+	      Рассмотрим $((\rho \circ \sigma) \circ \tau)(x)$: $((\rho \circ \sigma) \circ \tau)(x) = ((\rho \circ \sigma)(f(x)) = \rho(\sigma(\tau(x)))$\newline
+	      Как можем заметить, результат получен одинаковый
+	\item $\rho \circ \sigma \neq \sigma \circ \rho$\newline
+	      Пусть $\rho = A \times B, f: A \rightarrow B$ и $\sigma = B \times C, g: B \rightarrow C$\newline
+	      Тогда $\rho \circ \sigma: A \rightarrow C$\newline
+	      Получаем $\sigma \circ \rho: B \rightarrow B$ при условии, что $B \cap A \neq \varnothing$, иначе $\sigma \circ \rho = \varnothing$\newline
+	      В обоих случаях $R(\rho \circ \sigma) \neq R(\sigma \circ \rho),
+		      D(\rho \circ \sigma) \neq D(\sigma \circ \rho) \Rightarrow
+		      \rho \circ \sigma \neq \sigma \circ \rho$ в общем случае
+	\item $\rho \circ (\sigma \cup \tau) = (\rho \circ \sigma) \cup (\rho \circ \tau)$\newline
+	      $(x,y) \in \rho \circ (\sigma \circ \tau) \Rightarrow
+		      (\exists z)(((x,z) \in \rho) \land ((z,y) \in \sigma \cup \tau)) \Rightarrow
+		      (\exists z)((((x,z) \in \rho) \land ((z,y) \in \sigma) \lor ((z,y) \in \tau))) \Rightarrow
+		      (\exists u)(((x,u) \in \rho) \land ((u,y) \in \sigma) \lor (\exists v)((x,v) \in \rho \land (v,y) \in \tau)) \Rightarrow
+		      (\rho \circ \sigma) \cup \rho \circ \tau$
+	\item  $\rho \circ (\sigma \cap \tau) \subseteq (\rho \circ \sigma) \cap (\rho \circ \tau)$\newline
+	      Доказательство Аналогично прошлому доказательству
+	\item $(\rho^{-1})^{-1} = \rho$\newline
+	      $\rho^{-1} \rightleftharpoons \{(y,x): (x,y) \in \rho\}$\newline
+	      Тогда $(\rho^{-1})^{-1} \rightleftharpoons
+		      \{(x,y): (y,x) \in \rho^{-1}\} \rightleftharpoons
+		      \{(x,y): (x,y) \in \rho\} \rightleftharpoons \rho$
+	\item $(\rho \circ \sigma)^{-1} = \sigma^{-1} \circ \rho^{-1}$\newline
+	      Пусть $\rho: A \rightarrow B, \sigma: B \rightarrow C$, тогда $\rho \circ \sigma: A \rightarrow C$\newline
+	      Тогда $(\rho \circ \sigma)^{-1}: C \rightarrow A$\newline
+	      $\rho^{-1}: B \rightarrow A,\mbox{ } \sigma^{-1}: C \rightarrow B$\newline
+	      Из этого следует $\sigma^{-1} \circ \rho^{-1}: C \rightarrow A$, что равно $(\rho \circ \sigma)^{-1}:C \rightarrow A$
+	\item $\rho \subseteq A^{2}$
 
 
 
@@ -309,16 +330,16 @@ $\rho^{-1} \rightleftharpoons \{(x,y): (y,x) \in \rho\}$ - обратное со
 
 \subsection{Свойства}
 \begin{itemize}
-    \item Рефлексивность\newline
-          $(\forall x \in A)(x\rho x)$, то есть диагональ $id_A \subseteq \rho$
-    \item Иррефлексивность\newline
-          $id_A \cap \rho = \varnothing$
-    \item Симметричность\newline
-          $\forall (x,y) \in A, x\rho y \Rightarrow y\rho x$, то есть $\rho = \rho^{-1}$
-    \item  Антисимметричность\newline
-          $\forall (x,y) \in A, x\rho y \band y\rho x \Rightarrow x = y$, например $x \leq y \band y \leq x \Rightarrow x = y$
-    \item Транзитивность\newline
-          $(\forall x,y,z \in A)(x\rho z \band z\rho y \Rightarrow x\rho y)$, например $x = z, z = y \Rightarrow x = y$
+	\item Рефлексивность\newline
+	      $(\forall x \in A)(x\rho x)$, то есть диагональ $id_A \subseteq \rho$
+	\item Иррефлексивность\newline
+	      $id_A \cap \rho = \varnothing$
+	\item Симметричность\newline
+	      $\forall (x,y) \in A, x\rho y \Rightarrow y\rho x$, то есть $\rho = \rho^{-1}$
+	\item  Антисимметричность\newline
+	      $\forall (x,y) \in A, x\rho y \band y\rho x \Rightarrow x = y$, например $x \leq y \band y \leq x \Rightarrow x = y$
+	\item Транзитивность\newline
+	      $(\forall x,y,z \in A)(x\rho z \band z\rho y \Rightarrow x\rho y)$, например $x = z, z = y \Rightarrow x = y$
 \end{itemize}
 \newpage
 
@@ -328,28 +349,28 @@ $\rho^{-1} \rightleftharpoons \{(x,y): (y,x) \in \rho\}$ - обратное со
 порядок, предпорядок, строгий порядок
 \subsection{Классификация}
 \begin{itemize}
-    \item Отношение эквивалентности
-          \begin{itemize}
-              \item[-] Рефлексивность
-              \item[-] Симметричность
-              \item[-] Транзитивность
-          \end{itemize}
-    \item Отношение Толерантности
-          \begin{itemize}
-              \item[-] Рефлексивность
-              \item[-] Симметричность
-          \end{itemize}
-    \item Отношение Порядка
-          \begin{itemize}
-              \item[-] Рефлексивность
-              \item[-] Антисимметричность
-              \item[-] Транзитивность
-          \end{itemize}
-    \item Отношение Предпорядка
-          \begin{itemize}
-              \item[-] Рефлексивность
-              \item[-] Транзитивность
-          \end{itemize}
+	\item Отношение эквивалентности
+	      \begin{itemize}
+		      \item[-] Рефлексивность
+		      \item[-] Симметричность
+		      \item[-] Транзитивность
+	      \end{itemize}
+	\item Отношение Толерантности
+	      \begin{itemize}
+		      \item[-] Рефлексивность
+		      \item[-] Симметричность
+	      \end{itemize}
+	\item Отношение Порядка
+	      \begin{itemize}
+		      \item[-] Рефлексивность
+		      \item[-] Антисимметричность
+		      \item[-] Транзитивность
+	      \end{itemize}
+	\item Отношение Предпорядка
+	      \begin{itemize}
+		      \item[-] Рефлексивность
+		      \item[-] Транзитивность
+	      \end{itemize}
 \end{itemize}
 
 \newpage
@@ -361,9 +382,9 @@ $\rho^{-1} \rightleftharpoons \{(x,y): (y,x) \in \rho\}$ - обратное со
 \subsection{Отношение эквивалентности}
 Отношение эквивалентности можно охарактеризовать так:
 \begin{itemize}
-    \item[-] Рефлексивность
-    \item[-] Симметричность
-    \item[-] Транзитивность
+	\item[-] Рефлексивность
+	\item[-] Симметричность
+	\item[-] Транзитивность
 \end{itemize}
 
 \subsection{Класс эквивалентности}
@@ -403,14 +424,14 @@ $A\backslash\rho = \{[x_{1}]_{\rho}, [x_{2}]_{\rho}, \ldots, [x_{n}]_{\rho}\}$ -
 
 Отношение Порядка
 \begin{itemize}
-    \item[-] Рефлексивность
-    \item[-] Антисимметричность
-    \item[-] Транзитивность
+	\item[-] Рефлексивность
+	\item[-] Антисимметричность
+	\item[-] Транзитивность
 \end{itemize}
 Отношение Предпорядка
 \begin{itemize}
-    \item[-] Рефлексивность
-    \item[-] Транзитивность
+	\item[-] Рефлексивность
+	\item[-] Транзитивность
 \end{itemize}
 
 Если отношение порядка таково, что несравнимых элементов нет, то отношение является линейным порядком
@@ -419,13 +440,13 @@ $A\backslash\rho = \{[x_{1}]_{\rho}, [x_{2}]_{\rho}, \ldots, [x_{n}]_{\rho}\}$ -
 
 Знаки сравнимости:
 \begin{itemize}
-    \item Знаки нестрогого порядка: $\leq, \geq$
-    \item Знаки строгого порядка: $<, >\newline a < b \rightleftharpoons a \leq b \band a \neq b$
-    \item Отношение несравнимости $a \asymp b \leftrightharpoons a \nleq b \band a \ngeq b$
+	\item Знаки нестрогого порядка: $\leq, \geq$
+	\item Знаки строгого порядка: $<, >\newline a < b \rightleftharpoons a \leq b \band a \neq b$
+	\item Отношение несравнимости $a \asymp b \leftrightharpoons a \nleq b \band a \ngeq b$
 \end{itemize}
 
 \subsection{Наименьший, наибольший,\newline
-    минимальный, максимальный элементы}
+	минимальный, максимальный элементы}
 Элемент $a \in A$ называется наименьшим, если
 $(\forall x \in A)(x \leq a)$
 
@@ -477,8 +498,8 @@ $B^{\triangle} \rightleftharpoons \{x: (\forall b \in B)(b \geq x\})$, где $x
 \paragraph*{Определение.}
 Упорядоченное множество ${\cal A}$ = $(A, \leq)$ называют индуктивно упорядоченным, если
 \begin{itemize}
-    \item[1)] Оно имеет наименьший элемент
-    \item[2)] Любая неубывающая последовательность элементов $A$ имеет супремум (sup)
+	\item[1)] Оно имеет наименьший элемент
+	\item[2)] Любая неубывающая последовательность элементов $A$ имеет супремум (sup)
 \end{itemize}
 
 \subsection{Точная верхняя грань последовательности}
@@ -524,9 +545,9 @@ $f(f^{n-1}(\Theta)) \leq f(f^{n}(\Theta)) \Rightarrow f^{n}(\Theta) \leq f^{n-1}
 
 Вычислим $f(a)$
 \begin{align*}
-    f(a) = f(supf^{n}(\Theta)) = supf(f^{n}(\Theta))              & =   \\
-    = supf^{n+1}(\Theta) = sup\{f(\Theta), f(f(\Theta)), \ldots\} & =   \\
-    supf^n(\Theta)                                                & = a \\
+	f(a) = f(supf^{n}(\Theta)) = supf(f^{n}(\Theta))              & =   \\
+	= supf^{n+1}(\Theta) = sup\{f(\Theta), f(f(\Theta)), \ldots\} & =   \\
+	supf^n(\Theta)                                                & = a \\
 \end{align*}
 
 Из этого следует, что $a$ - неподвижная точка, то есть $f(a) = a$
@@ -554,7 +575,7 @@ $f(f^{n-1}(\Theta)) \leq f(f^{n}(\Theta)) \Rightarrow f^{n}(\Theta) \leq f^{n-1}
 В данном случае $\Theta = 0$, так как $0$ - наименьшее число.
 
 Строим последовательность: $0, f(0), f^{2}(0), \ldots =
-    0, \frac{1}{4}, \frac{3}{8}, \frac{7}{16}, \ldots$
+	0, \frac{1}{4}, \frac{3}{8}, \frac{7}{16}, \ldots$
 
 \medskip
 
@@ -586,28 +607,28 @@ $A \neq \varnothing: \omega: A^{k} \rightarrow A, k \geq 0$
 
 Свойства операций:
 \begin{itemize}
-    \item[1)] Результат всегда существует
-    \item[2)] Результат принадлежит тому же множеству
+	\item[1)] Результат всегда существует
+	\item[2)] Результат принадлежит тому же множеству
 \end{itemize}
 
 \medskip
 
 Пусть $*$ - операция алгебры, Тогда:
 \begin{itemize}
-    \item Ассоциативность\newline
-          $a * (b * c) = (a * b) * c$
-    \item Коммутативность\newline
-          $a*b = b*a$
-    \item Идемпотентность\newline
-          $a*a = a^{n} = a$
+	\item Ассоциативность\newline
+	      $a * (b * c) = (a * b) * c$
+	\item Коммутативность\newline
+	      $a*b = b*a$
+	\item Идемпотентность\newline
+	      $a*a = a^{n} = a$
 \end{itemize}
 
 Относительно операции есть особые элементы. Пусть $*, +$ - операции алгебры, Тогда:
 \begin{itemize}
-    \item Нуль (ноль, нулевой элемент)\newline
-          $a*0 = 0$ и $a+0=a$
-    \item Нейтральный элемент по отношению к операции $*$\newline
-          $a*\epsilon = a$
+	\item Нуль (ноль, нулевой элемент)\newline
+	      $a*0 = 0$ и $a+0=a$
+	\item Нейтральный элемент по отношению к операции $*$\newline
+	      $a*\epsilon = a$
 \end{itemize}
 
 \subsection{Алгебры}
@@ -633,10 +654,10 @@ $\Omega = \Omega^{(0)} \cup \Omega^{(1)} \cup \ldots \cup \Omega^{(n)} \cup \ldo
 
 Примеры алгебр:
 \begin{itemize}
-    \item[1)] Числовые алгебры $(R, +, *, 0, 1)$
-    \item[2.1)] Векторные алгебры ${\cal L} = (L, +, \alpha, \theta)$\newline
-    \item[2.2)] Векторные алгебры ${\cal V} = (V^{3}, +, \times, \overline{0})$
-    \item[3)] Матричные алгебры ${\cal M} = (\mathbb{M}, +, *, 0, E)$
+	\item[1)] Числовые алгебры $(R, +, *, 0, 1)$
+	\item[2.1)] Векторные алгебры ${\cal L} = (L, +, \alpha, \theta)$\newline
+	\item[2.2)] Векторные алгебры ${\cal V} = (V^{3}, +, \times, \overline{0})$
+	\item[3)] Матричные алгебры ${\cal M} = (\mathbb{M}, +, *, 0, E)$
 \end{itemize}
 
 \medskip
@@ -698,8 +719,8 @@ $\epsilon^{\prime\prime} * \epsilon^{\prime} = \epsilon^{\prime}$, так как
 $a^{\prime}, a^{\prime\prime}$ - обратные элементы к $a$
 
 $a^{\prime\prime} = a^{\prime\prime} * \epsilon =
-    a^{\prime\prime} * (a * a^{\prime}) \underset{ассоциативность}{=}
-    (a^{\prime\prime} * a) * a^{\prime} = \epsilon * a^{\prime} = a^{\prime}$
+	a^{\prime\prime} * (a * a^{\prime}) \underset{ассоциативность}{=}
+	(a^{\prime\prime} * a) * a^{\prime} = \epsilon * a^{\prime} = a^{\prime}$
 
 \newpage
 
@@ -724,10 +745,10 @@ ${\cal J} = [a] = [a^{-1}]$, где $a$ - образующий элемент.
 
 Примеры циклических групп:
 \begin{itemize}
-    \item Бесконечная\newline
-          $(\mathbb{Z}, +, 0), \underline{n > 0}: n = 1 + 1 + 1 + \ldots + 1 = n * 1$
-    \item Конечная\newline
-          $\mathbb{Z}^{*}_3 = (\{1,2\}, *_{3}, 1)$ - мультипликативная группа вычетов по модулю 3
+	\item Бесконечная\newline
+	      $(\mathbb{Z}, +, 0), \underline{n > 0}: n = 1 + 1 + 1 + \ldots + 1 = n * 1$
+	\item Конечная\newline
+	      $\mathbb{Z}^{*}_3 = (\{1,2\}, *_{3}, 1)$ - мультипликативная группа вычетов по модулю 3
 \end{itemize}
 
 \paragraph*{Определение.} Полугруппа ${\cal J} = (G, *, 1)$ называется циклической,
@@ -740,11 +761,11 @@ ${\cal J} = [a] = [a^{-1}]$, где $a$ - образующий элемент.
 
 Примеры циклических полугрупп:
 \begin{itemize}
-    \item Бесконечная\newline
-          $(\mathbb{N}_0, +, 0), \underline{n > 0}: n = 1 + 1 + 1 + \ldots + 1 = n * 1$,
-          где $\mathbb{N_{0}}$ - множество натуральных чисел начиная с нуля.
-    \item Конечная\newline
-          Полугруппа $\cal P$ по операции сложения положительных натуральных чисел
+	\item Бесконечная\newline
+	      $(\mathbb{N}_0, +, 0), \underline{n > 0}: n = 1 + 1 + 1 + \ldots + 1 = n * 1$,
+	      где $\mathbb{N_{0}}$ - множество натуральных чисел начиная с нуля.
+	\item Конечная\newline
+	      Полугруппа $\cal P$ по операции сложения положительных натуральных чисел
 \end{itemize}
 
 \medskip
@@ -766,9 +787,9 @@ $a^{n} = \epsilon$
 
 Тогда
 \begin{align*}
-    a^{p}          & = a^{q}                   \\
-    a^{p} * a^{-q} & = a^{p} * a^{-p}          \\
-    a^{p-q}        & = 1 \mbox{, но p - q < n} \\
+	a^{p}          & = a^{q}                   \\
+	a^{p} * a^{-q} & = a^{p} * a^{-p}          \\
+	a^{p-q}        & = 1 \mbox{, но p - q < n} \\
 \end{align*}
 
 По определению $n$ - наименьшая степень, при которой $a^{n}$ = 1 $\Rightarrow$ противоречие.
@@ -789,13 +810,13 @@ ${\cal R} = (R, +. *, 0, 1)$ - так выглядит кольцо
 
 Аксиомы кольца:
 \begin{itemize}
-    \item[1)] $a + (b + c) = (a + b) + c$ - ассоциативность сложения
-    \item[2)] $a + b = b + a$ - коммутативность сложения
-    \item[3)] $a + 0 = a$ - $0$ нейтральный элемент для сложения
-    \item[4)] $(\forall a \in R)(\exists a^{-1} \in R): a + a^{\prime} = 0$ - для любого числа по сложению есть обратный к нему
-    \item[5)] $a * (b * c) = (a * b) * c$ - ассоциативность умножения
-    \item[6)] $a * 1 = a$ - $1$ нейтральный элемент умножения
-    \item[7)] $a*(b+c) = a*b + a*c$ - коммутативность умножения по сложению
+	\item[1)] $a + (b + c) = (a + b) + c$ - ассоциативность сложения
+	\item[2)] $a + b = b + a$ - коммутативность сложения
+	\item[3)] $a + 0 = a$ - $0$ нейтральный элемент для сложения
+	\item[4)] $(\forall a \in R)(\exists a^{-1} \in R): a + a^{\prime} = 0$ - для любого числа по сложению есть обратный к нему
+	\item[5)] $a * (b * c) = (a * b) * c$ - ассоциативность умножения
+	\item[6)] $a * 1 = a$ - $1$ нейтральный элемент умножения
+	\item[7)] $a*(b+c) = a*b + a*c$ - коммутативность умножения по сложению
 \end{itemize}
 
 \medskip
@@ -820,16 +841,16 @@ ${\cal M} = (R, *, 1)$, являющаяся моноидом. (Буквы ал�
 
 \subsection{Теорема о тождествах кольца}
 \begin{itemize}
-    \item[1)] $a * 0 = 0$
-        \paragraph*{Доказательство.} Пусть $\Theta$ - неизвестная, значение которой нужно найти.\newline
-        $a + a * \Theta = a * 1 + a*\Theta = a(1 + \Theta) = a * 1 = a$.\newline
-        Найдем значение $\Theta: a + a*\Theta = a \Rightarrow a*\Theta = a - 1 \Rightarrow \Theta = 0$, где 0 - ноль кольца
-    \item[2)] $(-a)*b = (-ab)$
-        \paragraph*{Доказательство.}
-        $(-a)b + ab = ((-a) + a)b = 0 * b = 0 \Rightarrow (-a)b$ - обратное к $ab \Rightarrow (-a)b = -(ab)$
-    \item[3)] $a * (b - c) = ab - ab$
-        \paragraph*{Доказательство.}
-        $a * (b - c) = a * (b + (-c)) = ab + b(-c) = ab - bc$
+	\item[1)] $a * 0 = 0$
+		\paragraph*{Доказательство.} Пусть $\Theta$ - неизвестная, значение которой нужно найти.\newline
+		$a + a * \Theta = a * 1 + a*\Theta = a(1 + \Theta) = a * 1 = a$.\newline
+		Найдем значение $\Theta: a + a*\Theta = a \Rightarrow a*\Theta = a - 1 \Rightarrow \Theta = 0$, где 0 - ноль кольца
+	\item[2)] $(-a)*b = (-ab)$
+		\paragraph*{Доказательство.}
+		$(-a)b + ab = ((-a) + a)b = 0 * b = 0 \Rightarrow (-a)b$ - обратное к $ab \Rightarrow (-a)b = -(ab)$
+	\item[3)] $a * (b - c) = ab - ab$
+		\paragraph*{Доказательство.}
+		$a * (b - c) = a * (b + (-c)) = ab + b(-c) = ab - bc$
 \end{itemize}
 
 \newpage
@@ -855,7 +876,7 @@ ${\cal M} = (R, *, 1)$, являющаяся моноидом. (Буквы ал�
 
 \paragraph*{Определение.}
 Делители нуля на примере: $a \neq 0, b \neq 0,\newline
-    a*b=0 \lor b*a=0$
+	a*b=0 \lor b*a=0$
 
 Почему они называются делителями нуля? А потому, что обычное число состоит
 из простых и они являются его делителем. Вот с нулем в \underline{поле}
@@ -887,32 +908,32 @@ $(\forall y \neq 0)(\exists! x)(y = ax)$
 
 Пример решения в поле вычетов:
 \begin{align*}
-    \mathbb{Z}_{19}: & \begin{cases}
-                           11x - 5y +z = 1  \\
-                           21x + 4y - z = 2 \\
-                           5x - 6z = 5      \\
-                       \end{cases} \\
+	\mathbb{Z}_{19}: & \begin{cases}
+		                   11x - 5y +z = 1  \\
+		                   21x + 4y - z = 2 \\
+		                   5x - 6z = 5      \\
+	                   \end{cases} \\
 \end{align*}
 
 
 Решаем методом Лагранжа с помощью матрицы коэффициентов:
 $$
-    \left(\begin{matrix}
-            1  & -5 & 1  & \Biggr{|} & 1 \\
-            -2 & 4  & -1 & \Biggr{|} & 2 \\
-            5  & 0  & 6  & \Biggr{|} & 5 \\
-        \end{matrix}\right)
+	\left(\begin{matrix}
+			1  & -5 & 1  & \Biggr{|} & 1 \\
+			-2 & 4  & -1 & \Biggr{|} & 2 \\
+			5  & 0  & 6  & \Biggr{|} & 5 \\
+		\end{matrix}\right)
 $$
 
 Ответ: $(x,y,z) = \begin{pmatrix}
-        2 \\18\\20
-    \end{pmatrix}$
+		2 \\18\\20
+	\end{pmatrix}$
 
 Алгоритм:
 \begin{itemize}
-    \item[1)] Списываем коэффициенты перед x,y,z в матрицу, а также свободный член
-    \item[2)] Решаем ее методом Лагранжа, учитывая, что все операции по модулю поля вычета
-    \item[2.1)] Если число отрицательное (пусть -2 при кольце вычетов 19), то оно равно $-(19 + (-2)) = -17$
+	\item[1)] Списываем коэффициенты перед x,y,z в матрицу, а также свободный член
+	\item[2)] Решаем ее методом Лагранжа, учитывая, что все операции по модулю поля вычета
+	\item[2.1)] Если число отрицательное (пусть -2 при кольце вычетов 19), то оно равно $(19 + (-2)) = 17$
 \end{itemize}
 
 \newpage
@@ -928,9 +949,9 @@ ${\cal J} = (G, *, 1)$ - группа.
 
 $H \subseteq G$ замкнуто, если:
 \begin{itemize}
-    \item[1)] $1 \in H$
-    \item[2)] $(\forall x \in H)(x^{-1} \in H)$
-    \item[3)] $(\forall x,y \in H)(x * y \in H)$
+	\item[1)] $1 \in H$
+	\item[2)] $(\forall x \in H)(x^{-1} \in H)$
+	\item[3)] $(\forall x,y \in H)(x * y \in H)$
 \end{itemize}
 
 Тогда ${\cal H} = (H, *, 1)$ - подгруппа группы $\cal J$
@@ -947,8 +968,8 @@ ${\cal H}$ - подгруппа группы $\cal J$.
 
 Подмоноид:
 \begin{itemize}
-    \item[1)] Если $1 \in H$
-    \item[2)] Если $(\forall x,y \in H)(x * y \in H)$
+	\item[1)] Если $1 \in H$
+	\item[2)] Если $(\forall x,y \in H)(x * y \in H)$
 \end{itemize}
 
 То есть тоже самое, что и подгруппа, но без обратного элемента.
@@ -957,7 +978,7 @@ ${\cal H}$ - подгруппа группы $\cal J$.
 
 Подполугруппа:
 \begin{itemize}
-    \item[1)] Если $(\forall x,y \in H)(x * y \in H)$
+	\item[1)] Если $(\forall x,y \in H)(x * y \in H)$
 \end{itemize}
 
 Тоже самое, что и подмоноид, но только без требования к $1 \in H$.
@@ -996,9 +1017,9 @@ $a \in G$
 
 ${\cal H} = \{a^{n}: n \in \mathbb{Z}\}$ - замкнута, так как:
 \begin{itemize}
-    \item $1 = a^{0} \in H$
-    \item $a^p * a*q = a^{p+q} \in H$
-    \item $(a^p)^{-1} = a^{-p} \in H$
+	\item $1 = a^{0} \in H$
+	\item $a^p * a^q = a^{p+q} \in H$
+	\item $(a^p)^{-1} = a^{-p} \in H$
 \end{itemize}
 
 $a$ - образующий элеметь циклической группы. Тогда\newline
@@ -1023,45 +1044,45 @@ $[a]$ - циклическая подгруппа группы $\cal J$
 \paragraph*{Доказательство}
 Докажем 4 леммы:
 \begin{itemize}
-    \item[1)] Лемма 1\newline
-        $(\forall h \in H)(hH = H)$
+	\item[1)] Лемма 1\newline
+		$(\forall h \in H)(hH = H)$
 
-        Доказательство:
+		Доказательство:
 
-        Пусть $x \in hH; тогда x = hh_1, h_1 \in H, но hh_1 \in H$.
+		Пусть $x \in hH; тогда x = hh_1, h_1 \in H, но hh_1 \in H$.
 
-        Пусть $x \in H \Rightarrow x = hh^{-1}x = h(h^{-1}x) \in hH$
-    \item[2)] Лемма 2\newline
-        $abH = a(bH)$
+		Пусть $x \in H \Rightarrow x = hh^{-1}x = h(h^{-1}x) \in hH$
+	\item[2)] Лемма 2\newline
+		$abH = a(bH)$
 
-        Доказательство:
+		Доказательство:
 
-        Является прямым следствием ассоциативности операции группы.
-    \item[3)] Лемма 3\newline
-        Левые смежные классы образуют разбиение группы (носителя группы)
+		Является прямым следствием ассоциативности операции группы.
+	\item[3)] Лемма 3\newline
+		Левые смежные классы образуют разбиение группы (носителя группы)
 
-        Доказательство:
+		Доказательство:
 
-        $(\forall a \in G)(a \in aH)$, так как $1 \in H$
+		$(\forall a \in G)(a \in aH)$, так как $1 \in H$
 
-        Пусть $aH \cap bh \neq 0 \Rightarrow (\exists c)(c \in aH \cap bH)$. Тогда
-        $c = ah_1 = bh_2$, где $h_1,h_2 \in H$.
+		Пусть $aH \cap bh \neq 0 \Rightarrow (\exists c)(c \in aH \cap bH)$. Тогда
+		$c = ah_1 = bh_2$, где $h_1,h_2 \in H$.
 
-        $b = abh_1h^{-1}_2 \Rightarrow bH = (ah_1 h^{-1}_2)H = (ah_1)(h^{-1}_2 H) = (ah_1)H = aH$.
-    \item[4)] Лемма 4\newline
-        Все левые смежные классы находятся в однозначном соответствии (то есть два таких класса образуют биекцию)
+		$b = abh_1h^{-1}_2 \Rightarrow bH = (ah_1 h^{-1}_2)H = (ah_1)(h^{-1}_2 H) = (ah_1)H = aH$.
+	\item[4)] Лемма 4\newline
+		Все левые смежные классы находятся в однозначном соответствии (то есть два таких класса образуют биекцию)
 
-        Доказательство:
+		Доказательство:
 
-        $\varphi: H \to aH$
+		$\varphi: H \to aH$
 
-        $\varphi(h) \rightleftharpoons ah$
+		$\varphi(h) \rightleftharpoons ah$
 
-        $\varphi$ - сюръекция, так как $(\forall x \in H)(x = ah = \varphi(h))$
+		$\varphi$ - сюръекция, так как $(\forall x \in H)(x = ah = \varphi(h))$
 
-        Пусть $\varphi(h_1) = \varphi(h_2) \Rightarrow ah_1 = ah_2 \Rightarrow h_1 = h_2 \Rightarrow \varphi$ - инъекция
+		Пусть $\varphi(h_1) = \varphi(h_2) \Rightarrow ah_1 = ah_2 \Rightarrow h_1 = h_2 \Rightarrow \varphi$ - инъекция
 
-        Отсюда $\varphi$ - биекция.
+		Отсюда $\varphi$ - биекция.
 \end{itemize}
 
 \newpage
@@ -1080,13 +1101,13 @@ ${\cal S} = (S, +, *, 0, 1)$ - полукольцо.
 
 Аксиомы полукольца:
 \begin{itemize}
-    \item[1)] $a + (b + c) = (a + b) + c$
-    \item[2)] $a + b = b + a$
-    \item[3)] $a + 0 = a$
-    \item[4)] $a*(b*c) = (a*b)*c$
-    \item[5)] $a*1=1*a=a$
-    \item[6)] $a*(b+c)=a*b+a*c$
-    \item[7)] $a*0 = +0*a=0$
+	\item[1)] $a + (b + c) = (a + b) + c$
+	\item[2)] $a + b = b + a$
+	\item[3)] $a + 0 = a$
+	\item[4)] $a*(b*c) = (a*b)*c$
+	\item[5)] $a*1=1*a=a$
+	\item[6)] $a*(b+c)=a*b+a*c$
+	\item[7)] $a*0 = 0*a=0$
 \end{itemize}
 
 \paragraph*{Определение.}
@@ -1107,11 +1128,11 @@ ${\cal S} = (S, +, *, 0, 1)$ - полукольцо.
 \paragraph*{Определение.}
 Идемпотентное полукольцо называется замкнутым, если:
 \begin{itemize}
-    \item[1)] Любая последовательность имеет точную верхнюю грань по естественному порядку
-    \item[2)] Для любых $a$ и последовательности $\{X_n\}_{n \geq 0}$:\newline
-        $a*supX_n = sup(a*X_n)$
+	\item[1)] Любая последовательность имеет точную верхнюю грань по естественному порядку
+	\item[2)] Для любых $a$ и последовательности $\{X_n\}_{n \geq 0}$:\newline
+		$a*supX_n = sup(a*X_n)$
 
-        $(supX_n)*a = sup(X_n a)$
+		$(supX_n)*a = sup(X_n a)$
 \end{itemize}
 
 
@@ -1148,27 +1169,27 @@ $1^*=1^0 \lor 1^1 \lor 1^2 \lor \ldots = \underset{i=0}{\overset{\infty}{\Sigma}
 
 \paragraph*{Теорема (о свойствах бесконечной суммы).}
 \begin{itemize}
-    \item[1)] $\Sigma(a_n + b_n) = \Sigma a_n + \Sigma b_n$
-    \item[2)] Для любых $a$ и последовательности $\{b_n\}$ верно:\newline
-        $a + \Sigma b_n = \Sigma(a + b_n)$
-    \item[3)] Если $S_n = \underset{i=0}{\overset{n}{\Sigma}} a_i$, то $\Sigma S_n = \Sigma a_n$, где
-        $a_i$ - частичная сумма последовательности $\{a_n\}$
+	\item[1)] $\Sigma(a_n + b_n) = \Sigma a_n + \Sigma b_n$
+	\item[2)] Для любых $a$ и последовательности $\{b_n\}$ верно:\newline
+		$a + \Sigma b_n = \Sigma(a + b_n)$
+	\item[3)] Если $S_n = \underset{i=0}{\overset{n}{\Sigma}} a_i$, то $\Sigma S_n = \Sigma a_n$, где
+		$a_i$ - частичная сумма последовательности $\{a_n\}$
 \end{itemize}
 \paragraph*{Доказательство.}
 \begin{itemize}
-    \item[1)] $(a_n + b_n) + \Sigma a_n + \Sigma b_n = (a_n + \Sigma a_n) + (b_n + \Sigma b_n) =
-            \Sigma a_n + \Sigma b_n$.
+	\item[1)] $(a_n + b_n) + \Sigma a_n + \Sigma b_n = (a_n + \Sigma a_n) + (b_n + \Sigma b_n) =
+			\Sigma a_n + \Sigma b_n$.
 
-        $\Sigma a_n + \Sigma b_n$ - верхняя грань $\{a_n + b_n\}$
+		$\Sigma a_n + \Sigma b_n$ - верхняя грань $\{a_n + b_n\}$
 
-        Пусть $(\exists C)(\forall n)(a_n + b_n <= C)$. Тогда $a_n \leq a_n + b_n \leq C$ и
-        $b_n \leq a_n + b_n \leq C$, то есть $C$ - верхняя грань $\{a_n\}$ и $\{b_n\}$.
+		Пусть $(\exists C)(\forall n)(a_n + b_n <= C)$. Тогда $a_n \leq a_n + b_n \leq C$ и
+		$b_n \leq a_n + b_n \leq C$, то есть $C$ - верхняя грань $\{a_n\}$ и $\{b_n\}$.
 
-        $C + \Sigma a_n + \Sigma b_n = C + \Sigma b_n = C$
+		$C + \Sigma a_n + \Sigma b_n = C + \Sigma b_n = C$
 
-        Итак, мы доказали, что $\Sigma a_n + \Sigma b_n \leq C$, то есть
-        $\Sigma a_n + \Sigma b_n = \Sigma (a_n + b_n)$
-    \item[2)] Является прямым следствием первого, когда одна из последовательностей постоянная
+		Итак, мы доказали, что $\Sigma a_n + \Sigma b_n \leq C$, то есть
+		$\Sigma a_n + \Sigma b_n = \Sigma (a_n + b_n)$
+	\item[2)] Является прямым следствием первого, когда одна из последовательностей постоянная
 \end{itemize}
 
 \medskip
@@ -1184,14 +1205,14 @@ $f(\Sigma X_n) = a + \Sigma X_n = \Sigma(a + X_n) = \Sigma f(X_n)$
 
 \paragraph*{Доказательство.}
 Используем формулу для вычисления наименьшей неподвижной точки и, записывая
-в случае замкнутого полукольца как бесконечную сумму, получим для уравнения решение в виде $x = a^{*}b$ 
+в случае замкнутого полукольца как бесконечную сумму, получим для уравнения решение в виде $x = a^{*}b$
 
 $x = \underset{n=0}{\overset{\infty}{\Sigma}}f^{n}(\Theta)$ - где $\Theta$ - нуль полукольца и
 $f(x) = ax + b$
 
 Учитывая, что  $f^{0}(\Theta) = b, f^{1}(\Theta) = ab + b, \ldots$ получаем
 $ \underset{n=0}{ \overset{ \infty }{ \Sigma }}f^{n}(\Theta) =
-\underset{n=1}{\overset{\infty}{\Sigma}}(1 + a + \ldots + a^{n})$
+	\underset{n=1}{\overset{\infty}{\Sigma}}(1 + a + \ldots + a^{n})$
 
 Используя непрерывность умножения вынесем $b$:
 
@@ -1201,8 +1222,8 @@ $\left(\(\underset{n=1}{\overset{\infty}{\Sigma}}(1 + a + \ldots + a^{n})\right)
 
 Так как $1 + a \ldots + a^{n}$ - частичная сумма $\{a^{n}\}_{n \geq 0}$. Тогда
 
-$\underset{n=0}{\overset{\infty}{\Sigma}}(1 + a \ldots a^{n}) = 
-\underset{n=0}{\overset{\infty}{\Sigma}}a^{n} = a^{*} = f^{n}(\Theta)$
+$\underset{n=0}{\overset{\infty}{\Sigma}}(1 + a \ldots a^{n}) =
+	\underset{n=0}{\overset{\infty}{\Sigma}}a^{n} = a^{*} = f^{n}(\Theta)$
 
 \medskip
 
@@ -1243,9 +1264,9 @@ $f(x) = ax + b$ - непрерывна по теореме (о свойства�
 $x = supf^{(n)}(0), n \geq 0$ - n-кратное применение 0
 
 $supf^{(n)}(0) = \{0, b, ab+b = (a + 1)b, a(ab + b) + b, \ldots, (1 + a + \ldots + a^{n})b, \ldots\}
-    = \underset{n=1}{\overset{\infty}{\Sigma}}(1 + a + \ldots + a^{n-1})b =
-    \underset{n=0}{\overset{\infty}{\Sigma}}(1 + a + \ldots + a^{n})b =
-    (\underset{n=0}{\overset{\infty}{\Sigma}} a_n)b$
+	= \underset{n=1}{\overset{\infty}{\Sigma}}(1 + a + \ldots + a^{n-1})b =
+	\underset{n=0}{\overset{\infty}{\Sigma}}(1 + a + \ldots + a^{n})b =
+	(\underset{n=0}{\overset{\infty}{\Sigma}} a_n)b$
 
 $\underset{n=0}{\overset{\infty}{\Sigma}}a_n \rightleftharpoons a^*$ - итерация (замыкание) $a$
 
@@ -1257,12 +1278,12 @@ $\underset{n=0}{\overset{\infty}{\Sigma}}a_n \rightleftharpoons a^*$ - итер�
 
 СЛУ в полукольцах:  (3)
 $$
-    \begin{cases}
-        x_1 = a_{11}x_1 + a_{12}x_2 + \ldots + a_{1n}x_n + b_n \\
-        x_2 = a_{21}x_1 + a_{22}x_2 + \ldots + a_{2n}x_n + b_n \\
-        \hdotsfor{1}                                           \\
-        x_n = a_{n1}x_1 + a_{n2}x_2 + \ldots + a_{nn}x_n + b_n \\
-    \end{cases}
+	\begin{cases}
+		x_1 = a_{11}x_1 + a_{12}x_2 + \ldots + a_{1n}x_n + b_n \\
+		x_2 = a_{21}x_1 + a_{22}x_2 + \ldots + a_{2n}x_n + b_n \\
+		\hdotsfor{1}                                           \\
+		x_n = a_{n1}x_1 + a_{n2}x_2 + \ldots + a_{nn}x_n + b_n \\
+	\end{cases}
 $$
 
 Составим матрицу $A = (a_{ij})_{m \times n}$, где $m$, $n$ - размер матрицы.
@@ -1277,11 +1298,11 @@ ${\cal S} = (S, +, *, 0, 1)$ - Идемпотентное полукольцо.
 
 Операция сложения:
 $A = (a_{ij})_{m \times n}$, $B = (b_{ij})_{m \times n} \Rightarrow
-    C = A + B = (a_{ij} + b_{ij})_{m \times n}$
+	C = A + B = (a_{ij} + b_{ij})_{m \times n}$
 
 Операция умножения:
 $A = (a_{ij})_{m \times n}$, $B = (b_{ij})_{m \times n} \Rightarrow
-    C = A + B = (\underset{k=1}{\overset{n}{\Sigma}}a_{ik}b_{kj})_{m \times p}$
+	C = A + B = (\underset{k=1}{\overset{n}{\Sigma}}a_{ik}b_{kj})_{m \times p}$
 
 \medskip
 
@@ -1296,12 +1317,12 @@ $A = (a_{ij})_{m \times n}$, $B = (b_{ij})_{m \times n} \Rightarrow
 
 Из этой теоремы следует, что мы можем решить такие уравнения:
 
- $X = AX + B$ и  $X = XA + B$ (4)
+$X = AX + B$ и  $X = XA + B$ (4)
 
- То есть в  $\cal M(S)$ $\implies X = A^{*}B$ (5)
+То есть в  $\cal M(S)$ $\implies X = A^{*}B$ (5)
 
 
- \medskip
+\medskip
 
 Система (3) в матричной форме ($\varepsilon$ - столбец  $\beta$ - столбец):
 
@@ -1326,7 +1347,7 @@ $B = [\beta_1, \beta_2, \ldots, \beta_{n}]$
 
 Матрица (4) разрешима в виде (5). (4) может быть расписано как (7). (7) разрешимо, так как
 вся матрица разрешима. И решение для каждого столбца $\varepsilon_{j} = A^{*}B, 1\le j\le n$. То есть
-$\varepsilon = A^{*}B$ 
+$\varepsilon = A^{*}B$
 
 \newpage
 
@@ -1342,20 +1363,20 @@ $ {\cal G} = (V, E)$ - неориентированный граф, где
 
 $V$ - конечное мнодество вершин графа.
 
- $E$ - Множество смежностей, или множество неупорядоченных пар на  $V$, то есть подмножество
- множества  двуъэлементных подмножеств $V$, элементы которого называются ребрами
-
- \paragraph*{Определение.}
- Цепь в неорграфе - это последовательность вершин  $G$  $v_0, v_1,\ldots,v_n,\ldots$ такая, что
- $(v_i-v_{i-1})(\forall i)(\exists v_{i+1})$, если $u_{i+1}$ определен в последовательности.
- Под конечной последовательностью понимается
- кортеж вершин
+$E$ - Множество смежностей, или множество неупорядоченных пар на  $V$, то есть подмножество
+множества  двуъэлементных подмножеств $V$, элементы которого называются ребрами
 
 \paragraph*{Определение.}
- Цепь называется простой, если все ее вершины (кроме, может быть, первой и последней) попарно различны.
+Цепь в неорграфе - это последовательность вершин  $G$  $v_0, v_1,\ldots,v_n,\ldots$ такая, что
+$(v_i-v_{i-1})(\forall i)(\exists v_{i+1})$, если $u_{i+1}$ определен в последовательности.
+Под конечной последовательностью понимается
+кортеж вершин
 
- \paragraph*{Определение.}
- Цикл - простая цепь ненулевой длины с совпадающими концами.
+\paragraph*{Определение.}
+Цепь называется простой, если все ее вершины (кроме, может быть, первой и последней) попарно различны.
+
+\paragraph*{Определение.}
+Цикл - простая цепь ненулевой длины с совпадающими концами.
 
 \paragraph*{Определение.}
 Ребро $e$ называется инцидентным вершине  $v$, если она является одним из его концов.
@@ -1368,18 +1389,18 @@ $ {\cal G} = (V, E)$ - ориентированный граф, где
 
 $V$ - конечное множество вершин графа.
 
- $E$ - Множество смежностей, или множество упорядоченных пар на  $V$, то есть подмножество
- множества  $V \times V$, элементы которого называются дугами.
+$E$ - Множество смежностей, или множество упорядоченных пар на  $V$, то есть подмножество
+множества  $V \times V$, элементы которого называются дугами.
 
-  \paragraph*{Определение.}
- Дугу $(U, V)$ называют заходящей в вершину  $V$ и исходящей из вершины  $U$.
+\paragraph*{Определение.}
+Дугу $(U, V)$ называют заходящей в вершину  $V$ и исходящей из вершины  $U$.
 
 \paragraph*{Определение.}
 Дугу называют инцидентной вершине $V$, если она заходит в  $V$ или исходит из $V$.
 
- \paragraph*{Определение.}
+\paragraph*{Определение.}
 Путь в орграфе: последовательность вершин $u_0, u_1, u_2,\ldots,u_n,\ldots$, где $(\forall i \ge  0)
-(u_i \to u_{i+1})$, если $u_{i+1}$ определен в последовательности.
+	(u_i \to u_{i+1})$, если $u_{i+1}$ определен в последовательности.
 
 \paragraph*{Определение.}
 Простой путь - это такой путь, если все его вершины (кроме, может быть, первой и последней)
@@ -1406,24 +1427,24 @@ $V_1 \subseteq V, E_1 \subseteq E$.
 \paragraph*{Определение.}
 Неориентированный граф называют связным, если любые две его вершины $U$ и  $V$ соединены цепью.
 
- \paragraph*{Определение.}
+\paragraph*{Определение.}
 Компонента связности неографа - это максимальный связный подграф текущего графа.
 
 \newpage
 
 \section{Связность орграфа (слабая сильная).
-\newlineКомпонента связности (слабая, сильная)}
+  \newlineКомпонента связности (слабая, сильная)}
 \subsection{Условие}
- Связность, сильная и слабая связность орграфа. Компоненты
+Связность, сильная и слабая связность орграфа. Компоненты
 связности (сильной, слабой).
 
 \subsection{Связность орграфа}
 
 \paragraph*{Определение.}
 Ориентированный граф называют связным, если для любых двух его вершин $U, V$ вершина
- $V$ достижима из  $U$ или наоборот.
+$V$ достижима из  $U$ или наоборот.
 
- $(\forall U,V)((U \Rightarrow^{*} V) \lor (V \pathto[] U))$
+$(\forall U,V)((U \Rightarrow^{*} V) \lor (V \pathto[] U))$
 
 \paragraph*{Определение.}
 Граф является слабо связанным, если ассоциированный с ним неорграф является связным
@@ -1434,9 +1455,9 @@ $V_1 \subseteq V, E_1 \subseteq E$.
 
 $(\forall U,V)(U \pathto[] V \band V \pathto[] U)$
 
- \paragraph*{Определение.}
- Компонента связности (сильная, слабая) ориентированного графа - это максимальный связный
- (слабо, сильно) подграф.
+\paragraph*{Определение.}
+Компонента связности (сильная, слабая) ориентированного графа - это максимальный связный
+(слабо, сильно) подграф.
 
 \paragraph*{Теорема.}
 Если в орграфе из $u$ достижима  $v$, то существует простой путь из  $u$ в  $v$
@@ -1500,14 +1521,14 @@ $D[v] < D[\omega]$
 
 $NEW[w] = 1$
 
- \paragraph*{Определение.}
+\paragraph*{Определение.}
 Обратные дуги ($B$) - это те дуги, которые ведут от потомка к предку в глубинном остовном лесу.
 
 $D[v] \ge  D[\omega]$
 
 $NEW[\omega] = 0$
 
- $\omega \in stack$
+$\omega \in stack$
 
 \paragraph*{Определение.}
 Прямые дуги ($F$) - это те дуги, которые ведут от подлинного предка к подлинному потомку, НО
@@ -1575,14 +1596,14 @@ $D[v] < D[\omega]$
 
 $NEW[w] = 1$
 
- \paragraph*{Определение.}
+\paragraph*{Определение.}
 Обратные дуги ($B$) - это те дуги, которые ведут от потомка к предку в глубинном остовном лесу.
 
 $D[v] \ge  D[\omega]$
 
 $NEW[\omega] = 0$
 
- $\omega \in stack$
+$\omega \in stack$
 
 \paragraph*{Определение.}
 Прямые дуги ($F$) - это те дуги, которые ведут от подлинного предка к подлинному потомку, НО
@@ -1603,6 +1624,1207 @@ $\omega \notin stack $
 
 \newpage
 
+\section{Поиск в ширину в орграфе}
+\subsection{Условие}
+Поиск в ширину в орграфе и поиск (на основе поиска в ширину) кратчайших расстояний
+от фиксированной вершины: алгоритм волнового фронта и поиск в ширину в орграфе
+с числовыми метками дуг.
+
+\subsection{Алгоритм.}
+Охватываем весь список смежностей, используется очередь $Q$. Расставляем метки
+на вершинах графа.
+
+ \begin{lstlisting}
+ begin
+ 	for all v in V do
+		M[v] = infinity;
+	Q := 0;
+	M[v0] := 0;
+	v0 -> Q;
+
+	for all (v in Q)
+		while (Q != 0) do
+			for all (w in L[v]) do
+				if M(w) = infinity then begin
+					M[w] := M[v] + 1;
+					w -> Q;
+				end;
+	Q -> V;
+end
+\end{lstlisting}
+
+Алгоритм волнового фронта.
+
+$ {\cal G} = (V, E)$ - орграф, $\varphi = E \to R^{+}$ - функция разметки
+
+\begin{lstlisting}
+begin
+	for all (v in V) do
+		M[v] := infinity;
+	Q := 0;
+	M[v0] := 0
+	v0 -> Q;
+
+	for all (v in Q)
+		while (Q != 0) do
+			for all (w in L[v]) do begin
+				d := M[v] + phi(v,w);
+				if (d < M[w]) then begin
+					M[w] := d;
+					if (w not in Q) then
+						w -> Q;
+				end;
+				Q -> v;
+			end;
+end;	
+\end{lstlisting}
+
+\newpage
+
+\section{Изоморфизм графов. Автоморфизмы}
+\subsection{Условие}
+Изоморфизм графов. Группа автоморфизмов графа и ее вычисление
+
+\subsection{Изоморфизм графов}
+Пусть даны графы: $ {\cal J}_{1} = (V_1, \rho_{1}), {\cal J}_{2} = (V_2, \rho_2)$
+
+\paragraph*{Определение.}
+Биекция $h: V_1 \to V_2$ называется изоморфизмом графа $ {\cal J}_{1}$ на
+граф $ {\cal J}_{2}$, если верно $(\forall (u,v) \in V_1)(h(u)\rho_2h(v))$
+
+Выражение вида $(\forall (u,v) \in V_1)(h(u)\rho_2h(v))$ можно записать в виде
+$u\rho v$ (что говорит о том, что две вершины смежны). Автоморфизм кратко
+записывается в виде 
+$
+{\cal J}_{1} \simeq {\cal J}_{2}
+$
+\medskip
+
+В неорграфе $ {\cal J}_{1} \simeq {\cal J}_{2} \leftrightharpoons
+(\forall u,v \in V_1)(h(u)-h(v) \Longleftrightarrow u-v)$, где знак '-' - это ребро между
+вершинами графа.
+
+\medskip
+
+Для орграфа (неорграфа) верно: если $ {\cal J}_{1} \simeq {\cal J}_{2}$, то
+$(\forall u in V_1)(dg(u) = dg(h(u)))$, то есть степень вершины не меняется.
+
+\subsection{Автоморфизм графа}
+\paragraph*{Определение.}
+Изоморфизм графа самого на себя называют автоморфизмом графа.
+
+\medskip
+
+Некоторые свойства автоморфизмов:
+\begin{itemize}
+	\item Если $g, h$ - автоморфизм, то  $g \circ h$ - тоже автоморфизм
+	\item Если  $h$ - автоморфизм, то  $h^{-1}$ - тоже автоморфизм
+	\item Тождественная подстановка ($\varepsilon$) тоже автоморфизм
+\end{itemize}
+
+
+\medskip
+
+Группу автоморфизмов графа записывают так: $Aut( {\cal J} )$
+
+\paragraph*{Способы вычисления группы автоморфизмов.}
+Пусть дан граф $ {\cal J}$.
+
+Первый способ - это найти орбиту $orb$ и стабилизатор  $G_{S}$ какой-то одной вершины.
+
+\paragraph*{Определение.}
+Орбита - это подмножество вершин графа, в которые может перейти текущая вершина в результате
+действия автоморфизмов.
+Записывается так: $S \subseteq M: orb(S) \leftrightharpoons
+\{t: (\exists \delta \in G)(t = \delta(S))\}$, где $S$ - вершина, а $\delta$
+- перестановка всех вершин и $\delta(S)$ - вершина, стоящая вместо вершины  $S$ в
+автоморфизме.
+
+Пример: пусть дан граф в виде квадрата. Тогда любая вершина может стоять на месте любой другой
+вершины. То есть в орбите будет 4 вершины: $ \mid orb(S)  \mid  = 4$, и если задать номера вершинам
+квадрата (1, 2, 3, 4), то $orb(S) = \{1,2,3,4\} $
+
+\paragraph*{Определение.}
+Стабилизатор вершины - это такое подмножество вершин графа, в которым не меняется
+место текущей вершины в результате действий автоморфизма.
+Записывается так: $G_{S} \leftrightharpoons
+\{\delta: \delta(S) = S\} $
+
+\medskip
+Второй способ - комбинаторный. Нужно найти всевозможные комбинации поворотов, отражений и т.п.
+
+\newpage
+
+\section{Задача о путях в орграфе. Алгоритм Флойда-Уоршелла-Клини}
+\subsection{Условие}
+Задача о путях в ориентированном графе, размеченном над полукольцом и ее решение
+с помощью алгоритма Флойда — Уоршелла — Клини. Задача о достижимости и поиске
+кратчайших расстояний между двумя узлами графа.
+
+\subsection{Ответ}
+
+\paragraph*{Определение.}
+Размеченным ориентированным графом называют пару $W = ( {\cal G}, \phi )$, где
+$ {\cal G} = (V, E)$ - обычный орграф, $\phi: E \to R$ - функция разметки в некотором идемпотентном
+полукольце $ {\cal S} = (S, +, *, \mathbb{O}, 1)$ и $(\forall e \in E)(\phi(e) \neq 1)$
+
+\medskip
+
+Если задать орграф с помощью матрицы смежности:
+ \[
+A = (a_{ij}), a_{ij} = 
+\begin{cases}
+	1, (v_i,v_j) \in E \\
+	0,\mbox{ иначе }\\
+\end{cases}
+\] 
+то задача сводится к вычислению матрицы достижимости:
+\[
+C = (c_{ij}), c_{ij} = 
+\begin{cases}
+	1, v_{i} \to ^{*} v_{j} \\
+	0\mbox{, иначе} \\
+\end{cases}
+\] 
+
+\medskip
+
+Если задать орграф с помощью матрицы метод дуг:
+\[
+A = (a_{ij}), a_{ij} =
+\begin{cases}
+	\phi(v_{i},v_{j}),\mbox{ если} (v_{i}, v_{j}) \in E \\
+	0\mbox{, иначе}
+\end{cases}
+\] 
+то задача сводится к поиску кратчайшего расстояния между узлами графа, то есть к расчету
+матрицы кратчайших расстояний:
+\[
+C = (c_{ij}), c_{ij} =
+\begin{cases}
+	\mbox{длине кратчайшего пути из $v_{i}$ в $v_{j}$, если} v_{i} \pathto[] v_{j}\\
+	+\infty\mbox{, иначе} \\
+\end{cases}
+\] 
+
+В обоих случаях нужно найти матрицу $C$, которая называется в матрицей стоимостей (cost)
+
+\paragraph*{Теорема.}
+$C = A^{*}$ (матрица стоимостей равна итерации матрицы $A$)
+
+В общем случае придется решить такую систему уравнений:
+\[
+\begin{cases}
+	x_1 = a_{11}x_1+\ldots+a_{1j}x_{j}+\ldots+a_{1n}x_{n}\\
+	\ldots\ldots\ldots\ldots\ldots\ldots\ldots.\ldots\ldots\ldots.\ldots\\
+	x_{j}=a_{j_1}x_1+\ldots+a_{ij}x_{j}+\ldots+a_{jn}x_{n}+\Theta\\
+	\ldots\ldots\ldots\ldots\ldots\ldots\ldots.\ldots\ldots\ldots.\ldots\\
+	x_{n}=a_{n_1}x_{11}+\ldots+a_{nj}x_{j}+\ldots+a_{nn}x_{n}\\
+\end{cases}
+\] 
+
+Где $x_{j}$ - выбранная вершина, а $\Theta$ - нейтральный элемент по умножению. При решении
+мы получаем  $j$-ый столбец матрицы  $C$. То есть решение для $x_1$ - это первый столбец матрицы
+$C$.
+
+\medskip
+
+В зависимости от того, как задана матрица, мы выбираем разные полукольца. В случае задачи
+на достижимость выбирается $\mathbb{B} = (\{0,1\},max,min,0,1 )$. В случае задачи на кратчайший
+путь выбирается $ {\cal R}^{+} = ([0, +\infty], min, +, +\infty, 0)$
+
+\newpage
+
+
+\chapter{Регулярные языки и конечные автоматы}
+
+\section{Алфавит, слово, язык}
+\subsection{Условие}
+Алфавит, слово, язык. Операции над языками, полукольцо всех языков в
+заданном алфавите и его замкнутость
+
+\subsection{Алфавит, слово, язык}
+\paragraph*{Определение.}
+Алфавит - это множество всех букв (буквами может быть что угодно).
+$V = \{a_1,\ldots, a_{n}\} \neq \varnothing $
+
+\paragraph*{Определение.}
+Слово - это цепочка в алфавите (кортеж): $a_{i_1},a_{i_2},\ldots,a_{ik} = x$ или
+$x=x(1)x(2)\ldots x(k)$ или $x \in V^{k}, k \ge 0$ 
+
+\paragraph*{Определение.}
+Пустое слово $\{\lambda\} = V^{0}$
+
+\paragraph*{Определение.}
+Длина слова = $ \mid x  \mid = k \leftrightharpoons x \in V^{k}, k \ge 0,  \mid \lambda  \mid = 0$ 
+
+\paragraph*{Определение.}
+Язык - это итерация алфавита.
+$ {\cal L} \subseteq V^{*}$.
+
+\medskip
+
+Различают несколько видов итераций.
+\paragraph*{Определение.}
+Итерация: $V^{*} \leftrightharpoons \bigcup_{k=0}^{\infty}V^{k} $
+
+
+\paragraph*{Определение.}
+Положительная итерация: $V^{+} \leftrightharpoons V^{*}\backslash \{\lambda\} $
+
+\subsection{Операции над языками}
+Зададим операции над словами:
+
+Сложение: $x = x(1)x(2)\ldots x(k), y = y(1)y(2)\ldots y(m), k,m \ge 0$
+
+$xy = x(1)x(2)\ldots x(k)y(1)y(2)\ldots y(m)$
+
+$ \mid xy \mid =  \mid x \mid + \mid y \mid $
+
+Свойства этой операции:
+\begin{itemize}
+	\item $(xy)z = x(yz)$
+	\item  $xy \neq  yx$
+	\item $(\forall \lambda)(\lambda x = x\lambda = x)$
+\end{itemize}
+
+\medskip
+
+Операции над языками:
+\begin{itemize}
+	\item Теоретико-множественные операции ($\cap, \cup, \bslash, \triangle,\ldots$)
+	\item Соединение языков: $L_1*L_2 \leftrightharpoons
+		\{xy:x \in  L_1, y \in  L_2\} $
+\end{itemize}
+
+\medskip
+
+Можем сделать полукольцо языков:
+
+$ {\cal L}_{V} = (2^{V^{*}}, \cup, *, \varnothing, \{\lambda\} )$ - замкнутое полукольцо
+
+\paragraph*{Теорема.}
+Алгебра $ {\cal L}_{V_1}$ - является замкнутым полукольцом.
+\paragraph*{Доказательство.}
+Используя аксиомы полукольца:
+
+$1) K \cup (L \cup M) = (K \cup L) \cup M$
+
+ $2) K\cup L = L \cup K$
+
+  $3) L \cup \varnothing = L$
+
+ $4) L \cup L = L$
+
+  $5) K*(L*M) = (K*L)*M$
+
+   $6) L \{\lambda\} = L$ 
+
+   $7) K*(L \cup M) = K*L \cup K*M$
+
+   $8) L * \varnothing = \varnothing * L = \varnothing$
+ 
+Докажем 7-ю аксиому.
+
+$x \in K*(L \cup M) \leftrightharpoons x = yz, y \in K,z \in L \cup M
+\leftrightharpoons y \in K, z\in L \lor z \in M \leftrightharpoons
+yz \in K*L \lor yz \in KM \leftrightharpoons yz = x \in KL \cup KM$
+
+\medskip
+
+\paragraph*{Определение.}
+$L^{*}=\bigcup_{n=0}^{\infty}L^{n} $ - итерация языка ($L^{0} \cup L^{} \cup L^{1} \cup \ldots $)
+
+\paragraph*{Определение.}
+$L^{+}=\bigcup_{n=1}^{\infty}L^{n} $ - положительная итерация языка (без $\{\lambda\} $)
+
+\newpage
+
+\section{Регулярные языки и регулярные выражения}
+\subsection{Условие}
+ Регулярные языки и регулярные выражения. Полукольцо регулярных языков как
+полукольцо с итерацией (не являющееся замкнутым)
+
+\subsection{Регулярные языки}
+
+\paragraph*{Определение.}
+1) $\varnothing, \{\lambda\}, \{a\}  $ - регулярные языки в алфавите $V$
+
+2) $L_1,L_2$ - регулярные $\implies L_1 \cup L_2, L_1*L_2$ - тоже регулярные
+
+3) $L$ - регулярный язык  $\implies L^{*}$ - регулярный язык
+
+4) Других регулярных языков не существует
+
+\medskip
+
+$ {\cal R}_{V} = (Reg(V), \cup, *, \varnothing, \{\lambda\} )$ - полукольцо
+регулярных языков с итерацией.
+
+
+\subsection{Полукольцо регулярных языков, регулярные выражения}
+\paragraph*{Определение.}
+Полукольцо с итерацией - это полукольцо, которое содержится в некотором замкнутом
+полукольце и вместе с каждым своим элементом содержит его итерацию по определению.
+
+\paragraph*{Определение.}
+Регулярное выражение - это формула, обозначающая какой-то регулярный язык $(a \mapsto  {\cal L})$ 
+
+Рассмотрим некоторые формулы регулярных выражений:
+\begin{itemize}
+	\item $\varnothing \mapsto \varnothing$
+	\item $\lambda \mapsto \{\lambda\} $
+ 	\item $a \mapsto \{a\}_{V} $ 
+	\item $\alpha \mapsto K, \beta \mapsto L \implies
+		(\alpha + \beta) \mapsto K \cup L, (\alpha * \beta) \mapsto K*L$
+	\item $\alpha \mapsto L \implies \alpha^{*} \mapsto L^{*},
+		\alpha^{+} \mapsto L^{+}$ 
+	\item Других регулярных выражений нет.
+\end{itemize}
+
+\newpage
+
+\section{Конечный автомат и регулярный язык, допускаемый КА}
+\subsection{Условие}
+Понятие конечного автомата (КА) и языка, допускаемого КА. Анализ и синтез КА
+
+\subsection{Конечный автомат и язык, допускаемый им}
+\paragraph*{Определение.}
+Пусть $V$ - некоторый алфавит, тогда конечный автомат с входным алфавитом  $V$ по
+определению орграф  $ {\cal J}$, размеченный над $Reg(V)$, при этом по определению
+ $(\forall e \in E)(\varphi(e)=\{\lambda\}  \lor \varphi(e) \subseteq V )$ 
+
+ При этом $\varphi(e) \neq \varnothing$, задана начальная вершина $q_0 \in Q$ и задано множество
+ вершин $F$, называемых заключительными.
+
+ Тогда конечный автомат может быть задан так:
+
+  $M = (Q,E,\varphi,q_0,F)$, где
+
+  $Q$ - множество состояний КА
+
+  $E$ - множество дуг КА
+
+   $\varphi$ - функция разметки КА
+
+  $q_0$ - входная вершина
+ 
+  $F \subseteq Q$ - подмножество заключительных состояний
+
+\paragraph*{Определение.}
+КА допускает цепочку $x$, если она читается на некотором пути из входной вершины в одну
+из заключительных вершин.
+
+ \paragraph*{Определение.}
+Язык, допускаемый КА, - множество всех допускаемых цепочек КА
+
+\paragraph*{Определение.}
+Задача синтеза КА - задача построения КА по регулярному языку
+
+\paragraph*{Определение.}
+Задача анализа КА - задача вычисления регулярного языка по КА
+
+\paragraph*{Теорема.}
+Для любого регулярного языка может быть построен КА, допускающий этот язык.
+
+\newpage
+
+\section{Теорема Клини}
+\subsection{Условие}
+Теорема Клини о совпадении класса языков, допускаемых КА и класса регулярных
+языков: теорема о регулярности языка любого КА и теорема о построении КА по
+произвольному регулярному выражению
+
+\subsection{Ответ}
+\paragraph*{Теорема.}
+Язык регулярен тогда и только тогда, когда он допускается конечным автоматом.
+\paragraph*{Доказательство.}
+Докажем, что решение системы линейных уравнений с
+регулярными коэффициентами – регулярно, т.е. является
+вектором, каждая компонента которого – регулярный язык.
+Индукция по порядку n системы ЛУ
+
+Базис n = 1: $x = \lambda x + \beta$,  $\lambda,\beta$ - рег. выражения
+
+ $x=\lambda^{*}\beta$ - регулярный язык
+
+
+Предположим: пусть для любого порядка $\le  n - 1$ утверждение верно ($n \le 2$)
+
+Рассмотрим систему n-го порядка:
+\[
+\begin{cases}
+	x_1=a_{11}x_1+a_{12}x_2+\ldots+a_{1n}x_{n}+b_1\\
+	x_2=a_{21}x_1+a_{22}x_2+\ldots+a_{2n}x_{n}+b_2\\
+	\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\\
+	x_{n}=a_{n_1}x_1+a_{n_2}x_2+\ldots+a_{nn}x_{n}+b_{b}\\
+\end{cases}
+\] 
+
+$A = (a_{ij})_{n\times n}$ - регулярные выражения
+
+Тогда выразим $x_1$:
+\[
+x_1=a_{11}^{*}(a_{12}x_2+\ldots+a_{1n}x_{n}+b_1)
+\] 
+
+Подставим его во все остальные:
+\[
+\begin{cases}
+	x_2=a_{21}*a_{11}^{*}(a_{12}x_2+\ldots+a_{1n}x_{n}+b_1)+a_{22}x_2+\ldots+a_{2n}x_{n}+b_2\\
+	\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots.\ldots\ldots\ldots\ldots\ldots\\
+	x_{n}=a_{n_1}*a_{11}^{*}(a_{12}x_2+\ldots+a_{1n}x_{n}+b_1)+a_{n_2}x_2+\ldots+a_{nn}x_{n}+b_n\\
+\end{cases}
+\] 
+
+После приведения подобных членов в правых частях, получим систему с регулярными коэффициентами
+порядка $n-1$, решение которой регулярно по предположению
+
+Тогда  $x_2\ldots x_{n}$ - регулярные языки $\implies x_1$ - тоже регулярно.
+
+\medskip
+
+\paragraph*{Теорема.}
+Для каждого регулярного языка может быть построен КА, допускающий этот язык
+\paragraph*{Доказательство.}
+Сделать рисунки синтеза КА (НЕ СДЕЛАНО, НО БУДЕТ)
+
+\newpage
+
+\section{Детерминизация КА}
+\subsection{Условие}
+Детерминизация КА. Регулярность дополнения регулярного языка и пересечения двух
+регулярных языков. Проблемы пустоты и эквивалентности
+
+\subsection{Детерминизация КА}
+\paragraph*{Определение.}
+КА называют детерминизированным, если в нем отсутствуют $\lambda$-переходы, а
+также  $(\forall q \in Q)(\forall a \in V)( \mid \delta(q,a) \mid = 1)$, где
+$q \in Q$ - состояние, $a \in V$ - дуга, то есть выражение $ \mid \delta(q,a) \mid = 1$ говорит о том,
+что переход в детерминизированном КА производится ровно в 1 состояние.
+
+\paragraph*{Теорема.}
+Для любого КА может быть построен эквивалентный ему детерминизированный КА.
+
+Алгоритм детерминизации:
+
+Дано: КА $M = (V, Q, q_0,F,\delta)$
+
+Строим: КА $M^{\prime} = (V, Q^{\prime},q_0^{\prime},F,\delta^{\prime})$
+
+1) Удаление $\lambda$-переходов
+
+Уберем $\lambda$-переход:
+\begin{tikzpicture}
+	\node[circle,draw](q){q};
+	\node[circle,draw](p)[right=of q]{p};
+	\node[circle,draw](r)[right=of p]{r};
+	\draw[->,decorate,decoration=snake](q)--node[above=0.15cm]{$\lambda$}(p);
+	\draw[->](p)--node[above=0.15cm]{a}(r);
+\end{tikzpicture}
+
+Получаем в детерминированном:
+\begin{tikzpicture}
+	\node[circle,draw](q){q};
+	\node[circle,draw](r)[right=of q]{r};
+	\draw[->](q)--node[above=0.15cm]{a}(r);
+\end{tikzpicture}
+
+\medskip
+
+$Q^{\prime} = \{q_0\} \cup \{q: (\exists r \in Q)(\exists a \in V)(r \mapsto_{a} q)\} $
+
+$qo^{\prime} = q_0$ 
+
+$F^{\prime} = (F \cap Q^{\prime}) \cup (f: (\exists q \in Q)(q \pathto[] q_{f}, q_{f} \in F))$
+
+$\delta^{\prime}(q,a) = \delta(q,a) \lor \{r: (\exists p \in Q)(q \pathto[\lambda] p \mapsto_{a} r)\} $
+\paragraph*{Теорема.}
+Дополнение регулярного языка регулярно.
+\paragraph*{Доказательство.}
+Пусть $ {\cal L}$ - регулярный язык. Тогда язык $ {\cal L} = L(M)$ (язык, допускаемый КА), где
+$M = (V, E, q_0,F,\delta)$ - детерминированный КА.
+
+Пусть $x \subseteq V^{*}: x = x(1)x(2)\ldots x(k), k \ge 0$ 
+
+\begin{tikzpicture}
+	\node[](0){};
+	\node[circle,draw](q)[right=of 0]{$q_0$};
+	\node[circle,draw](p1)[right=of q]{$p_1$};
+	\node[circle,draw](p2)[right=of p1]{$p_2$};
+	\node[](1)[right=of p2]{};
+	\draw[->](0)--(q);
+	\draw[->](q)--node[above=0.15cm]{x(1)}(p1);
+	\draw[->](p1)--node[above=0.15cm]{x(2)}(p2);
+	\draw[->](p2)--(1);
+\end{tikzpicture}
+
+Тогда
+
+$x \in L \iff p_{k} \in F$ 
+
+$
+\begin{cases}
+	x \not\in L \iff p_{k} \not\in F\\
+	x \in \overline{L} \\
+\end{cases}
+$ 
+
+\medskip
+
+$\overline{M} = (V, Q, q_0, Q \bslash F, \delta)$ 
+
+$L(\overline{M}) = \overline{L}$
+
+\paragraph*{Следствие.}
+Если $L_1, L_2$ - регулярные языки, то $L_1 \bslash L_2, L_1 \cap L_2, \ldots$ - регулярные языки.
+
+\subsection{Проблемы}
+\paragraph*{Проблема пустоты.}
+Выяснить, не является ли язык, допускаемый КА, пустым?
+
+Решается поиском в ширину, фронтом. Пуст, если из начала недостижима ни одна вершина $F$.
+
+\paragraph*{Проблема эквивалентности.}
+Для любых двух заданных КА выяснить, не допускают ли они один и тот же язык?
+
+Решается, скорее всего, синтезом регулярных языков двух КА. Если языки равны, то равны и КА.
+
+\newpage
+
+\section{Лемма о разрастании для регулярных языков}
+\subsection{Условие}
+Лемма о разрастании для регулярных языков
+
+\subsection{Ответ}
+\paragraph*{Теорема.}
+Для любого регулярного языка $ {\cal L} \subseteq V^{*}$ существует числовая константа
+$k_{L}$ такая, что $(\forall x \in L)( \mid x\mid \ge k_{L} \implies x = uvw)$, где
+$0 <  \mid v \mid \le k_{L}$ и $(\forall n \ge 0)(x_{n}=uv^{n}w \in {\cal L})$ 
+
+\paragraph*{Доказательство.}
+Пусть $ {\cal L} \subseteq V^{*}$ - регулярный язык. Тогда $ {\cal L} = L(M)$,
+$M = (V, E, q_0,F,\delta)$ - детерминированный КА.
+
+ Положим $k_{L} = |Q|$ и пусть $x = x(1)x(2)\ldots x(l)$, где $l \ge k_{L} = |Q|, x \in L$
+
+$l \ge |Q| \implies$ число вершин пути $\ge |Q| + 1$, то существует вершина, которая
+повторится и будет на контуре.
+
+$x = uvw$
+
+ $x_0=uw \in L$, так как $v$ на контуре, а в контур можно не заходить.
+
+$(\forall n \ge 1)(x_{n}=uv^{n}w \in L)$, где $n$ - сколько раз проходим по контуру.
+Причем контур ненулевой длины:  $0 < |v| \le  k_{L} = |q|$
+
+\paragraph*{Следствие.}
+Из любого бесконечного регулярного языка найдется\newline последовательность цепочек, которые формируют
+арифметическую прогрессию, то есть $|x_{n+1}| = |x_{n}| + |v|$ 
+
+\newpage
+
+\chapter{Элементы Комбинаторики}
+\section{Формулы включения и исключения. Формула для числа сюръекций}
+\subsection{Условие}
+Формулы включения и исключения (без вывода). Формула для числа сюръекций (с
+выводом)
+
+\subsection{Формула включения и исключения}
+Формула включения:
+\[
+|A_1 \cap A_2 \cap \ldots \cap A_{n}| = \sum_{k=1}^{n}(-1)^{k+1} \sum_{i_1<i_2<\ldots < i_{k}}
+|A_{i1} \cap A_{i2} \cap \ldots \cap A_{ik}|
+.\] 
+
+Формула исключений:
+\[
+|\overline{A_1} \cap \overline{A_2} \cap \ldots \cap \overline{A_{n}}| = 
+|U| - \sum_{k=1}^{n}(-1)^{k+1} \sum_{i_1<i_2<\ldots < i_{k}}
+|A_{i1} \cap A_{i2} \cap \ldots \cap A_{ik}|
+.\] 
+
+\subsection{Формула для числа сюръекций}
+Сразу выведем формулу для числа сюръекций.
+
+\medskip
+
+Пусть есть $|A| = m, |B| = n, m \ge  n$
+
+$W_{i} = \{f: f \in  B^{A}, b_{i} \not\in R(f)\} $, $R(f)$ - область значений  $f$
+
+ $|W_{i}| = (n - 1)^{m}$
+
+ \medskip
+
+$W_{i1} \cap W_{i2} \cap \ldots W_{ik} = \{f: i_1,i_2,\ldots,i_{k} \not\in R(f)\} $
+
+$|W_{i1} \cap W_{i2} \cap \ldots W_{ik}| = (n-k)^{m}$ 
+
+$C_{n}^{k}(n-k)^{m} = \sum_{i_1<i_2<\ldots < i_{k}} |W_{i1} \cap W_{i2} \cap \ldots W_{ik}|$
+
+\medskip
+
+Число отображений, не являющихся сюръекцией:
+
+$\sum_{k=1}^{n}(-1)^{k+1} C_{n}^{k}(n-k)^{m} $ 
+
+Тогда число сюръекций:
+
+$S(m,n) = n^{m} - \sum_{k=1}^{n}(-1)^{k+1}C_{n}^{k}(n-k)^{m} =
+\sum_{k=0}^{n}(-1)^{k}C^{k}_{n}(n-k)^{m} $
+
+\newpage
+
+\section{Однородные линейные рекуррентные соотношения}
+\subsection{Условие}
+Однородные линейные рекуррентные соотношения (ОЛРС) с постоянными
+коэффициентами. Понятие решения, фундаментальной системы решений (ФСР).
+Теорема о связи между решениями и начальными условиями
+
+\subsection{Ответ}
+
+\paragraph*{Определение.}
+Пусть дана числовая последовательность вида $\{x_{n}\}_{n\ge 0} $,
+причем она не определена явно как функция натуральной переменной, но всякий
+ее член выражается через $k$ предыдущих (для фиксированного $k$) в виде:
+
+ $x_{n} = \varphi(x_{n-1},\ldots,x_{n-k}) + f(n)$ (1)
+
+ В этом случае соотношение (1) называется рекуррентным соотношением 1-го порядка. При
+ $f(n) = 0$ его называют однородным.
+
+ Если функция  $\varphi$ линейна по своим аргументам, то такое соотношение называется
+ линейным. Будем, как правило, записывать линейное рекуррентное соотношение в виде:
+
+  $x_{n} +a_1(n)x_{n-1}+\ldots+a_{k}x_{n-k} = f(n)$ (3)
+
+В соотношении (3) коэффициенты $a_{i}, i = \overline{1,k}$ называют коэффициентами,
+а последовательность $f(n)$ - правой частью. В случае нулевой правой части получаем
+однородное линейное рекуррентное соотношение.
+
+В рассмотрении таких соотношений мы полагаем, что коэффициенты числа. То есть рассматриваются
+рекуррентные соотношения с постоянными коэффициентами.
+
+\medskip
+
+Общий вид k-го порядка:
+
+$x_{n}+a_1x_{n-1}+\ldots+a_{k}x_{n-k} = 0$ (4)
+
+Пусть есть начальные условия:
+$x_0=a_0, x_1=a_1,\ldots,x_{k-1}=a_{k-1}$
+
+\paragraph*{Определение.}
+Произвольная линейно независимая система $(y^{(1)}_{n},\ldots,y^{(k)}_{n})$ решений
+соотношения (4) называется фундаментальной системой решений (ФСР), а ее компоненты -
+фундаментальными решениями.
+
+\paragraph*{Теорема о связи между решениями и начальными условиями.}
+Заданные начальные условия (2) однозначно
+определяют частное решение соотношения (4)
+Наоборот, фиксированное частное решение соотношения однозначно определяет
+начальные условия, которым она удовлетворяет.
+
+\paragraph*{Доказательство.}
+Пусть выполняются начальные условия вида (2):
+
+$y_0=\alpha_0,\ldots y_{k-1}=\alpha_{k-1}$ (6)
+
+Тогда в силу (4):
+$y_{k}=-a_1y_{k-1} - \ldots - \alpha_{k}y_{0}$, и далее для любого $s > 0$
+верно  $y_{k+s} = -\alpha_1y_{k+s-1} - \ldots - \alpha_{k}y_{s}$ и член
+$y_{n}$ определен однозначно для любого $n\ge 0$
+
+Пусть теперь $y_{n}$ - какое-то частное решение соотношения (4).
+
+Покажем, что числа $\alpha_0,\ldots,\alpha_{k-1}$ можно подобрать так, чтобы
+выполнялось (6).
+
+Имеем: (7)
+\[
+\begin{cases}
+	y_{k} + a_1\alpha_{k-1} + \ldots + a_{k}\alpha_0 = 0\\
+	y_{k+1} + a_1\alpha_{k} + \ldots + a_{k}\alpha_1 = 0\\
+	\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\\
+	y_{2k-1} + a_1\alpha_{2k-2} + \ldots + a_{k-i}\alpha_{k} + a_{k}\alpha_{k-1} = 0\\
+\end{cases}
+\]
+
+Система (7) есть система относительно неизвестных $\alpha_0,\ldots,\alpha_{k-1}$,
+заданная в треугольной форме. Из последнего уравнения однозначно определяется
+$\alpha_{k-1}$, и далее (обратным ходом метода Гаусса) все остальные члены до $\alpha_0$
+включительно (при условии, что $a_{k} \neq 0$, но это в соотношении (4) и предполагается,
+так как иначе порядок соотношения будет меньше k).
+
+\newpage
+
+\section{Теорема об общем решении ОЛРС}
+\subsection{Условие}
+Теорема об общем решении ОЛРС как линейной комбинации фундаментальных
+решений
+
+\section{Ответ}
+\paragraph*{Теорема 3.}
+Любое решение соотношения $x_{n}+a_1x_{n-1}+\ldots+a_{k}x_{n-k} = 0$ (4)
+является линейной комбинацией фундаментальных решений.
+
+\paragraph*{Доказательство.}
+Докажем, что каковы бы ни были начальные условия вида
+$x_0=\alpha_0, \ldots, x_{k-1}=\alpha_{k-1}$ (2), которым должна удовлетворять
+линейная комбинация $\sum_{i=1}^{k}C_{i}y^{(i)}_{n} $, ее коэффициенты
+однозначно определяются этими начальными условиями. Этого достаточно в силу
+того, что каждое решение однозначно определено начальными решениями и обратно.
+
+Имеем такую систему для определения этих коэффициентов: (8)
+\[
+\begin{cases}
+	\sum_{i=1}^{k}C_{i}y^{(i)}_{0} = \alpha_0\\ 
+	\ldots\ldots\ldots\ldots\ldots\ldots\ldots\\
+	\sum_{i=1}^{k}C_{i}y^{(i)}_{k-1} = \alpha_{k-1}\\ 
+\end{cases}
+\] 
+
+Причем: (9)
+\[
+	\triangle = \begin{vmatrix}
+		y_{0}^{(1)}& \ldots& y_{0}^{(k)}&\\
+		\ldots& \ldots& \ldots& \\
+		y_{k-1}^{(1)}& \ldots& y_{k-1}^{(k)}&\\
+	\end{vmatrix}
+\] 
+где $\triangle$ отличен от нуля.
+
+Действительно, если бы он был равен нулю, то однородная
+система, соответствующая системе (8), имела бы ненулевое
+решение, т.е. нашлись бы коэффициенты $C_{i}, i = \overline{1,k}$ не все
+равные нулю, для которых бы выполнялось:
+\[
+\begin{cases}
+	\sum_{i=1}^{k}C_{i}y_0^{(i)} = 0\\
+	\ldots\ldots..\ldots\ldots\\
+	\sum_{i=1}^{k}C_{i}y_{k-1}^{(i)} = 0\\
+\end{cases}
+\] 
+т.е. решение, являющееся нетривиальной линейной комбинацией
+фундаментальных решений, удовлетворяет нулевым начальным
+условиям и, следовательно, в силу теоремы 2, само является
+нулевым. Но это невозможно в силу линейной независимости
+фундаментальных решений
+
+\paragraph*{Теорема 2.}
+Существует единственное частное решение
+соотношения (4), удовлетворяющее начальным условиям
+$x_0=\alpha_0, \ldots, x_{k-1} = \alpha_{k-1}$
+
+\medskip
+
+Итак, система (8) имеет единственное решение, и
+коэффициенты линейной комбинации фундаментальных решений
+однозначно определяются начальными условиями, которым она
+должна удовлетворять.
+
+\medskip
+
+Форма $\varphi_{n} = \sum_{i=1}^{k}C_{i}y^{(i)}_{n} $ называется общим решением соотношения (2).
+Это значит, что любое частное решение (4)
+может быть получено при определенных значениях
+коэффициентов (произвольных констант)
+
+\newpage
+
+\section{Характеристический полином}
+\subsection{Условие}
+Характеристический полином и характеристическое уравнение ОЛРС. Структура
+общего решения в случае вещественных и комплексных корней характеристического
+полинома
+
+\subsection{Характеристический полином и хар-ое ур-ие}
+Ответ на все вопросы будет получен в ходе рассуждения
+
+\medskip
+
+\paragraph*{Теорема 1.}
+Пусть $y_{n}^{(1)}$ и $y_{n}^{(2)}$ - решения рекуррентного соотношения. Тогда их
+произвольная линейная комбинация тоже является решением соотношения.
+
+\paragraph*{Доказательство.}
+Пусть $\varphi_{n} = C_1y^{(1)}_{n} + C_2y^{(2)}_{n}$. Подставим
+$\varphi_{n}$ в соотношение $x_{n} + a_1x_{n-1} + \ldots + a_{k-1}x_{n-k} = 0$.
+
+Будем иметь:
+\begin{align*}
+&C_1y^{(1)}_{n} + C_2y^{(2)}_{n} + a_1(C_1y^{(1)}_{n-1} + C_2y^{(2)}_{n-1}) + \ldots + \\
+&a_{k}(C_1y^{(1)}_{n-k} + C_2y^{(2)}_{n-k}) = \\
+&C_1(y^{(1)}_{n} + a_1y^{(1)}_{n-1} + \ldots + a_{k}y^{(1)}_{n - k}) + \\
+&C_2(y^{(2)}_{n} + a_1y^{(2)}_{n-1} + \ldots + a_{k}y^{(2)}_{n - k}) = 0 \\
+\end{align*}
+
+Ч.Т.Д
+
+\paragraph*{Следствие.}
+Множество решений рекуррентного соотношения образует подпространство
+в пространстве всех последовательностей (над полем комплексных чисел)
+
+\medskip
+
+Очевидно, что соотношение $x_{n} + a_1x_{n-1} + \ldots + a_{k}x_{n-k} = 0$ (4) имеет
+тривиальное нулевое решение. Докажем, что существуют в общем случае ненулевые решения.
+
+Будем искать решение (4) в виде $y_{n} = \lambda^{n}$ для какого-то
+в общем случае комплексного числа \lambda
+
+\medskip
+
+Имеем:
+
+$\lambda^{n} + a_1\lambda^{n-1} + \ldots a_{k}\lambda^{n-k} = 0$, или
+
+$\lambda^{n-k}(\lambda^{k} + a_1\lambda^{k-1} + \ldots + a_{k-1}\lambda + a_{k}) = 0$.
+
+Так как нулевое решение учтено ($\lambda^{n-k} = 0$), то получаем:
+
+$$\lambda^{k} + a_1\lambda^{k-1} + \ldots + a_{k-1}\lambda + a_{k} = 0 $$ (5)
+
+\paragraph*{Определение.}
+Уравнение (5) называется характеристическим уравнением соотношения (4), а его правая часть -
+характеристическим многочленом.
+
+\subsection{Виды корней}
+
+Предположим, что найдены все $r$ корней этого уравнения, включая комплексные (при этом
+корень учитывается столько раз, какова его кратность). Для построения базиса используют
+следующие правила:
+
+ \begin{itemize}
+	 \item Если $\lambda = \alpha$ - вещественный корень кратности  $s$, то
+		 ему отвечают  $s$ линейно независимых решений:
+
+		 $\varphi^{(1)}_{n} = \alpha^{n}, \ldots,\varphi^{(s)}_{n} = n^{s-1}\alpha^{n}$ 
+	\item Если $\lambda = \alpha \pm i\beta$ - пара комплексно сопряженных корней уравнения
+		кратности  $s$ каждый, то им отвечает в общей сумме  $2s$ лин.
+		независимых решений:
+
+		$\varphi^{(1)}_{n} = \rho^{n}\cos(n\theta),\varphi^{(3)}_{n} = n\rho^{n}\cos(n\theta),
+		\ldots,\varphi^{(2s-1)}_{n} = n^{2s-1}\rho^{n}\cos(n\theta)$ 
+
+
+		$\varphi^{(2)}_{n} = \rho^{n}\sin(n\theta),\varphi^{(4)}_{n} = n\rho^{n}\sin(n\theta),
+		\ldots,\varphi^{(2s)}_{n} = n^{2s}\rho^{n}\sin(n\theta)$
+
+		где $\rho = \sqrt{\alpha^2+\beta^2} , \theta = tg(\frac{\alpha}{\beta})$
+\end{itemize}
+
+\newpage
+
+\section{Неоднородные линейные рекуррентные соотношения}
+\subsection{Условие}
+Неоднородные линейные рекуррентные соотношения с постоянными
+коэффициентами. Теорема о структуре общего решения. Поиск частного решения
+методом подбора. Принцип суперпозиции (без доказательства).
+
+\subsection{НЛРС}
+\paragraph*{Определение.}
+$x_{n} + a_1x_{n-1} + \ldots + a_{k}x_{n-k} = f(n), f(n) \neq 0$ (11) - неоднородное линейное
+рекуррентное соотношение
+
+\paragraph*{Теорема.}
+Общее решение НЛРС есть сумма частных и общего решения соответствующей ОЛРС.
+
+$y_{n}^{\mbox{общ.н}} = y_{n}^{\mbox{ч.н}} + \sum_{i=1}^{n}C_{i}y_{n}^{(i)}$ (12)
+
+\paragraph*{Доказательство.}
+Подставим (12) в (11):
+
+$(y_{n}^{\mbox{ч.н}} + y_{n}^{\mbox{o.o}}) + a_1(y_{n-1}^{\mbox{ч.н}} + y_{n-1}^{\mbox{o.o}}) +
+\ldots + a_{k}(y_{n-k}^{\mbox{ч.н}} + y_{n-k}^{\mbox{o.o}}) = 
+f(n) + 0$ 
+
+\medskip
+
+Для доказательства того, что (11) может быть представлена в виде (12), нужно доказать,
+что для произвольно заданных начальных условий однозначно определяются 
+константы $C_{i}, \ldots, C_{k}$ 
+
+\medskip
+
+Выпишем первые k решений: (13)
+\[
+\begin{cases}
+	y_{0}^{\mbox{ч.н}} + \sum_{i=1}^{k}C_{i}y_{0}^{(i)} = \alpha_0 \\
+	\ldots.\ldots\ldots.\ldots.\ldots.\ldots\ldots\ldots \\
+	y_{k-1}^{\mbox{ч.н}} + \sum_{i=1}^{k}C_{i}y_{k-1}^{(i)} = \alpha_{k-1} \\
+\end{cases}
+\] 
+
+Немного изменим решение (13) в $(13^{\prime})$ :
+\[
+\begin{cases}
+	\sum_{i=1}^{k}C_{i}y_{0}^{(i)} = \alpha_0 - y_{0}^{\mbox{ч.н}}\\
+	\ldots.\ldots\ldots.\ldots.\ldots.\ldots\ldots\ldots \\
+	\sum_{i=1}^{k}C_{i}y_{k-1}^{(i)} = \alpha_{k-1} -y_{k-1}^{\mbox{ч.н}}\\
+\end{cases}
+\] 
+
+Определитель всей системы при этом не изменился.
+
+Тогда:
+\[
+	\triangle = \begin{vmatrix}
+		y_{0}^{(1)}& \ldots& y_{0}^{(k)}&\\
+		\ldots& \ldots& \ldots& \\
+		y_{k-1}^{(1)}& \ldots& y_{k-1}^{(k)}&\\
+	\end{vmatrix}
+\] 
+
+Ч.Т.Д
+
+\subsection{Метод подбора, принцип суперпозиции}
+Смотрим на функцию $f(n)$
+
+\medskip
+
+Если $f(n) = a^{n}p^{(m)}$ - многочлен $p^{(m)}$ степени m, $a \in \mathbb{R}$, тогда
+частное решение ищется так:
+
+$y_{n}^{\mbox{ч.н}} = n^{s}a^{n}R^{(m)}$ - корень $a$ кратности  $s$
+
+\medskip
+
+Если  $f(n) = r^{n}(P^{c}(n)\cos n\varphi + Q^{p}(n)\sin n\varphi)$ - квазиполином, $P,Q$ -
+полиномы степени c и p соответственно.
+
+Пусть  $\lambda = re^{\pm \varphi}$ - корень кратности $s \ge 0$
+
+$y_{n}^{\mbox{ч.н}} = n^{s}r^{n}(\overline{P}^{q}(n)\cos n\varphi + \overline{Q}^{q}(n)\sin n\varphi)$ 
+, где $q = max(c,p)$
+
+\newpage
+
+\section{Действия группы на  множество. Лемма Бернсайда}
+\subsection{Условие}
+Понятие действия группы на множестве. Стабилизаторы и орбиты. Лемма Бернсайда (с
+доказательством)
+
+\subsection{Действие группы на множестве, орбита, стабилизатор}
+\paragraph*{Определение.}
+Группа $ {\cal G}$ действует на множество $X$, если для любых  $g \in {\cal G}$ и $x \in X$
+определено действие элемента g на элемент x (обозначаемое gx), обладающими свойствами:
+\begin{itemize}
+	\item[1)] $gx \in X$
+	\item[2)] $\forall g_1,g_1 \in {\cal G}, x \in X$ верно $(g_1g_2)x = g_1(g_2x)$
+	\item[3)] $\forall x \in X: ex = x$ 
+\end{itemize}
+
+\paragraph*{Определение.}
+Орбита элемента $orb(x), x \in X$ - это множество $\{gx | g \in {\cal G}\} $ 
+
+\paragraph*{Определение.}
+Стабилизатор элемента S(x) $x \in X$ - это множество $\{g \in {\cal G} | gx = x\} $ 
+
+
+\subsection{Лемма Бернсайда}
+\paragraph*{Некоторые вещи.}
+$S = \{s_1,\ldots,s_{n}\}, G \subseteq S_{n}$, где $S_{n}$ - перестановки
+
+Группа $G$ действует на множество  $S$:
+
+$S \underset{G}{\sim} r \leftrightharpoons (\exists  \delta \in G)(r =\delta(S))$
+
+\medskip
+
+$G(S,r) \leftrightharpoons \{\delta: r = \delta(s)\} $
+
+\paragraph*{Доказательство.}
+Утверждение 1: $G(S,r) = G_{S}\delta_{r}$, где $\delta_{r}(S) = r$, а $G_{s}$ -
+правый смежный класс.
+
+Доказательство утверждения 1:
+
+$\delta \in G(S,r); \delta = \delta(\delta_{r}^{-1}\delta_{r}) = 
+(\delta\delta_{r}^{-1})\delta_{r}$, но $\delta\delta^{-1}(S) = \delta^{-1}_{r}(\delta(S)) = 
+\delta_{r}^{-1}(r) = S$ 
+
+То есть $\delta\delta^{-1}_{r}$ - элемент стабилизатора $G_{S}$,
+
+$\delta = (\delta\delta^{-1}_{r})\delta_{r} \in G_{S}\delta_{r}$ 
+
+Ч.Т.Д
+
+\medskip
+
+Утверждение 2. $|G:G_{S}| = w(S)$, где $|G:G_{S}|$ - индекс (число левых/правых подклассов),
+$w(S)$ - орбита вершины S
+
+Доказательство утверждения 2:
+
+$h:[S]_{\tilde{G}} \to \{G_{S}\delta:\delta \in G\} $
+
+
+По определению $h(r) = G_{S}\delta \leftrightharpoons r = \delta(S)$ 
+
+$h(\delta(S)) = G_{S}\delta$ - из-за этого $h$ - сюръекция
+
+Докажем, что  $h$ - инъективно
+
+$r \neq t \in [S]_{\tilde{G}}$. Пусть при этом $h(r) = h(r)$
+
+\medskip
+
+ $h(r) = h(\delta_{r}(S))$, где $r = \delta_{r}(S)$
+ 
+ $h(t) = h(\delta_{t}(S))$, где $t = \delta_{t}(S)$
+
+ \medskip
+
+ Значит $h(r) = h(r) \implies G_{S}\delta_{r} = G_{s}\delta_{t}$, где $G_{S}$ - смежные классы.
+
+ Однако такое невозможно из-за неоднозначности отображения $\implies h$ - биективно.
+
+ $h: [S]_{\tilde{G}} \underset{G}{\sim} |G:G_{S}| = w(S)$ 
+
+ Ч.Т.Д
+
+ Вернемся к самой лемме Бернсайда.
+
+ По теореме Лагранжа:
+
+ $|G| = |G:G_{S}|*|G_{S}| = w(S)*|G_{S}|$ - количество автоморфизмов равно орбита * стабилизатор.
+
+ \medskip
+
+ $N$ - число орбит, где в каждой орбите произвольно выбираем элементы  $S_1,S_2,\ldots,S_{n}$ 
+
+ Получаем: $w(S_1)*|G_{S_1}| + w(S_2)*|G_{S_2}| * \ldots + w(S_{n})*|G_{S_{n}}| = N*|G|$ 
+
+ \medskip
+
+ \paragraph*{Лемма Бернсайда.}
+ Тогда сама Лемма Бернсайда может быть сформулирована так:
+
+ \[
+	 N = \frac{1}{|G|} \sum_{s \in S}|G_{S}| = \frac{1}{|G|}\sum_{s \in m}\psi(\sigma) \\
+ \] 
+где $\psi(\sigma)$ - число элементов множества  $S$, которое оставляет подстановка
+$\sigma$ неподвижной
+
+\newpage
+
+\section{Функция разметки}
+\subsection{Условие}
+Функции разметки. Понятие эквивалентных функций разметки. Структурный перечень
+функций разметки.
+
+\subsection{Ответ}
+\paragraph*{Определение.}
+Пусть на множестве $S$ задана функция  $F: C \to R$, отображающая $S$ в
+множество меток (красок, цветов)  $R$. Такая функция называется функцией разметки,
+или функцией раскраски (или просто краской).
+
+\medskip
+
+Действие группы  $G$ на множестве  $S$ стандартным образом распространяется
+на множество  $R^{S}$ всех красок : $\sigma(f)(S) = f(\sigma(s)), \forall s \in S$.
+Таким образом эквивалентность раскрасок $f,g$ означает, что для некоторой
+подстановки  $\sigma$ имеет равенство  $f = \sigma(g)$, то есть
+для каждого $s \in S$ выполняется $g(S) = f(\sigma^{-1}(S)) = \sigma^{-1}*f(S)$. Число
+классов эквивалентности определяется по лемме Бернсайда.
+
+\paragraph*{Определение.}
+Две раскраски $C, D$ называются эквивалентными, если одна из них переходит в другую
+под действием некоторого автоморфизма графа  $G$, то есть:
+ \[
+C \sim D \iff (\exists h \in Aut(G))((C(v_1), \ldots, C(v_{n}))) = 
+(D(h(v_1)), \ldots, D(h(v_{n}))).
+\] 
+
+\paragraph*{Определение.}
+Весом раскраски $C = (C(1), \ldots, C(n))$ назовем произведение весов ее значений:
+$w(C) = w(C(1)) * \ldots * w(C(n))$
+
+\paragraph*{Определение.}
+Перечнем раскрасок будем называть сумму весов всех возможных раскрасок:
+
+$Invt(R^{S}) = \sum_{C \in R^{S}} w(C)$ 
+
+\newpage
+
+
+\section{Ступенчатые функции разметки}
+\subsection{Условие}
+Ступенчатые функции разметки. Структурный перечень функций, сохраняемых
+произвольной подстановкой, разложенной на независимые циклы
+
+\subsection{Ответ}
+
+\paragraph*{Внимание.} В ответе на данный вопрос не уверен (нет нормальной лекции на тему)
+
+
+\paragraph*{Определение.}
+$S = \bigcup_{j=1}^{p} T_{j}$, где $T_{k} \cap T_{l} \varnothing$ при $k \neq l$ и все множества
+непустые.
+
+
+$f \in D: w(f) = w_{i1}^{|T_1|} w_{i2}^{k_2=|T_2|}\ldots w_{ip}^{k_{p}}$ 
+
+
+$k_1+k_2+\ldots+k_{p} = n = |S|$ 
+
+\medskip
+
+
+Структурный перечень множества ступенчатой функции:
+
+
+$Invt(D) = (w_1^{k_1} + w_2^{k_1} + \ldots + w_{m}^{k_1}) * (w_1^{k_2} + w_2^{k_2} + \ldots + w_{m}^{k_2})*
+\ldots * (w_1^{k_{p}} + w_2^{k_{p}} + \ldots + w_{m}^{k_{p}}) = 
+\prod_{j=1}^{p}(w_1^{k_{j}} + w_2^{k_{j}} + \ldots + w_{m}^{k_{j}})  $
+
+
+\newpage
+
+
+\section{Теорема Пойа}
+\subsection{Условие}
+Циклический (цикловой) индекс группы. Теорема Пойа (с выводом числа классов
+эквивалентности, без доказательства утверждения о структурном перечне классов
+эквивалентности).
+
+\subsection{Ответ}
+\paragraph*{Внимание!} В ответе на данный вопрос не уверен (нет нормальной лекции на тему)
+
+\paragraph*{Теорема.}
+
+\begin{itemize}
+	\item[1)] $N = P_{a}(x_1,x_2,\ldots,x_{n}) \mid_{(\forall i = \overline{1,n})(x_{j}:=m)}$ 
+	\item[2)] $Invt(R^{S} |_{\tilde{G}}) = P_{G}(w_1+\ldots+w_{m}, w_1^2 + \ldots + w_{m}^2,
+		\ldots, w_1^{n} + \ldots + w_{m}^{n})$
+\end{itemize}
+
+$x_{l} = \sum_{i=1}^{n}w_{i}^{l}$ 
+
+
+\paragraph*{Доказательство.}
+Докажем каждый из пунктов.
+
+1) $P_{G}(x_1,\ldots,x_{n})|_{(\forall i = \overline{1,n})(x_{i}:=m)} = \newline
+\frac{1}{|G|}\sum_{\sigma \in G}t_{\sigma}|_{(\forall i = \overline{1,n})(x_{i}:=m)} = \newline
+\frac{1}{|G|}\sum_{\sigma \in G}m^{k(\sigma)} =\newline
+\frac{1}{|G|}\sum_{\sigma \in G}\psi(\sigma) $ - по Лемме Бернсайде это и есть число классов
+эквивалентности
+
+\medskip
+
+2) $P_{G}(x_1,x_2,\ldots,x_{n})|_{x_{l} := \sum_{i=1}^{m}w_{i}^{l} } = 
+\frac{1}{|G|}\sum_{\sigma \in G}\hat{t}_{\sigma} = 
+\frac{1}{|G|}\sum_{\sigma \in G}\sum_{\omega}\psi_{w}(\sigma)\omega =
+\sum_{\omega}( \frac{1}{|G|}\sum_{\sigma \in G}\psi_{w}(\sigma))\omega =
+\sum_{\omega}d_{\omega}\omega $
+
+Смысл второго доказательства: поскольку все это действует на множестве функций разметки,
+не выводит(?выходит?) за пределы множества функций функционального(????) веса, так как было доказано выше,
+что все функции раскраски(?) имеют один и тот же вес.
 
 
 \end{document}
+
