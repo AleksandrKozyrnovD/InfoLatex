@@ -1,0 +1,46 @@
+\documentclass{report}
+
+\usepackage{amssymb, amsmath, amsthm, amscd}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{bookmark}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,positioning,decorations.pathmorphing}
+
+\usepackage{listings}
+
+\usepackage{hyperref}
+\hypersetup{
+       colorlinks=true,
+       linkcolor=blue,
+}
+
+\usepackage{geometry}
+\geometry{papersize={15cm, 11in}, left=1.5cm, lmargin=1.5cm,right=2cm, top=2cm, bottom=3cm}
+
+\usepackage{graphicx}
+
+\usepackage{titlesec}
+\titleformat{\chapter}[display]{\fontsize{17pt}{0pt}\bfseries}{}{-20pt}{}
+\titleformat{\subsubsection}[display]{\fontsize{12pt}{0pt}\bfseries}{}{0pt}{}
+
+\newcounter{mylabelcounter}
+
+\makeatletter
+\newcommand{\labelText}[2]{%
+#1\refstepcounter{mylabelcounter}%
+\immediate\write\@auxout{%
+    \string\newlabel{#2}{{1}{\thepage}{{\unexpanded{#1}}}{mylabelcounter.\number\value{mylabelcounter}}{}}%
+}%
+}
+\makeatother
+
+\newcommand{\bslash}{\mbox{ } \backslash \mbox{ }}
+\newcommand{\band}{\mbox{ } \& \mbox{ }}
+
+%\newcommand*\pathto[1]{ \Rightarrow^{*}_{#1} }
+
+\newcommand{\pathto}[1][1]{ \Rightarrow^{*}_{#1} }
+
+\renewcommand{\phi}{\varphi}
