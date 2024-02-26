@@ -1,0 +1,228 @@
+\input{preamble}
+
+\title{}
+\author{Козырнов Александр Дмитриевич, ИУ7-32Б}
+\date{\today}
+
+\begin{document}
+
+Процесс работы НА $ {\cal A} = (S,S,P)$ со словом $x \in V^{*}:$ это последовательность слов
+$x=x_0,x_1,\ldots,x_{n}, \ldots$ такая, что $(\forall i\ge 0)( {\cal A}:x_{i} \step x_{i+1} 
+\underline{\text{ или }} {\cal A}:x_{i} \step\bigcdot x_{i+1})$, если $x_{i+1}$
+определено в последовательности.
+
+Слово $x_{i+1}$ и каждое слово $x_{n} n > i+1$ считается неопределенным, если
+$ {\cal A}: x_{i-1} \step\bigcdot x_{i} \underline{\text{ или  }} \sim {\cal A}(x_{i})$
+
+\medskip
+
+Если процесс работы НА $ {\cal A}$ со словом конечный, то есть $x=x_0,x_1,\ldots,x_{n}, n\ge 0$, то
+$! {\cal A}(x)$ и $x_{n} \leftrightharpoons {\cal A}(x)$. В противном случае пишем
+$\lnot! {\cal A}(x)$, то есть алгоритм со словом х будет бесконечный, или не останавливается.
+
+\medskip
+
+\paragraph*{Об алфавитах в НА.}
+Пусть НА алгорифм $ {\cal A} = (V,S,P)$. Тогда мы говорим, что это НА в алфавите $V$.
+ Пусть ${\cal A}_{1} = (V_1 \subset V, S_1,P_1)$ - нормальный алгорифм над алфавитом $V$.
+
+
+\begin{definition}
+    Вербальная функция $f: V^{*} \underset{\bullet}{\to } V^{*}$ называется вычислимой по Маркову,
+    если может быть построен нормальный алгорифм $ {\cal A}_{f}$ над алфавитом $V$ такой, что
+     $$(\forall x \in V^{*})(! {\cal A}_{f}(x) \Longleftrightarrow x \in D(f))
+     \band ( {\cal A}_{f}(x) = f(x) )$ $
+\end{definition}
+
+\paragraph*{Гипотеза НА (Принцип нормализации).}
+Любая вербальная функция, вычислимая в интуитивном смысле слова, вычислима по Маркову.
+
+\paragraph*{Примеры НА.}
+Первый пример.
+\[
+{\cal J}\alpha: \begin{cases}
+    \to \bigcdot
+\end{cases}
+\] 
+Получаем вот что: $(\forall x)( {\cal J}\alpha(x) = x )$, то есть вычисляет тождественную функцию
+в любом алфавите.
+
+\medskip
+
+Второй пример.
+\[
+Null: \begin{cases}
+    \to 
+\end{cases}
+\] 
+Для любого слова будет работать бесконечно: $(\forall x)\lnot!Null(x)$
+
+\medskip
+
+Третий пример.
+\[
+Lc: \begin{cases}
+    \to \bigcdot x_0\text{, где } x_0 \in V^{*}\text{ - \underline{фиксированное} слово}
+\end{cases}
+\] 
+Получим: $x \in V^{*}: x\step\bigcdot x_0 x$, то есть $Lc(x)=x_0 x$
+
+\medskip
+
+Четвертый пример.
+\[
+Rc: \begin{cases}
+    \#\xi \to  \xi\#\\
+    \# \to \bigcdot x_0 (x_0 \in V^{*}\text{ - фиксированное слово }) \\
+    \to \#\\
+\end{cases}
+\] 
+$$x \in V^{*}, x = x(1)x(2)\ldots x(k) \step \#x(1)x(2)\ldots x(k) \step 
+x(1)\#x(2)\ldots x(k) \models^{k-1} x\#\step\bigcdot x x_0$ $
+
+\medskip
+
+Пятый пример.
+\[
+Double: \begin{cases}
+    \alpha\xi \to  \xi\beta\xi\alpha\\
+    \beta\xi\eta \to  \eta\beta\xi\\
+    \beta \to \\
+    \alpha \to \bigcdot\\
+    \to \alpha\\
+\end{cases}
+\] 
+Причем $\alpha,\beta \not\in V; \xi,\eta \in V$.
+
+\medskip
+
+Первый тест:
+$\lambda \step \alpha \step\bigcdot \lambda$. 
+
+\medskip
+
+Второй тест:
+$a \step \alpha a \step a\beta a\alpha \step aa\alpha \step\bigcdot aa$
+
+\medskip
+
+Третий тест:
+\begin{align*}
+    abca &\step \alpha abca \step a\beta a \alpha bca \step a\beta a b\beta b\alpha ca \step\\
+    &\step a\beta ab\beta bc\beta c\alpha a\step a\beta a b\beta b c\beta c a\beta a\alpha \step\\
+    &\step  ab\beta a\beta bc\beta c a\beta a\alpha \step ab\beta ac\beta b\beta ca\beta a\alpha \step\\
+    &\step abc\beta a\beta b\beta ca\beta a\alpha \step
+    abc\beta a\beta ba\beta c\beta a\alpha \step\\
+    &\step abc\beta a a\beta b\beta c\beta a\alpha \step
+    abca\beta a\beta b\beta c\beta a\alpha \models^{4}\\
+    &\models^{4} abcaabca\alpha \step\bigcdot abcaabca
+\end{align*}
+
+Можно строго доказать, что \[
+    (\forall x \in V^{*})(Double(x) =x x = x^2)
+\]
+
+\section{Эквивалентность нормальных алгоритмов. Теорема о переводе.}
+Пусть даны $ {\cal A,B}: V^{*} \underset{\bullet}{\to } V^{*}$ над алфавитом $V$.
+
+ \begin{definition}
+Алогрифмы $ {\cal A,B}$ называются эквивалентными относительно алфавита $V$, если
+ \[
+     (\forall x \in V^{*})
+     (! {\cal A}(x) \Longleftrightarrow ! {\cal B}(x) \band ( {\cal A}(x)= {\cal B}(x) ))
+\]
+
+Это называется условным равенством:
+\[
+{\cal A}(x) \simeq {\cal B}(x)
+\] 
+\end{definition}
+
+\medskip
+
+\paragraph*{
+Рассмотрим такую конструкцию, называемую замыканием НА.}
+\[
+ {\cal A}: \begin{cases}
+     u_1 \to [\bigcdot]v_1\\
+     \vdots\\
+     u_{n} \to [\bigcdot]v_{n}\\
+ \end{cases}
+\]
+
+\[
+{\cal A}^{\bigcdot}: \begin{cases}
+    \text{Схема } {\cal A}\\
+    \to \bigcdot\\
+\end{cases}
+\] 
+То есть 
+\[
+    (\forall x \in V^{*}) {\cal A}^{\bigcdot}(x) \simeq {\cal A}(x)
+\]
+
+Рассмотрим преобразования:
+
+$ {\cal A}: x\models\bigcdot y$,
+то есть $ {\cal A}(x) = y; {\cal A}^{\bigcdot}: x \models y = {\cal A}(x)$.
+
+$ {\cal A}: x\models y$, то есть
+$y = {\cal A}(x); {\cal A}^{\bigcdot}:x \models y\step\bigcdot y = {\cal A}(x)$
+
+\paragraph*{Заметка.}
+Переход к замыканию НА позволяет без ограничения общности не рассматривать ситуацию естественного
+обрыва процесса работы.
+
+\medskip
+
+Если $! {\cal A}(x)$, то $x \models\bigcdot {\cal A}(x)$ (система $ {\cal A}$ замкнутая)
+
+\medskip
+
+\paragraph*{Естественное распространение НА на более широкий алгорифм.}
+
+$ {\cal A} = (V,S,P)$ и пусть $V' \supset V$. Тогда  $ {\cal A}' = (V',S,P)$. То есть просто
+означает, что рассматриваем тот же алгоритм в более широком алфавите. Из этого следует, что 
+\[
+    (\forall x \in V^{*})( {\cal A}(x) \simeq {\cal A}(x) )
+\] 
+
+\medskip
+
+\paragraph*{
+Формальное распространение НА на более широкий алфавит.}
+$ {\cal A} = (V,S,P)$ в алфавите $V$.
+
+ \[
+{\cal A}^{f}: \begin{cases}
+    \eta \to \eta\text{ //}\eta \in V'\setminus V\\
+    \text{Схема } {\cal A}\\
+\end{cases}
+\] 
+Получаем:
+\[
+    (\forall x \in V^{*})( {\cal A}^{f}(x) = {\cal A}(x) )\text{, но если } x \not\in V^{*}
+    \text{, то }\lnot! {\cal A}^{f}(x)
+\] 
+
+\medskip
+
+Нам нужно расширить алфавит. Как это делается?
+
+Рассмотрим алфавиты $V = \{a_1,a_2,\ldots,a_{n}\}, V_{\alpha} = \{\alpha,\beta\}$
+и $V \cap V_{\alpha} = \void$
+
+Тогда считается
+\[
+\begin{matrix}
+    [a_{i} \leftrightharpoons \alpha\beta^{i}\alpha; & [\lambda = \lambda; &
+    [x = [x(1)x(2)\ldots x(k) \leftrightharpoons [x(1)[x(2)\ldots[x(k)\\
+\end{matrix}
+\] 
+
+\paragraph*{Пример.}
+\[
+    [ \underbrace{abca}_{V_0} = \underbrace{010}_{a} \underbrace{0110}_{b}
+    \underbrace{0111}_{c} \underbrace{010}_{a}
+\] 
+\end{document}

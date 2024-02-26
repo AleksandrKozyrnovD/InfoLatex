@@ -1,0 +1,146 @@
+\input{preamble}
+
+\title{}
+\author{Козырнов Александр Дмитриевич, ИУ7-32Б}
+\date{\today}
+
+\begin{document}
+\section{Специальные свойства бинарных отношений}
+
+Пусть дано $A^2$ - бинарное отношение.
+
+$\rho \subseteq A^2, A\neq \void$. Вместо $(x,y) \in \rho$ пишем
+$x\rho y$.
+
+Тогда его свойства:
+\begin{itemize}
+	\item Рефлексивность.
+
+		Отношение $\rho$ называется рефлексивным, если  $(\forall x \in A)(x\rho x)$.
+		То есть диагональ $id_A \subseteq \rho$.
+	\item Иррефлексивность
+
+		Отношение $\rho$ называется иррефлексивным, если $Id_A \cap A = \void$.
+	\item Симметричность
+
+		Отношение  $\rho$ называется симметричным, если \[
+			(\forall ,y \in A)(x\rho y \implies y\rho x),
+		\]
+		то есть $\ rho = \rho^{-1}$
+	\item Антисимметричность
+
+		Отношение $\rho$ называется антисимметричным, если
+		$$
+			(\forall x,y \in A)(x\rho y \band y\rho x \implies x = y)
+			$$
+	\item Транзитивность
+
+		Отношение $\rho$ называется транзитивным, если  \[
+			(\forall x,y,z \in A)(x\rho y, y\rho z \implies x\rho z)
+		\] 
+\end{itemize}
+
+\begin{theorem}
+Отношение $\rho \subseteq A^2$ транзитивно тогда и только тогда, когда $\rho^2 \subseteq \rho$
+\end{theorem}
+
+\begin{myproof}
+В прямую сторону.
+
+Пусть $\rho \subseteq A^2$ транзитивно. Тогда если $x\rho^2 y$, то
+$(\exists z)(x\rho z, z\rho y)$, то есть в силу транзитивности $x\rho y$.
+
+\medskip
+
+В обратную сторону.
+
+Пусть  $\rho^2 \subseteq \rho$ и пусть $(\exists x,y,z \in \rho)(x\rho y, y\rho z)$.
+Тогда мы имеем $x\rho^2 y \implies x\rho y$, то есть оно транзитивно.
+\end{myproof}
+
+\paragraph*{Замечание.}
+Если отношение $\rho$ рефлексивно и транзитивно, то  $\rho^2  = \rho$
+
+
+\medskip
+
+Классы отношений:
+\begin{itemize}
+	\item[1)] Отношение эквивалентности
+		\begin{itemize}
+			\item Рефлексивность
+			\item Симметричность
+			\item Транзитивность
+		\end{itemize}
+	\item[2)] Отношение толерантности
+		\begin{itemize}
+			\item Рефлексивность
+			\item Симметричность
+		\end{itemize}
+	\item[3)] Отношение порядка
+		\begin{itemize}
+			\item Рефлексивность
+			\item Антисимметричность
+			\item Транзитивность
+		\end{itemize}
+	\item[4)] Отношение предпорядка
+		\begin{itemize}
+			\item Рефлексивность
+			\item Транзитивность
+		\end{itemize}
+\end{itemize}
+
+\section{Отношение эквивалентности и фактор-множества.}
+$x \equiv k|(x-y)$ (k делит (x-y));  $x,y,k \in Z, k > 0$
+
+Докажем, что $x \equiv ky \Longleftrightarrow mod(x,k)=mod(y,k)$.
+
+\begin{myproof}
+Пусть $x \equiv ky$, то есть
+\begin{align*}
+	k | (x-y) \implies& \\
+	\implies k | [x]_k + mod(x,k) - [y]_k - mod(y,k) \implies& \\
+	\implies k | mod(x,k) - mod(y,k) \implies& \\
+	\implies mod(x,k)-mod(y,k) =& \\
+	=& 0
+\end{align*}
+
+Если $mod(x,k) = mod(y,k)$, то  $x - y = [x]_k + \cancel{mod(x,k)} - [y]_k - \cancel{mod(y,k)}
+= [x]_k - [y]_k \vdots k$
+\end{myproof}
+
+\begin{definition}
+Пусть $\rho \subseteq A^2$ - отношение эквивалентности. Тогда \[
+	[x]_{\rho} \leftrightharpoons \{y:y\rho x\} 
+\]
+называется классом эквивалентности элемента $x$ по отношению  $\rho$. \[
+	(\forall x \in A)(x \in [x]_{\rho})
+\] 
+\end{definition}
+
+\paragraph*{Пример.}
+Пусть дано $\rho = \{(x,y):x^2+y^2=a^2\}$. Найдем такой класс эквивалентности: $[(x_0,y_0)]_{\rho}$ :
+\[
+	[(x_0,y_0)]_{\rho} = \{(x,y): x^2+y^2=x_0^2+y_0^2\},
+\]
+где $x_0,y_0$ не изменяются. Графиком такой функции будет окружность.
+
+\begin{theorem}
+Классы эквивалентности для любого произвольно заданного отношения эквивалентности
+попарно не пересекаются.
+\end{theorem}
+\begin{myproof}
+	Пусть $[x]_{\rho} \neq [y]_{\rho}$ и пусть $[x]_{\rho} \cap [y]_{\rho} \neq \void$.
+
+	Так как $[x]_{\rho} \neq [y]_{\rho}$, то \[
+		(\exists u)(u \in [x]_{\rho}\setminus [y]_{\rho}) \lor (\exists v)(v \in [y]_{\rho}
+		\setminus [x]_{\rho})
+	\] 
+
+	Тогда \[
+		u\rho x, z\rho x, z\rho y \implies u\rho x, x\rho z, z\rho y \implies x \in [y]_{\rho}
+	\]
+	Получено противоречие, так как он принадлежит сразу двум классам эквивалентности!
+\end{myproof}
+
+\end{document}

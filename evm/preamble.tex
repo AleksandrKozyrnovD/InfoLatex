@@ -1,0 +1,93 @@
+\documentclass{report}
+
+\usepackage{amssymb, amsmath, amsthm, amscd}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{bookmark}
+\usepackage{wasysym}
+\usepackage{import}
+
+\usepackage[makeroom]{cancel}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,positioning,decorations.pathmorphing}
+
+\usepackage{listings}
+
+\usepackage{hyperref}
+\hypersetup{
+       colorlinks=true,
+       linkcolor=blue,
+}
+
+\usepackage{geometry}
+\geometry{papersize={15cm, 11in}, left=1.5cm, lmargin=1.5cm,right=2cm, top=2cm, bottom=3cm}
+
+\usepackage{graphicx}
+
+\usepackage{titlesec}
+\titleformat{\chapter}[display]{\fontsize{17pt}{0pt}\bfseries}{}{-20pt}{}
+\titleformat{\subsubsection}[display]{\fontsize{12pt}{0pt}\bfseries}{}{0pt}{}
+
+\newcounter{mylabelcounter}
+
+\makeatletter
+\newcommand{\labelText}[2]{%
+#1\refstepcounter{mylabelcounter}%
+\immediate\write\@auxout{%
+    \string\newlabel{#2}{{1}{\thepage}{{\unexpanded{#1}}}{mylabelcounter.\number\value{mylabelcounter}}{}}%
+}%
+}
+\makeatother
+
+\newcommand{\circlesign}[1]{
+    \mathbin{
+        \mathchoice
+        {\buildcircledesign{\displaystyle}{#1}}
+        {\buildcircledesign{\textstyle}{#1}}
+        {\buildcircledesign{\scriptstyle}{#1}}
+        {\buildcircledesign{\scriptscriptstyle}{#1}}
+    }
+}
+
+\newcommand\buildcircledesign[2]{%
+    \begin{tikzpicture}[baseline=(X.base), inner sep=0, outer sep=0]
+        \node[draw,circle] (X) {\ensuremath{#1 #2}};
+    \end{tikzpicture}%
+}
+
+\newcommand{\ozv}{\circlesign{*}}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}[chapter]
+\theoremstyle{definition}
+\newtheorem{definition}{Определение}
+\newtheorem*{pruf}{Доказательство}
+
+\newenvironment{myproof}[1][\textbf{\textup{Доказательство}}]
+{\begin{proof}[#1]}
+	%\renewcommand*{\qedsymbol}{\(\blacksquare\)}}
+{\end{proof}}
+
+\DeclareMathOperator{\band}{\&}
+\DeclareMathOperator{\trim}{\triangle}
+\DeclareMathOperator{\step}{\vdash}
+
+%\newcommand*\pathto[1]{ \Rightarrow^{*}_{#1} }
+
+\newcommand{\pathto}[1][1]{ \Rightarrow^{*}_{#1} }
+
+\newcommand{\dx}[2]{\frac{d#1}{d#2}}
+\newcommand{\pdx}[2]{\frac{\partial#1}{\partial#2}}
+
+\newcommand{\incfig}[2]{%
+    \def\svgwidth{#2\columnwidth}
+    \import{./images/}{#1.pdf_tex}
+}
+
+
+%\newcommand{\void}{\varnothing}
+\let\void\varnothing
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}

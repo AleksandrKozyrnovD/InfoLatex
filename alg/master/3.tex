@@ -1,0 +1,292 @@
+$V_{\alpha} = \{\alpha,\beta\} $ 
+
+Чаще всего будет рассматривать такой алфавит: $V_0=\{0,1\} $ 
+
+\medskip
+
+\begin{theorem}
+    (О переводе). Каков бы ни был нормальный алгорифм $ {\cal A} = (V',S,P)$
+    над алфавитом $V \subset V'$, может быть построен НА $ {\cal B}$ в алфавите $V \cup V_{\alpha}$
+    так, что $(\forall x \in V^{*})( {\cal B}(x) \simeq {\cal A}(x))$
+\end{theorem}
+
+\section{Теорема сочетания}
+\subsection{Композиция}
+
+\begin{tikzpicture}[node distance=2cm]
+\node (A) [process, xscale=.5, yscale=.6] {$\mathscr{A}$};
+\node (leftA) [left of=A, xshift=-1cm];
+\node (B) [process, right of=A, xscale=.5, yscale=.6, xshift=1cm] {$\mathscr{B}$};
+\node (rightB) [right of=B];
+
+\draw [arrow] (leftA) -- node[above=2mm, anchor=west] {$X$} (A);
+\draw [arrow] (A) -- node[above=2mm, anchor=west, xshift=-0.5cm] {$\mathscr{A}(x)$} (B);
+\draw [arrow] (B) -- node[above=2mm, anchor=west, xshift=-0.5cm]
+    {$\mathscr{B}(\mathscr{A}(x))$} (rightB);
+
+\end{tikzpicture}
+
+\begin{theorem}
+    (О композиции). Каковы бы ни были НА $ {\cal A, B}$ в алфавите $V$ может быть построен
+    НА алгорифм  $ {\cal C}$ над алфавитом $V$ такой, что 
+    \[
+        (\forall x \in V^{*})( {\cal C}(x) \simeq {\cal B}( {\cal A}(x) ) )
+    \] 
+\end{theorem}
+
+\begin{myproof}
+Вводится алфавит двойников.
+
+$V = \{a_1,a_2,\ldots,a_n\} $ 
+$\overline{V} = \{\overline{a_1}, \overline{a_2},\ldots,\overline{a_{n}}\} $ 
+
+Вводятся две буквы $\alpha,\beta$ такие, что  $\alpha,\beta \not\in V \cup \overline{V}$ 
+
+\[
+{\cal C}: \begin{cases}
+    \xi\alpha \to \alpha\xi\text{ //}\xi \in V\\
+    \alpha\xi \to \alpha \overline{\xi}\\
+    \overline{\xi}\eta \to \overline{\xi}\overline{\eta}\text{ //} \xi,\eta \in V\\
+    \overline{\xi}\beta \to \beta \overline{\xi}\\
+    \beta \overline{\xi} \to \beta\xi\\
+    \xi \overline{\eta} \to \xi\eta\\ 
+    \alpha\beta \to \bigcdot\\
+    \overline{ {\cal B}^{\beta}_{\alpha} }\\
+    {\cal A}^{\alpha}\\
+\end{cases}
+\] 
+
+\[
+    \begin{tabular}{||c|c}
+        {\cal A}^{\bigcdot} & {\cal A}^{\alpha}\\
+        \hline\\
+        u \to v & u\to v\\
+        \hline\\
+        u\to \bigcdot v & u\to \alpha v\\
+        \hline
+\end{tabular}
+\] 
+
+\medskip
+
+\[
+    \begin{tabular}{||c|c}
+        {\cal B}^{\bigcdot} & \overline{ {\cal B}^{\beta}_{\alpha} }\\
+        \hline\\
+        u\to v & \overline{u} \to \overline{v}\\
+        u \neq \lambda &\\
+        \to v & \alpha \to \alpha \overline{v}\\
+        u\to \bigcdot v & \overline{u} \to \beta \overline{v}\\
+        \to \bigcdot v & \alpha \to \alpha\beta \overline{v}\\
+        \hline
+\end{tabular}
+\] 
+
+\paragraph*{Примерно идея доказательства.}
+$x \in V^{*}$ 
+\[
+    {\cal C}: x \models_{(9)}^{! {\cal A}^{\bigcdot}(x)} y_1\alpha y_2\text{, где } y_1y_2= {\cal A}
+    ^{\bigcdot}(x)
+\]
+Если $\lnot! {\cal A}^{\bigcdot}(x)$, то и $\lnot ! {\cal C}(x)$, заметим. Отсюда
+\[
+y_1\alpha y_2 \models_{(1)} \alpha y_1 y_2 = \alpha y = \alpha y(1)y(2)\ldots y(m),
+\]
+где $y_1 y_2 = y$.
+Далее получаем
+\[
+\alpha y(1)y(2)\ldots y(m) \step_{(2)} \alpha \overline{y(1)}y(2)\ldots y(m)\models_{(3)}
+\alpha \overline{y(1)} \overline{y(2)} \ldots \overline{y(m)} = \alpha \overline{y}
+\] 
+
+Следующий, третий шаг
+\[
+    \alpha \overline{y} \models_{(8)} \alpha \overline{z_1}, \beta \overline{z_2}_{z}\text{, где }
+    z_1,z_1 = z = {\cal B}^{\bigcdot}(y)\text{, если } ! {\cal B}(y)
+\]
+Заметим, что если $\lnot ! {\cal B}^{\bigcdot}(y) \implies 
+\lnot ! {\cal C}(y) \implies \lnot ! {\cal C}(x)$. Получаем
+\[
+\alpha \overline{z_1}\beta \overline{z_2} \models_{(4)} \alpha\beta \overline{z_1} \overline{z_2}=
+\alpha\beta \overline{z}\models_{(5),(6)} \alpha\beta z 
+\step\bigcdot z = {\cal B}^{\bigcdot}(y) = {\cal B}^{\bigcdot}( {\cal A}^{\bigcdot}(x)) = 
+{\cal B}( {\cal A}(x) )
+\] 
+\end{myproof}
+
+\paragraph*{Пример.}
+\[
+{\cal A}^{\bigcdot}: \begin{cases}
+    \#\alpha \to \alpha\#\\
+    \#\beta \to \beta\#\\
+    \# \to \bigcdot aba\\
+    \to \#\\
+    \to \bigcdot\\
+\end{cases}
+\]
+\[
+{\cal B}^{\bigcdot}: \begin{cases}
+    \to \bigcdot babb\\
+    \to \bigcdot\\
+\end{cases}
+\] 
+
+Строим систему:
+\[
+    {\cal A}^{\alpha}: \left[
+        \begin{array}
+            \# a \to a\#\\
+            \# b \to  b \#\\
+            \# \to \alpha aba\\
+            \to \# \\
+            \to \alpha\\
+        \end{array}
+\] 
+\[
+    \overline{B}^{\beta}_{\alpha}: \left[
+        \begin{array}
+            \alpha\alpha \to \alpha\beta \overline{babb}\\
+            \alpha \to \alpha\beta\\
+        \end{array}
+\] 
+
+
+\[
+\begin{align*}
+ &   x=bab \step \#bab\models bab\#\step bab\alpha aba\models \alpha bababa \step \\
+ &\step\alpha\overline{b}ababa\models \alpha \overline{bababa} \step \\
+ &\step \alpha\beta\overline{babbbababa} \step \alpha\beta \alpha\beta
+ b \overline{abbbababa}\models\\
+ &\models \alpha\beta babbbababa\step\bigcdot babbbababa\\
+\end{align*}
+\] 
+
+Отсюда видно:
+\[
+{\cal C} \leftrightharpoons {\cal B} \circ {\cal A};
+\]
+\[
+{\cal B}\circ {\cal A}(x) \simeq {\cal B}( {\cal A}(x) );
+\] 
+\[
+{\cal A}_n \circ {\cal A}_{n-1} \circ \ldots \circ {\cal A}_{1} \leftrightharpoons
+{\cal A}_{n} \circ ( {\cal A}_{n-1} \circ \ldots \circ {\cal A}_{1} ), n \ge 1;
+\]
+
+\begin{definition}
+    Степень алгорифма:
+\[
+    {\cal A}^{n} \leftrightharpoons {\cal A} \circ {\cal A}^{n-1}, n\ge 1\text{, где }
+    {\cal A}^{0} \leftrightharpoons {\cal J}\alpha
+\] 
+\end{definition}
+
+\subsection{Объединение}
+
+\begin{tikzpicture}[node distance=2cm]
+\node (x) {$x$};
+\node (A) [process, above right of=x, xscale=.6, yscale=.7, xshift=2.5cm] {$\mathscr{A}$};
+\node (B) [process, below right of=x, xscale=.6, yscale=.7, xshift=2.5cm] {$\mathscr{B}$};
+\node (rightA) [right of=A, xshift=.5cm] {$\mathscr{A}(x)$};
+\node (rightB) [right of=B, xshift=.5cm] {$\mathscr{B}(x)$};
+\node (middle) [right of=x, xshift=6cm] {$\mathscr{A}(x)\mathscr{B}(x)$};
+
+\draw [arrow] (x) |- (A);
+\draw [arrow] (x) |- (B);
+\draw [arrow] (A) -- (rightA);
+\draw [arrow] (B) -- (rightB);
+\draw [arrow] (rightA) |- (middle);
+\draw [arrow] (rightB) |- (middle);
+\end{tikzpicture}
+
+\begin{theorem}
+    (Объединения). Каковы бы ни были НА $ {\cal A}, {\cal B}$ в алфавите $V$, может быть
+    построен НА  $ {\cal A}$ над алфавитом $V$ так, что 
+     \[
+         (\forall x \in V^{*})( {\cal C}(x) \simeq {\cal A}(x) {\cal B}(x) )
+    \] 
+\end{theorem}
+
+Можно представить это так:
+\begin{gather*}
+    \overline{ {\cal C}(x\$y) } \simeq {\cal A}(x)\$ {\cal B}(y)\\
+    \$ \not\in V\\
+\end{gather*}
+
+\subsection{Разветвление}
+
+\begin{tikzpicture}[node distance=2cm]
+\node (C) [startstop, xscale=.6, yscale=.7] {$\scr{C}(x) = \lambda$};
+\node (entry) [left of=C];
+\node (A) [process, above right of=C, xscale=.6, yscale=.7, xshift=2.5cm] {$\scr{A}(x)$};
+\node (B) [process, below right of=C, xscale=.6, yscale=.7, xshift=2.5cm] {$\scr{B}(x)$};
+\node (rightA) [right of=A, xshift=1cm];
+\node (rightB) [right of=B, xshift=1cm];
+
+\draw [arrow] (entry) -- node[above=2.5mm] {$x$} (C);
+\draw [arrow] (C) |- node [above=2mm] {Да} (A);
+\draw [arrow] (C) |- node [below=2mm] {Нет} (B);
+\draw [arrow] (A) -- node[above=2mm] {$\scr{A}(x)$} (rightA);
+\draw [arrow] (B) -- node[above=2mm] {$\scr{B}(x)$} (rightB);
+\end{tikzpicture}
+
+
+Записать в виде псевдокода можно так:
+$$if ( {\cal C}(x) = \lambda ) \text{  }\underline{then}\text{  } y:= {\cal A}(x)
+\text{  }\underline{else}\text{  }
+y:= {\cal B}(x);$$ 
+
+\begin{theorem}
+    (О разветвлении). Каковы бы ни были НА $ {\cal A,B,C}$ в алфавите $V$,
+    может быть построен НА  $D$ над алфавитом  $V$ так, что
+    \[
+        (\forall x \in V^{*})(D(x) = {\cal A}(x)\text{, если } {\cal C}(x)=\lambda)
+        \text{ и }
+        (D(x)= {\cal B}(x)\text{, если } {\cal C}(x) \neq \lambda)
+    \] 
+\end{theorem}
+$D \leftrightharpoons {\cal C}( {\cal A} \lor {\cal B} )$ 
+
+\subsection{Повторение}
+
+\begin{tikzpicture}[node distance=2cm]
+\node (B) [startstop, xscale=.6, yscale=.7] {$\scr{B}(x) = \lambda$};
+\node (entry) (left of=B);
+\node (A) [process, xscale=.6, yscale=.7, right of=B, xshift=5cm] {$\scr{A}$};
+\node (belowA) [below of=A, xshift=2cm];
+\node (belowB) [below of=B];
+\node (rightA) [right of=A];
+\node (belowrightA) [below of=rightA];
+\node (end)[above of=B, process, xscale=.6, yscale=.7] {END};
+
+\draw [arrow] (entry) -- node[above=2mm] {$x$} (B);
+\draw [arrow] (B) -- node[above=2mm] {Да} (A);
+\draw (A) -- node [above=3mm, xshift=.5cm] {$x:=\scr{A}(x)$}(rightA);
+\draw (rightA) -- (belowrightA);
+\draw (belowrightA) |-  (belowB);
+\draw [arrow] (belowB) -- (B);
+\draw [arrow] (B) -- node[left=3mm] {Нет} (end);
+
+\end{tikzpicture}
+
+
+В виде псевдокода:
+\begin{itemize}
+    \item Для цикла с условием, пока правда:
+$$\underline{while}\text{  } {\cal B}(x)=\lambda \text{  }\underline{do}\text{  }x:= {\cal A}(x)
+\text{  }\underline{end};\text{ Записывается так: } {}_{\beta}\{{\cal A}\}  $$
+\item Для цикла с условием, пока неправда:
+$$\underline{while}\text{  } {\cal B}(x)!=\lambda \text{  }\underline{do}\text{  }x:= {\cal A}(x)
+\text{  }\underline{end}; \text{Записывается так: } {}_{\beta}\langle{\cal A}\rangle $$
+\end{itemize}
+
+
+\begin{theorem}
+    (Повторения). Каковы бы ни были НА $ {\cal A,B}$ в алфавите $V$, может быть
+    построен НА  $ {\cal C}$ над алфавитом  $V$ такой, что
+    $! {\cal C}(x) \leftrightharpoons ( {\cal B}(x) \neq \lambda)$ и тогда
+    $ {\cal C}(x) = x$ или существует последовательность $x=x_0,x_1,\ldots,x_{n}$, где
+    $(\forall i=\overline{0,n-1})$ $( {\cal B}(x_{i}) = \lambda )$ и
+    $x_{i+1} = {\cal A}(x_{i});$ $ {\cal B}(x_{n}) \neq \lambda$ и $ {\cal C}(x)=x_{n}$
+\end{theorem}
+

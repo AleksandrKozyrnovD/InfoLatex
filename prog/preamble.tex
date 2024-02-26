@@ -5,6 +5,8 @@
 \usepackage[russian]{babel}
 \usepackage{bookmark}
 
+\usepackage[makeroom]{cancel}
+
 \usepackage{tikz}
 \usetikzlibrary{shapes,arrows,positioning,decorations.pathmorphing}
 
@@ -36,11 +38,28 @@
 }
 \makeatother
 
-\newcommand{\bslash}{\mbox{ } \backslash \mbox{ }}
-\newcommand{\band}{\mbox{ } \& \mbox{ }}
+\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}[chapter]
+\theoremstyle{definition}
+\newtheorem{definition}{Определение}
+\newtheorem*{pruf}{Доказательство}
+
+\newenvironment{myproof}[1][\textbf{\textup{Доказательство}}]
+{\begin{proof}[#1]}
+	%\renewcommand*{\qedsymbol}{\(\blacksquare\)}}
+{\end{proof}}
+
+\DeclareMathOperator{\band}{\&}
+\DeclareMathOperator{\trim}{\triangle}
 
 %\newcommand*\pathto[1]{ \Rightarrow^{*}_{#1} }
 
 \newcommand{\pathto}[1][1]{ \Rightarrow^{*}_{#1} }
 
+\newcommand{\dx}[2]{\frac{d#1}{d#2}}
+\newcommand{\pdx}[2]{\frac{\partial#1}{\partial#2}}
+%\newcommand{\void}{\varnothing}
+\let\void\varnothing
+
 \renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}

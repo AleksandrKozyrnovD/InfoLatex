@@ -1,0 +1,273 @@
+
+Дано:
+
+Начальная конфигурация $C_0=(q_0,\lambda, \ozv x\square)$, где $x \in V^{*}$
+
+Конечная конфигурация $C_{f} = (q_{f}, \lambda, \ozv y\square)$, где $y \in V^{*}$
+
+
+\begin{definition}
+Машина Тьюринга применима к слову х, то есть
+\begin{align*}
+    !{\cal T}(x) \leftrightharpoons &\\
+                                    \leftrightharpoons& C_0 = (q_0,\lambda,\ozv x \square)
+\step^{*} C_{f} = (q_{f}, \lambda, \ozv y \square);
+\end{align*}
+при этом $y \leftrightharpoons {\cal T}(x)
+
+\medskip
+
+При этом если не применимо к машине тьюринга данное слово, то $$\lnot! {\cal T}(x)$$
+\end{definition}
+
+\begin{definition}
+Конфигурация машины Тьюринга называется тупиковой, если она не является заключительной и при этом из
+нее не выводится ни одна конфигурация.
+\end{definition}
+
+\paragraph*{Пример.}
+\[
+f(x) = \begin{cases}
+    \#\text{, если } x = \lambda \\
+    \lambda\text{, если } cab \sqsubseteq x\\
+    x\text{, если } x\neq \lambda\text{ и } cab \not\sqsubseteq x
+\end{cases}
+\]
+$\lambda$ - Пустое слово.
+
+Тогда программа записывается так:
+\begin{align*}
+    &q_0\ozv \to q_0\ozv, R\\
+    &q_0\square \to q_{f}\#, L \\
+    &q_0a \to q_0'a, R \\
+    &q_0b \to q_0'b, R \\
+    &q_0c \to q_1c, R \\
+    &q_0'a \to q_0'a, R\\
+    &q_0'b \to q_0'b, R\\
+    &q_0'c \to q_1c, R\\
+    &q_1a\to q_2a,R\\
+    &q_1b \to q_0'b, R\\
+    &q_1c\to q_1c,R\\
+    &q_2a\to a_0'a, R \text{ //} caa\\
+    &q_2b\to q_3b, R \text{ //} cab\\
+    &q_2c\to q_1c, R\text{ //} cac\\
+    &q_3\alpha \to q_3\alpha, R\text{ //}\alpha \in \{a,b,c\}\\ 
+    &q_3\square\to q_4\square,L\\
+    &q_4\alpha\to q_4\square,L\\
+    &q_4\ozv\to q_{f}\ozv,S \\
+    &r\square\to q_5\square, L\text{ //} r \in \{q_0',q_1,q_2\} \\
+    &q_5\alpha\to q_5\alpha,L\\
+    &q_5\ozv\to q_{f}\ozv, S\\
+\end{align*}
+
+Для ошибочного решения ($q_{0}'$ не вводится): \[
+\begin{align*}
+    &(a_1,\lambda, \ozv ab\square) \step (q_0,\ozv,ab\square)
+    &\step (q_0,\ozv a,b\square) \step (q_0,\ozv ab, \square)
+    &\step \underline{(q_{f}, \ozv a, b\#\square)}
+\end{align*}
+\] 
+
+\begin{definition}
+Машина Тьюринга называется детерминированной, если из каждой ее конфигурации
+\underline{непосредственно} выводится не более одной конфигурации.
+\end{definition}
+
+\begin{theorem}
+Машина Тьюринга называется детерминированной тогда и только тогда, когда в ее программе
+(системе команд) нет двух (более) различных комманд с одинаковыми левыми частями.
+\end{theorem}
+
+\medskip
+
+\paragraph*{Соглашение.}
+Во всех дальнейших суждениях машина Тьюринга будет считаться детерминированной. ДМТ - 
+детерминированная машина Тьюринга.
+
+\medskip
+
+Допустим машина Тьюринга с алфавитом V, то мы говорим, что это машина Тьюринга в
+алфавите V. Но если $V \supset V'$, то мы говорим, что Машина Тьюринга над алфавитом
+V.
+
+\begin{definition}
+    Вербальная функция $f: V^{*} \underset{\bullet}{\to} V^{*}$ называется вычисломой по Тьюрингу,
+если может быть построена МТ  $ {\cal T}_{f}$ над алфавитом $V$ такая, что  \[
+        (\forall x \in V^{*})
+        (! {\cal T}(x) \Longleftrightarrow x \in D(f) \band {\cal T}_{f}(x) = f(x))
+    \] 
+\end{definition}
+
+\paragraph*{Тезис Тьюринга.}
+Он гласит, что любая вербальная функция, вычислимая в интуитивном смысле слова, вычислима
+по Тьюрингу.
+
+\medskip
+
+Общие разделы:
+\begin{itemize}
+    \item[1.] Основная модель.
+    \item[2.] Понятие вычислимой функциию. Основная гипотеза.
+    \item[3.] Эквивалентный алгоритм.
+    \item[4.] Теорема сочетания.
+    \item[5.] Универсальный алгоритм.
+    \item[6.] Разрешимые перечислимые множества (языки).
+    \item[7.] Анализ алгоритмически неразрешимых задач.
+\end{itemize}
+
+\section{Нормальные алгорифмы Маркова}
+
+Предположим, что есть
+\[
+    V; x,y \in V^{*}; x\sqsubseteq y \leftrightharpoons (\exists y_1,y_2)(y=y_1xy_2)
+\] 
+причем тройка слов $(y1,x,y2)$ - \underline{вхождение} слова х в слово у.
+
+\medskip
+
+Некоторые свойства:
+\begin{itemize}
+    \item $(\forall x)(\lambda \sqsubseteq x)$
+    \item $(\forall x)(x \sqsubseteq x)$
+    \item $(\forall x)(\forall y)(\forall z)
+        (x \sqsubseteq y, y\sqsubseteq z \implies x \sqsubseteq z)$
+\end{itemize}
+
+
+\medskip
+
+Записывается иногда так: $y_1*x*y_2$  $(x \not\in V)$
+
+Пример: $y = \underbrace{\text{вход}}_x$ит;  $*$вход$*$ит - корень
+
+Еще один: $\underbrace{\text{абра}}_x$кад$\underbrace{\text{абра}}_x$
+
+\medskip
+
+Среди всех вхождений х в у выделяется первое, или главное, вхождение, а именно
+имеющую наименьшую длину левого крыла (самое левое вхождение).
+
+\medskip
+
+\begin{definition}
+Подстановка: \[
+    u,v \in V^{*}\text{    } \underbrace{u}_{\text{л.ч.}} \to \underbrace{v}_{\text{п.ч.}}; \to \not\in V
+\] 
+\end{definition}
+
+\begin{definition}
+Омега применима, или подходит, если ее левая часть входит в слово х. \[
+\omega : u \to v
+\] 
+Тогда вхождение:
+\[
+    x=x_1 u x_2; \text{    } x_1*u*x_2\text{ - 1-е вхождение u в х }
+\]
+Отсюда
+\[
+y \leftrightharpoons \omega x \leftrightharpoons x_1 v x_2
+\] 
+Это можно представить так:
+
+\begin{matrix}
+    x &= \fbox{x_{1}}\fbox{u_{}}\fbox{x_{2}}\\
+      &\quad\downarrow\\
+    y=\omega x&= \fbox{x_{1}}\fbox{v_{}}\fbox{x_{2}}
+\end{matrix}
+
+\end{definition}
+
+\paragraph*{Пример.}
+Пусть дана замена: \[
+\omega: B \to y
+\] 
+Тогда слово Входит превратится в слово уходит. $\omega x$ = уходит
+
+\begin{definition}
+Нормальный алгорифм $ {\cal A} = (V,S, {\cal P})$
+\end{definition}
+
+\paragraph*{Пример.}
+\[
+{\cal A}: \begin{cases}
+    \#a\to a# (1)\\
+    \#b \to b\#\\
+    \# \to \cdot aba\\
+    \text{  } \to \#
+\end{cases}
+\] 
+
+
+Рассматриваем систему сверху вниз и ищем первую подходящую формулу. Пусть \[
+x = bbab
+\] 
+Отсюда получаем:
+\[
+    x = bbab \step \#bbab \step b\#bab \step bb\#ab \step bba\#b \step bbab\#
+    \step\bigcdot bbab\underline{aba}
+\] 
+
+\medskip
+
+Общий вид:\[
+{\cal A}: \begin{cases}
+    u_1 \to [\bigcdot]v_1\\
+    u_2 \to [\bigcdot]v_2\\
+    \vdots\\
+    u_{n} \to [\bigcdot]v_{n}
+\end{cases}
+\]
+
+Можно записать это в виде блок-схемы неформально:
+
+
+\begin{tikzpicture}[node distance=2cm]
+\node (start) [process] {Входное слово х};
+\node (search) [process, below=of start] {Поиск в схеме 1-й подходящей для х формулы};
+\node (decision1) [decision, below of=search, yscale=.5, xscale=0.6, yshift=-1.5cm]
+    {Такая формула $\omega$ нашлась?};
+\node (getword) [process, below=of decision1] {Получить слово $\omega x$};
+\node (decision2) [decision, below=of getword, xscale=.6,yscale=.5]
+    {Формула $\omega$ заключительная?};
+\node (end2) [process,left of=decision2,scale=.5, xshift=-2cm] {END};
+\node (xxx) [process, right of=decision2, scale=.5, xshift=5cm] {$x :=\omega x$};
+\node (end1) [process, right of=decision1, scale=.5, xshift=2cm] {END};
+\node (getspace) [left of=decision1, xshift=-1.5cm]
+
+
+\draw [arrow] (start) -- (search);
+\draw [arrow] (search) -- (decision1);
+\draw [arrow] (decision1) -- node[anchor=east, above=3mm] {Нет} (end1);
+\draw [arrow] (decision1) -- node[anchor=west, above=3mm] {Да} (getspace);
+\draw [arrow] (getspace) |- (getword);
+\draw [arrow] (getword) -- (decision2);
+\draw [arrow] (decision2) -- node[above=3mm] {Да} (end2);
+\draw [arrow] (decision2) -- node[above=3mm] {Нет} (xxx);
+\draw [arrow] (xxx) |- (start);
+
+\end{tikzpicture}
+
+\medskip
+
+Теперь формально опишем его.
+Распишем 5 разных ситуаций.
+
+\begin{itemize}
+    \item[1)] $ {\cal A}: x\step y \leftrightharpoons$
+        непосредственно просто переводит
+        слово х в слово у $\leftrightharpoons y = \omega x$, где $\omega$ - 1-я в схеме  $ {\cal A}$ 
+        формула, которая оказывается простой
+    \item[2)] $ {\cal A} \step\bigcdot y \leftrightharpoons$
+        Алгорифм А непосредственно заключительно переводит
+        слово х в слово у $\leftrightharpoons y = \omega x$, где $\omega$ - 1-я в схеме
+         $ {\cal A}$, которая оказывается заключительной
+     \item[3)] $ {\cal A} x\models y \leftrightharpoons$
+         Алгорифм А переводит слово х в слово у, когда
+         существует последовательность $x=x_0,x_1,\ldots,x_{n}=y$, где
+         $(\forall i=\overline{0,n-1})( {\cal A}:x_{i}\step x_{i+1})$ 
+     \item[4)] $ {\cal A}:x \models\bigcdot y \leftrightharpoons$
+         Алгорифм А заключительно переводит слово х в слово у
+         $\leftrightharpoons {\cal A}: x\step\bigcdot y \lor
+         (\exists z)( {\cal A}:x \models z\step\bigcdot y )$ 
+     \item[5)] $\sim {\cal A}(x) \leftrightharpoons$ в схеме А нет ни одной подходящей формулы для х.
+\end{itemize}

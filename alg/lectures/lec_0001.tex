@@ -1,0 +1,188 @@
+\input{preamble}
+\title{}
+\author{Козырнов Александр Дмитриевич, ИУ7-42Б}
+\date{\today}
+
+\begin{document}
+
+\chapter{Элементы Теории Алгоритмов}
+\section{Понятие алгоритма в интуитивном смысле слова}
+
+
+\begin{figure}[ht]
+    \centering
+    \incfig{command}{.5}
+    \caption{Команда}
+\end{figure}
+
+$ {\cal A}:X \to Y$
+
+\medskip
+
+Признаки алгоритма:
+\begin{itemize}
+	\item Признак детерминизированности (нет выбора в алгоритме)
+	\item Признак массовости (работает для всех входных данных одного типа~, например,
+		квадратных уравнений)
+	\item Признак результативности (ожидается какой-то результат)
+\end{itemize}
+
+
+\begin{definition}
+алгоритм $A$ применим к элементу $x$. (То есть останавливается за n шагов) \[
+    (x \in X)(!A(x))
+\] 
+\end{definition}
+
+\begin{definition}
+$\lnot!A(x)$ - алгоритм $A$ не применим к $x$.
+\end{definition}
+
+\begin{definition}
+Конструктивный объект - слово в конечном алфавите.
+\end{definition}
+
+\begin{figure}[h]
+    \centering
+    \incfig{automat}{.5}
+    \caption{Автомат}
+    \label{automat}
+\end{figure}
+
+\medskip
+
+\begin{definition}
+Вербальная, или словарная, функция - это \[
+	f: V^{*} \underset{\bullet}{\to} W^{*}
+\] 
+Вербальная функция $(V,W)$.
+
+\end{definition}
+
+\begin{definition}
+Алгоритм можно записать так: \[
+	{\cal A}: V^{*} \underset{\bullet}{\to } W^{*}
+\] 
+\end{definition}
+
+\begin{definition}
+Функция $f: V^{*} \underset{\bullet}{\to } W^{*}$ называется вычислимой в интуитивном смысле слова,
+если существует алгоритм $ {\cal A}_f: V^{*} \to  W^{*}$ такой, что
+$$(\forall x \in V^{*})
+((! {\cal A}_f(x) \Longleftrightarrow x \in D(f))\band ( {\cal A}_f (x) = f(x)))$$
+\end{definition}
+
+\section{Машина Тьюринга.}
+
+\begin{figure}[h]
+    \centering
+    \incfig{turing1}{.5}
+    \caption{Машина Тьюринга}
+    \label{turing1}
+\end{figure}
+
+
+Команды следующего формата: \[
+qa \to rb,
+\begin{Bmatrix}
+	S \\ L \\ R
+\end{Bmatrix}; q,r \in Q; a,b \in V \cup \{\ozv, \square  \} 
+\] 
+
+\begin{figure}[h]
+    \centering
+    \incfig{turing2}{0.7}
+    \caption{Что к чему}
+    \label{}
+\end{figure}
+
+\paragraph*{Заметка.}
+Мы считаем, что у нас не может быть команд с одинаковыми левыми частями.
+
+\medskip
+
+\newpage
+
+Начальная конфигурация:
+
+\begin{figure}[h]
+    \centering
+    \incfig{config1}{.55}
+\end{figure}
+
+Заключительная конфигурация:
+
+\begin{figure}[h]
+    \centering
+    \incfig{config2}{.55}
+\end{figure}
+
+\medskip
+
+Пример программы:
+\begin{align*}
+	&q_0\ozv \to q_0\ozv, R \\
+	&q_0a \to q_0a, R \\
+	&q_0b \to q_0b, R \\
+	&q_0c \to q_1c, R \\
+	&q_1a \to q_2a, R \\
+	&q_1b \to q_0b, R \\
+	&q_1c \to  q_1c, R\\
+	&q_2a \to q_0a, R\\
+	&q_2b \to q_3b, R\\
+	&q_2c \to q_1c, R \\
+	&q_3\alpha\to q_3\alpha, R \text{ //} \alpha \in \{a,b,c\} \\
+	&q_3\square \to q_4\square, R \\
+	&q_{i}\square \to q_5\square, L\text{ //} i = 0,1,2\\
+	&q_4\ozv\to q_{f}1,L\\
+	&q_5\alpha \to q_5\square, L\\
+	&q_5\ozv \to q_5{*}, R\\
+	&q_5\square\to q_{f}0, L\\
+\end{align*}
+
+\[
+f(x) = \begin{cases}
+	1\text{, если } cab \sqsubseteq x \in \{a,b,c\} \\
+	0\text{ иначе}
+\end{cases}
+\]
+
+\medskip
+
+\begin{definition}
+	Машина Тьюринга (МТ): \[
+	{\cal J} = (V, Q, q_0, q_{f},{*}, \square, S, L, R, \delta)
+	\] 
+
+\medskip
+
+	Конфигурация МТ: \[
+	C = (q,x,ay),
+	\]
+	где $q \in Q$, а $x,y\in (V \cup \{{*}, \square\})^{*}, a
+	\in V \cup \{{*}, \square\} $ 
+\end{definition}
+
+\medskip
+
+Мы полагаем, что \[
+	(q,x,ay) \underset{ {\cal J} }{\step} \begin{cases}
+		(r,x,by)\text{, если } qa\to rb, S \in \delta \\
+		(r,x',cby)\text{, где } x'c=x\text{, если} qa\to rb, L \in \delta \\
+		(r,xb,dy')\text{, где } y=dy'\text{, если } qa\to rb, R \in \delta \\
+	\end{cases}
+\] 
+\begin{definition}
+Вывод на множестве конфигураций:
+\[
+K_0,K_1,\ldots,K_{n}\text{, где } (\forall i \ge 0)(K_{i}\step K_{i+1}\text{, если } K_{i+1}
+	\text{ определен в последовательности})
+\] 
+
+\[
+    K\underset{ {\cal J} }{\step^{*}}K'
+        \text{, если существует вывод } K = K_0 \step K_1 \step \ldots \step K_{n} = K'
+\] 
+\end{definition}
+
+\end{document}

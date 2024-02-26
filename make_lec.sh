@@ -18,7 +18,7 @@ fi
 num=0
 maxnum=0
 num_for_next_lecture=0
-for file in ./"$directory"/lectures/*; do
+for file in ./"$directory"/lectures/*.tex; do
     num=$(echo "$file" | grep -o '[0-9]*')
     if [[ -z "$num" ]]; then
         echo "None of lectures before recorded..."

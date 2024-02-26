@@ -1,0 +1,85 @@
+\section{Специальные свойства бинарных отношений}
+
+Пусть дано $A^2$ - бинарное отношение.
+
+$\rho \subseteq A^2, A\neq \void$. Вместо $(x,y) \in \rho$ пишем
+$x\rho y$.
+
+Тогда его свойства:
+\begin{itemize}
+	\item Рефлексивность.
+
+		Отношение $\rho$ называется рефлексивным, если  $(\forall x \in A)(x\rho x)$.
+		То есть диагональ $id_A \subseteq \rho$.
+	\item Иррефлексивность
+
+		Отношение $\rho$ называется иррефлексивным, если $Id_A \cap A = \void$.
+	\item Симметричность
+
+		Отношение  $\rho$ называется симметричным, если \[
+			(\forall ,y \in A)(x\rho y \implies y\rho x),
+		\]
+		то есть $\ rho = \rho^{-1}$
+	\item Антисимметричность
+
+		Отношение $\rho$ называется антисимметричным, если
+		$$
+			(\forall x,y \in A)(x\rho y \band y\rho x \implies x = y)
+			$$
+	\item Транзитивность
+
+		Отношение $\rho$ называется транзитивным, если  \[
+			(\forall x,y,z \in A)(x\rho y, y\rho z \implies x\rho z)
+		\] 
+\end{itemize}
+
+\begin{theorem}
+Отношение $\rho \subseteq A^2$ транзитивно тогда и только тогда, когда $\rho^2 \subseteq \rho$
+\end{theorem}
+
+\begin{myproof}
+В прямую сторону.
+
+Пусть $\rho \subseteq A^2$ транзитивно. Тогда если $x\rho^2 y$, то
+$(\exists z)(x\rho z, z\rho y)$, то есть в силу транзитивности $x\rho y$.
+
+\medskip
+
+В обратную сторону.
+
+Пусть  $\rho^2 \subseteq \rho$ и пусть $(\exists x,y,z \in \rho)(x\rho y, y\rho z)$.
+Тогда мы имеем $x\rho^2 y \implies x\rho y$, то есть оно транзитивно.
+\end{myproof}
+
+\paragraph*{Замечание.}
+Если отношение $\rho$ рефлексивно и транзитивно, то  $\rho^2  = \rho$
+
+
+\medskip
+
+Классы отношений:
+\begin{itemize}
+	\item[1)] Отношение эквивалентности
+		\begin{itemize}
+			\item Рефлексивность
+			\item Симметричность
+			\item Транзитивность
+		\end{itemize}
+	\item[2)] Отношение толерантности
+		\begin{itemize}
+			\item Рефлексивность
+			\item Симметричность
+		\end{itemize}
+	\item[3)] Отношение порядка
+		\begin{itemize}
+			\item Рефлексивность
+			\item Антисимметричность
+			\item Транзитивность
+		\end{itemize}
+	\item[4)] Отношение предпорядка
+		\begin{itemize}
+			\item Рефлексивность
+			\item Транзитивность
+		\end{itemize}
+\end{itemize}
+

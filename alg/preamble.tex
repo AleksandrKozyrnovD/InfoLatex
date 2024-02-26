@@ -1,0 +1,139 @@
+\documentclass{report}
+
+\usepackage{amssymb, amsmath, amsthm, amscd}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{bookmark}
+\usepackage{wasysym}
+\usepackage{import}
+\usepackage{caption}
+\usepackage{mathrsfs}
+
+\usepackage[makeroom]{cancel}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes,shapes.geometric,arrows,positioning,decorations.pathmorphing}
+
+\usepackage{listings}
+
+\usepackage{hyperref}
+\hypersetup{
+       colorlinks=true,
+       linkcolor=blue,
+}
+
+\usepackage{geometry}
+\geometry{papersize={15cm, 11in}, left=1.5cm, lmargin=1.5cm,right=2cm, top=2cm, bottom=3cm}
+
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
+
+\usepackage{graphicx}
+
+\usepackage{titlesec}
+\titleformat{\chapter}[display]{\fontsize{17pt}{0pt}\bfseries}{}{-20pt}{}
+\titleformat{\subsubsection}[display]{\fontsize{12pt}{0pt}\bfseries}{}{0pt}{}
+
+\newcounter{mylabelcounter}
+
+\makeatletter
+\newcommand{\labelText}[2]{%
+#1\refstepcounter{mylabelcounter}%
+\immediate\write\@auxout{%
+    \string\newlabel{#2}{{1}{\thepage}{{\unexpanded{#1}}}{mylabelcounter.\number\value{mylabelcounter}}{}}%
+}%
+}
+\makeatother
+
+\newcommand{\circlesign}[1]{
+    \mathbin{
+        \mathchoice
+        {\buildcircledesign{\displaystyle}{#1}}
+        {\buildcircledesign{\textstyle}{#1}}
+        {\buildcircledesign{\scriptstyle}{#1}}
+        {\buildcircledesign{\scriptscriptstyle}{#1}}
+    }
+}
+
+\newcommand\buildcircledesign[2]{%
+    \begin{tikzpicture}[baseline=(X.base), inner sep=0, outer sep=0]
+        \node[draw,circle] (X) {\ensuremath{#1 #2}};
+    \end{tikzpicture}%
+}
+
+\newcommand{\ozv}{\circlesign{*}}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}[chapter]
+\theoremstyle{definition}
+\newtheorem{definition}{Определение}
+\newtheorem*{pruf}{Доказательство}
+
+\newenvironment{myproof}[1][\textbf{\textup{Доказательство}}]
+{\begin{proof}[#1]}
+	%\renewcommand*{\qedsymbol}{\(\blacksquare\)}}
+{\end{proof}}
+
+\DeclareMathOperator{\band}{\&}
+\DeclareMathOperator{\trim}{\triangle}
+\DeclareMathOperator{\step}{\vdash}
+
+\makeatletter
+\newcommand*\bigcdot{\mathpalette\bigcdot@{.5}}
+\newcommand*\bigcdot@[2]{\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\bullet$}}}}}
+\makeatother
+
+
+%\newcommand*\pathto[1]{ \Rightarrow^{*}_{#1} }
+
+\newcommand{\pathto}[1][1]{ \Rightarrow^{*}_{#1} }
+
+\newcommand{\dx}[2]{\frac{d#1}{d#2}}
+\newcommand{\pdx}[2]{\frac{\partial#1}{\partial#2}}
+
+\newcommand{\incfig}[2]{%
+    \def\svgwidth{#2\columnwidth}
+    \import{./images/}{#1.pdf_tex}
+}
+
+\tikzstyle{startstop} = [rectangle, rounded corners, 
+minimum width=3cm, 
+minimum height=1cm,
+text centered, 
+draw=black, 
+fill=red!30]
+
+\tikzstyle{io} = [trapezium, 
+trapezium stretches=true, % A later addition
+trapezium left angle=70, 
+trapezium right angle=110, 
+minimum width=3cm, 
+minimum height=1cm, text centered, 
+draw=black, fill=blue!30]
+
+\tikzstyle{process} = [rectangle, 
+minimum width=3cm, 
+minimum height=1cm, 
+text centered, 
+text width=3cm, 
+draw=black, 
+fill=orange!30]
+
+\tikzstyle{decision} = [diamond, 
+minimum width=3cm, 
+minimum height=1cm, 
+text centered, 
+draw=black, 
+fill=green!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+
+%\newcommand{\void}{\varnothing}
+\let\void\varnothing
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\newcommand{\scr}[1]{\mathscr{#1}}
+

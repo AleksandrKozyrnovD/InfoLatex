@@ -1,1 +1,154 @@
-$\alpha$
+\chapter{Множества и отношения}
+\section{Понятие множества. Операции над множествами}
+
+Пусть дано $$A = \{x: P(x)\},$$ где $P(x)$ - предикат.
+
+\medskip
+
+Например:  \[
+	A = \{x: x \text{ - четное число}\} 
+\] 
+
+$C = \{1,3,5\} = \{x:x=1 \lor x=2 \lor x=3\}$. $C$ - замкнутое множество.
+
+\medskip
+
+\begin{definition}
+Равенство множеств можно задать так:
+\[
+A = B \leftrightharpoons (\forall x)(x \in A \Longleftrightarrow x \in B)
+\] 
+\end{definition}
+Можно назвать это принципом экстенсиональности (extension).
+При равенстве множеств важен только их состав.
+
+\subsection{Подмножество}
+\begin{definition}
+Нестрогое включение:
+$$A \subseteq B \leftrightharpoons (\forall x)(x \in A \implies x \in B)$$
+\end{definition}
+
+\medskip
+
+Тогда равенство можно задать и через поднмножества:
+\[
+A = B \leftrightharpoons (A \subseteq B) \land (B \subseteq A)
+\] 
+\begin{definition}
+Строгое включение: \[
+A \subset B \leftrightharpoons (A\subseteq B) \land (A \neq B)
+\] 
+\end{definition}
+
+Пара примеров:
+\begin{gather*}
+\{1,3,5\} = \{3,5,1\}  \neq \{\{1,3\},5 \} \\
+\{1,3\} \subset \{1,3,5\} \\
+\{1,3\} \in \{\{1,3\},5 \} \\
+\{\{1,3\} \} \subset \{\{1,3\},5 \}  
+\end{gather*}
+
+\medskip
+
+\begin{definition}
+Пустое множество:
+\[
+\varnothing = \{x: F(x)\},
+\]
+где $F(x)$ - заведомо ложный предикат для всех  $x$.
+По определению $\void \subseteq A$
+\end{definition}
+
+
+\begin{definition}
+U - универсальное множество \[
+	(\forall x)(x \in U)
+\]
+
+Также верно для всех других множеств: \[
+A \subseteq U
+\] 
+\end{definition}
+
+\subsection{Операции над множествами}
+\begin{itemize}
+\item Объединение \[
+A \cup B \leftrightharpoons \{x: x \in A \lor x \in B\}
+\]
+\item Пересечение \[
+A \cap B \leftrightharpoons \{x: x \in A \land x \in B\} 
+\] 
+\item Разность \[
+A \setminus B \leftrightharpoons \{x: x \in A \land x \not\in B\} 
+\]
+\item Симметрическая разность \[
+A \triangle B \leftrightharpoons (A\setminus B) \cup (B \setminus A) = (A \cup B) \setminus (A\cap B)
+\] 
+\item Дополнение \[
+\overline{A} \leftrightharpoons \{x:x \not\in A\} = U \setminus A 
+\] 
+\end{itemize}
+
+\medskip
+
+Тождества операций над множествами:
+\begin{itemize}
+	\item \[
+	A \cup (B \cup C) = (A \cup B) \cup C
+	\]
+	\[
+	A \cap (B \cap C) = (A \cap B) \cap C
+	\]
+\item \[
+A \cup B = B \cup A
+\] 
+\[
+A \cap B = B \cap A
+\]
+\item \[
+A \cap A = A \cup A = A
+\] 
+\item \[
+A \cap (B \cup C) = (A \cap B) \cup (A \cap C)
+\]
+\item \[
+A \cup \void = A
+\] 
+\[
+A \cap \void = \void
+\]
+\item \[
+\overline{A \cup B} = \overline{A} \cap	\overline{B}
+\] 
+\[
+\overline{A \cap B} = \overline{A} \cup \overline{B}
+\] 
+\item \[
+A \cup \overline{A} = U
+\] 
+\[
+A \cap \overline{A} = \void
+\] 
+\item \[
+A\trim B = B\trim A
+\]
+\item \[
+A\trim (B \trim C) = (A\trim B)\trim C
+\] 
+\end{itemize}
+
+\medskip
+
+Метод доказательства тождеств с помощью двух включений. Пусть дано выражение \[
+A \cap (B \cup C) = (A \cap B) \cup (A \cap C)
+\]
+Докажем его верность:
+\begin{align*}
+	x \in A \cap (B \cup C) &\implies \\
+	\implies (x \in A)\band (x \in B \cup C) &\implies \\
+	\implies (x \in A)\band ((x \in B)\lor(x \in C)) &\implies \\
+	\implies ((x \in A)\band(x \in B))\lor((x \in A)\lor(x \in C)) &\implies \\
+								       &\implies (x \in A \cap B) \cup (x \in A \cap C)
+\end{align*}
+Это верно и в обратную сторону (доказательство с конца в начало)
+

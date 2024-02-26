@@ -1,0 +1,132 @@
+\section{Отношение. Соответствие. Отображение.}
+Рассуждения будут происходить от самого абстрактного к самому точному примеру.
+
+\begin{definition}
+Н-местное (н-арное) отношение на множествах $A_1,A_2,\ldots,A_{n}$: \[
+\rho \subseteq A_1\times A_2\times \ldots\times A_n
+\] 
+\end{definition}
+
+Пример:
+\begin{gather*}
+	A_1=A_2=\mathbb{R} \\
+	\rho \leftrightharpoons \{(x,y): x^2+y^2=a^2, a\ge 0\} \\
+\end{gather*}
+
+\medskip
+
+\begin{definition}
+Если $A_1=A_2=\ldots=A_n$, то $\rho \subseteq A^{n}, n\ge 1$, то это называется
+н-арным отношением на множестве $A$.
+\end{definition}
+
+\begin{definition}
+Область определения: \[
+D(\rho) \leftrightharpoons \{x: x \in A, (x,y) \in \rho\} 
+\] 
+\end{definition}
+
+\begin{definition}
+Область значений:
+\[
+R(\rho) \leftrightharpoons \{y: y \in B, (x,y) \in \rho\} 
+\] 
+\end{definition}
+
+\begin{definition}
+Область сечения соответствия $\rho \subseteq A\times B$ по $a \in A$: \[
+\rho(a) \leftrightharpoons \{y: (a,y) \in \rho\} 
+\] 
+\end{definition}
+
+\begin{definition}
+Область сечения соответствия $\rho \subseteq A\times B$ по множеству $C\subseteq D(\rho)$:
+ \[
+\rho(C) \leftrightharpoons \{(x,y): x \in C, (x,y) \in \rho\} 
+\] 
+\end{definition}
+
+\begin{definition}
+Если у соотношения $\rho \subseteq A\times B$ будет верно $D(\rho) = A$, то оно называется
+соответствием.
+\end{definition}
+
+\begin{definition}
+Соответствие $\rho \subseteq A\times B$ называют функциональным по 2-й компоненте, если
+$\forall (x,y)$ и $\forall (x',y'): x=x' \implies y=y'$
+\end{definition}
+
+\begin{definition}
+Соответствие $\rho \subseteq A\times B$ называют функциональным по 1-й компоненте, если
+для $\forall (x,y)$ и $(x',y'): y=y' \implies x = x'$
+\end{definition}
+
+\begin{definition}
+Соответствие, которое всюду определено и функционально по 2-й компоненте, называют отображением. \[
+f: A \to B 
+.\]
+Причем $D(f) = A$.
+\end{definition}
+
+\medskip
+
+Также $(x,y) \in f$ превращается в $y = f(x)$. y - образ элемента х
+при отображении в y. То есть $x=x'\implies f(x)=f(x')$
+
+\begin{definition}
+Частичное отображение - это такое отображение, где $D(f) \neq A$. \[
+	f: A \underset{\bullet}{\to }B
+\] 
+\end{definition}
+
+\begin{definition}
+Если отображение функционально и по первой компоненте, то оно называется инъекцией. \[
+	(\forall x \in A)(\exists! y=f(x))\band(\forall y \in R(f))(\exists !x \in A)(y=f(x))
+\] 
+\end{definition}
+
+\begin{definition}
+Сюръекция - это отображение, где $R(f) = B$.  \[
+	(\forall y \in B)(\exists x \in A)(y = f(x))
+\] 
+\end{definition}
+
+
+\begin{definition}
+Биекция - это инъекция и сюръекция одновременно.
+\end{definition}
+
+\begin{definition}
+Два множества называют эквивалентными, если между ними можно установить
+взаимооднозначное соответствие.
+\begin{align*}
+	&1) A \sim A (f: A\to A\text{, где }(\forall x \in A)(f(x)=x)) \\
+	&2) A \sim B, B \sim C \implies A \sim C \\
+	&3) A\sim B \implies B\sim A
+\end{align*}
+\end{definition}
+
+\paragraph*{Заметка.} Принимается, как аксиома, что между 2-мя конечными множествами может
+быть установлено однозначно взаимное соответствие, если они состоят из одинакового числа
+элементов.
+
+\paragraph*{Способы доказательства на отображения.} Докажем, что \[
+f: X \to Y; A,B \subseteq X \implies f(A \cup B) = f(A) \cup f(B)
+
+\begin{myproof}
+\begin{align*}
+	y \in f(A \cup B) &\implies\\
+	\implies (\exists x \in A \cup B)(y=f(x)) &\implies \\
+	\implies (\exists x)(x \in A, y=f(x)) \lor (x \in B, y=f(x)) &\implies \\
+								     &\implies y \in f(A) \cup f(B) 
+\end{align*}
+Докажем в обратную сторону:
+\begin{align*}
+	y \in f(A) \cup f(B) &\implies \\
+	\implies y \in f(A) \lor y \in f(B) &\implies \\
+	\implies (\exists x \in A)(y = f(x)) \lor (\exists x' \in B)(y=f(x')) &\implies \\
+	\implies (\exists t \in A \cup B)(y = f(t)) &\implies \\
+						    &\implies y \in f(A \cup B)
+\end{align*}
+\end{myproof}
+\] 
