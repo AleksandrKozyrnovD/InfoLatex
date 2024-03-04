@@ -9,6 +9,7 @@
 *.gz
 *.toc
 *.ps
+*/master/*
 current.tex
 current.pdf
 preamble.tex
