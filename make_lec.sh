@@ -1,5 +1,11 @@
 #!/bin/bash
 
+WHITE='\033[0;37m'
+BLUE='\033[0;34m'
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+RESET='\033[0;0m'
+
 UNIFORM_LENGHT=4
 dd=`date +"%D %T"`
 
@@ -48,21 +54,21 @@ done
 
 #Updating old branch -> commiting whatever was made
 git add .
-echo "Adding"
 
 git status
 
-git commit -m "${dd} switching to ${directory}"
+git commit -m "${dd} switching to _${directory}"
 
-echo "Switching to ${directory}"
+echo -e "${WHITE}Switching${RED} to ${BLUE}_${directory}${RESET}"
 
-git checkout $directory
+git checkout _$directory
 
 echo $?
 
 if [ $? -ne 0 ]; then
-    git branch $directory
-    git checkout $directory
+    echo -e "${RED}No branch before${RESET}"
+    git branch _$directory
+    git checkout _$directory
 fi
 
 #New tex file
