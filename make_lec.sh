@@ -1,10 +1,10 @@
 #!/bin/bash
 
-WHITE='\033[0;37,1m'
-BLUE='\033[0;34m'
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-BOLD='\033[0;1m'
+WHITE='\033[1;37m'
+BLUE='\033[1;34m'
+RED='\033[1;31m'
+GREEN='\033[1;32m'
+BOLD='\033[1m'
 RESET='\033[0;0m'
 
 UNIFORM_LENGHT=4
