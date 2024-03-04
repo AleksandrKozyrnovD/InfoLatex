@@ -1,0 +1,240 @@
+\input{preamble}
+
+\title{}
+\author{Козырнов Александр Дмитриевич, ИУ7-42Б}
+\date{\today}
+
+\begin{document}
+\paragraph*{Примеры использования теоремы сочетания.}
+
+\begin{itemize}
+    \item[1)] Проекцирующие НА
+
+        Дано $V, \$ \not\in V$. Векторное слово в алфавите
+        $V: x_1\$x_2\$\ldots\$x_{n}, n\ge 1$, где
+        $(\forall i = \overline{1,n})(x_{i} \in V^{*})$ 
+
+        Нужен алгоритм, который вычисляет его $x_{i}$
+
+        $\prod_{i}(x_1\$x_2\$\ldots\$x_{n}) = x_{i},\quad i = 1\ldots n$
+
+        \[
+        \scr{P}_{1}: \begin{cases}
+            \$\eta \to $\text{ //}\eta \in V\\
+            \$ \to \\
+            \to \bigcdot\\
+        \end{cases}
+        
+        Результат работы $\scr{P}_{1}(x_1\$x_2\$\ldots\$x_{n}) = x_1$ 
+        \]
+
+        \[
+        \scr{P}_{2}: \begin{cases}
+            \eta\3 \to \#\text{ //}\eta \in V,\# \not\in V\\
+            \# \to \bigcdot\\
+            \$ \to \#\\
+        \end{cases}
+        \] 
+        
+        То есть $\scr{P}_{2}(x_1\$x_2\$\ldots\$x_{n}) = x_2\$\ldots\$x_{n}$ 
+
+        Получаем $\prod_{i} = \scr{P}_{1} \circ \scr{P}_{2}^{i-1}, \quad 1 \le i \le n$ 
+
+        i = 1: $\scr{P}_{2}^{i-1} = \scr{P}_{2}^{0} = {\cal J}\alpha$ 
+
+        i = n: $\scr{P}_{2}^{n-1}(x_1\$x_2\$\ldots\$x_{n}) = x_{w};\quad \scr{P}_{1}(x_{n}) = x_{n}$ 
+        
+        \item[2)] НА распознавания равенства слов
+            
+            $EQ(x\$y) = \lambda \Longleftrightarrow x = y; \quad x,y \in V^{*}, \$ \not\in V$ 
+
+            $EQ(x\$y) \simeq Comp({\cal J}\alpha\${\cal I}nv(y))$ 
+
+            ${\cal I}nv(y) = y^{R}$ 
+
+            \[
+            Comp: \begin{cases}
+                \eta\$\eta \to \$\text{ //}\eta \in V\\
+                \$ \to \bigcdot\\
+            \end{cases}
+            \]
+
+            $x^{R} = (x(1)x(2)\ldots x(k))^{R} = x(k)\ldots x(2)x(1)$
+            
+
+        \item[3)] НА определения центра слова
+
+            $\scr{C}(x) = x_1\$x_2$, где $x_1x_2 = x,  \quad \left| |x_1| - |x_2| \right| \le 1$,
+            $x \in V^{*}; \quad \$ \not\in V$
+
+            $\scr{C} = \scr{B} \circ {}_{\scr{A}}\langle L \circ R \rangle$ 
+
+            \[
+            L: \begin{cases}
+                \alpha\beta \to \bigcdot\alpha\beta\\
+                \alpha\xi \to \bigcdot \xi\alpha\text{ //}\xi \in V, \alpha \not\in V\\
+                \to \alpha\\
+            \end{cases}
+            \] 
+            \[
+            R: \begin{cases}
+                \gamma\xi \to \xi\gamma\text{ //}\xi \in V; \beta,\gamma \not\in V\\
+                \xi\gamma \to \bigcdot\beta\xi\\
+                \xi\beta \to \bigcdot\beta\xi\\
+                \to \gamma\\
+            \end{cases}
+            \]
+            \[
+            \scr{A}: \begin{cases}
+                \alpha\beta\xi \to \alpha\beta\\
+                \xi\alpha\beta \to \alpha\beta\\
+                \alpha\beta \to \bigcdot\\
+                \to \bigcdot\\
+            \end{cases}
+            \] 
+            \[
+            \scr{B}: \begin{cases}
+                \alpha\beta \to \bigcdot\$\\
+                \to \bigcdot\$
+            \end{cases}
+            \]
+
+            Пример 1. $\lambda,\quad \scr{B}(\lambda) = \$$
+
+            $\scr{A}(\lambda) = \lambda \implies $ тело цикла не выполнилось
+            
+            \medskip
+
+            Пример 2. $x = a \in V$
+
+            $\scr{A}(a) = a \neq \lambda$ 
+
+            $R: a \step \gamma a\step a\gamma \step\bigcdot \beta a$
+
+            $L: \beta a \step \alpha\beta a \step\bigcdot \alpha\beta a$
+
+            $\scr{A}(\alpha\beta a) = \lambda$ 
+
+            $\scr{B}(\alpha\beta a) = \$ a$
+            
+            \medskip
+
+            Пример 3. $x = ab$
+
+             $\scr{A}(ab) = ab \neq \lambda$ 
+
+             $R: ab \step \gamma ab \models^{2} ab\gamma \step\bigcdot \alpha\beta b$ 
+
+             $L: \alpha\beta B \step \alpha a\beta b \step\bigcdot a\alpha\beta b$
+
+              $\scr{A}(a\alpha\beta b) = \lambda$ 
+
+              $\scr{B}(a\alpha\beta b) = a\$b$
+
+              \medskip
+
+              Пример 4. $x = abcde$
+
+               $\scr{A}(x) = x \neq \lambda$ 
+                
+               1 Итерация:
+
+               $R: abcde \step \gamma abcde \models^{5} abcde\gamma \step\bigcdot abcde\beta e$
+
+               $L: abcd\beta e \step \alpha abcd\beta e \step\bigcdot a\alpha bcd \beta e$
+
+               2 Итерация:
+
+               $R: a\alpha bcd\beta e \step\bigcdot a\alpha bc\beta de$
+
+               $L: a\alpha bc\beta de \step\bigcdot ab\alpha c\beta de$
+
+               3 Итерация:
+
+               $R: ab\alpha c\beta de \step\bigcdot ab\alpha\beta cde$
+
+               $L: ab\alpha\beta cde \step\bigcdot ab\alpha\beta cde$
+
+               $\scr{A}(ab\alpha\beta cde) = \lambda$ 
+
+               $\scr{B}(ab\alpha\beta cde) = ab\$cde$
+\end{itemize}
+
+\section{Универсальный нормальный алгорифм.}
+
+Пусть дан НА:
+\[
+\scr{A}: \begin{cases}
+    u_1 \to [\bigcdot]v_1\\
+    \vdots\\
+    u_n \to [\bigcdot]v_n\\
+\end{cases}
+\] 
+
+\[
+    A^{\text{И}} \leftrightharpoons u_1\alpha[\beta]v_1\gamma u_2\alpha[\beta]v_2\gamma \ldots 
+    \gamma u_{n}\alpha[\beta]v_{n}\text{, где } \alpha,\beta,\gamma \not\in V
+\] 
+
+Пусть
+\[
+\scr{A}_0: \begin{cases}
+    \# a \to a\# \\
+    \# b \to b\#\\
+    \# \to \bigcdot aba
+    \to \#\\
+\end{cases}
+\]
+
+Отсюда
+\[
+    A_{0}^{\text{И}} = \# a \alpha a \# \gamma\# b\alpha b\#\gamma\# \alpha\beta aba\gamma\alpha\#
+\]
+
+Красивые скобки!!
+
+\[
+\{A_0\} = \underbrace{01110}_{\#} \underbrace{010}_{a} \underbrace{011110}_{\alpha}
+\underbrace{010}_{a} \underbrace{01110}_{\#} \underbrace{01111110}_{\gamma}
+\] 
+это запись НА
+
+\begin{matrix}
+    a & b & \# & \alpha & \beta & \gamma\\
+    1 & 2 & 3 & 4 & 5 & 6\\
+\end{matrix}
+
+\begin{theorem}
+    (Об универсальном НА). Пусть $V$ - произвольный алфавит. Может быть построен НА  $U$ над алфавитом
+     $V \cup V_0$ такой, что для любых НА  ${\cal A}$ в алфавите $V$ и слова $x \in V^{*}$ имеет место
+     $U(\{{\cal A}\}\$x) \simeq {\cal A}(x)$, где $\$ \not\in V \cup V_0$
+\end{theorem}
+
+
+\section{Разрешимые и перечислимые языки.}
+
+\begin{definition}
+Язык $L \subseteq V^{*}$ называется алгоритмически разрешимым, если может быть построен
+НА ${\cal A}_{L}$ над алфавитом $V$ такой, что
+ \[
+     (\forall x \in V^{*})(!{\cal A}_{L})\text{ и } {\cal A}_L(x) = \lambda
+     \Longleftrightarrow x \in L
+\] 
+\end{definition}
+
+\paragraph*{Пример.} Пусть $L = \{\omega\omega: \omega \in V^{*}\} $ 
+
+рис1
+
+\begin{definition}
+НА $\widetilde{\scr{A}_L}$ называется полуразрешимым для языка $L \subseteq V^{*}$, если
+\[
+!\widetilde{\scr{A}_L}(x) \Longleftrightarrow x \in L\\
+\] 
+\end{definition}
+
+\begin{theorem}
+Если для языка $L$ невозможен полуразрешающий НА, то невозможен и разрешающий.
+\end{theorem}
+
+\end{document}

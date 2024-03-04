@@ -9,5 +9,6 @@
 *.gz
 *.toc
 *.ps
-./current.tex
-./preamble.tex
+current.tex
+current.pdf
+preamble.tex

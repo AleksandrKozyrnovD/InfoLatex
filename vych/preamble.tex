@@ -6,11 +6,13 @@
 \usepackage{bookmark}
 \usepackage{wasysym}
 \usepackage{import}
+\usepackage{caption}
+\usepackage{mathrsfs}
 
 \usepackage[makeroom]{cancel}
 
 \usepackage{tikz}
-\usetikzlibrary{shapes,arrows,positioning,decorations.pathmorphing}
+\usetikzlibrary{shapes,shapes.geometric,arrows,positioning,decorations.pathmorphing}
 
 \usepackage{listings}
 
@@ -22,6 +24,11 @@
 
 \usepackage{geometry}
 \geometry{papersize={15cm, 11in}, left=1.5cm, lmargin=1.5cm,right=2cm, top=2cm, bottom=3cm}
+
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
 
 \usepackage{graphicx}
 
@@ -73,6 +80,12 @@
 \DeclareMathOperator{\trim}{\triangle}
 \DeclareMathOperator{\step}{\vdash}
 
+\makeatletter
+\newcommand*\bigcdot{\mathpalette\bigcdot@{.5}}
+\newcommand*\bigcdot@[2]{\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\bullet$}}}}}
+\makeatother
+
+
 %\newcommand*\pathto[1]{ \Rightarrow^{*}_{#1} }
 
 \newcommand{\pathto}[1][1]{ \Rightarrow^{*}_{#1} }
@@ -85,9 +98,42 @@
     \import{./images/}{#1.pdf_tex}
 }
 
+\tikzstyle{startstop} = [rectangle, rounded corners, 
+minimum width=3cm, 
+minimum height=1cm,
+text centered, 
+draw=black, 
+fill=red!30]
+
+\tikzstyle{io} = [trapezium, 
+trapezium stretches=true, % A later addition
+trapezium left angle=70, 
+trapezium right angle=110, 
+minimum width=3cm, 
+minimum height=1cm, text centered, 
+draw=black, fill=blue!30]
+
+\tikzstyle{process} = [rectangle, 
+minimum width=3cm, 
+minimum height=1cm, 
+text centered, 
+text width=3cm, 
+draw=black, 
+fill=orange!30]
+
+\tikzstyle{decision} = [diamond, 
+minimum width=3cm, 
+minimum height=1cm, 
+text centered, 
+draw=black, 
+fill=green!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
 
 %\newcommand{\void}{\varnothing}
 \let\void\varnothing
 
 \renewcommand{\phi}{\varphi}
 \renewcommand{\epsilon}{\varepsilon}
+\newcommand{\scr}[1]{\mathscr{#1}}
+
