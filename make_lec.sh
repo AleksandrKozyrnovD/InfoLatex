@@ -60,7 +60,7 @@ git status
 
 git commit -m "${dd} switching to _${directory}"
 
-echo -e "${BOLD}${WHITE}Switching${RED} to ${BLUE}_${directory}${RESET}"
+echo -e "${WHITE}Switching${RED} to ${BLUE}_${directory}${RESET}"
 
 git checkout _$directory 2> /dev/null
 return=$?

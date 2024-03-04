@@ -1,7 +1,14 @@
 #!/bin/bash
 
-UNIFORM_LENGHT=4
+WHITE='\033[1;37m'
+BLUE='\033[1;34m'
+RED='\033[1;31m'
+GREEN='\033[1;32m'
+BOLD='\033[1m'
+RESET='\033[0;0m'
 
+UNIFORM_LENGHT=4
+dd=`date +"%D %T"`
 
 if [ "$#" -ne 2 ]; then
     echo "USAGE: ./edit_lec.sh <folder> <number of lecture>"
