@@ -65,7 +65,7 @@ git checkout _$directory
 
 echo $?
 
-if [ "$?" -ne 0 ]; then
+if [ "$?" != "0" ]; then
     echo "Im here!!!"
     echo -e "${RED}No branch before${RESET}"
     git branch _$directory
