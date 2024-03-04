@@ -212,19 +212,38 @@
 
 \begin{definition}
 Язык $L \subseteq V^{*}$ называется алгоритмически разрешимым, если может быть построен
-НА ${\cal A}_{L}$ над алфавитом $V$ такой, что
+НА $\scr{A}_{L}$ над алфавитом $V$ такой, что
  \[
-     (\forall x \in V^{*})(!{\cal A}_{L})\text{ и } {\cal A}_L(x) = \lambda
+     (\forall x \in V^{*})(!\scr{A}_{L})\text{ и } \scr{A}_L(x) = \lambda
      \Longleftrightarrow x \in L
 \] 
 \end{definition}
 
 \paragraph*{Пример.} Пусть $L = \{\omega\omega: \omega \in V^{*}\} $ 
 
-рис1
+\begin{tikzpicture}[node distance=2cm]
+\node (C) [process, xscale=.5, yscale=.6] {$\scr{C}$};
+\node (leftC) [left of=C, xshift=-0.25cm] {$x$};
+\node (EQ) [process, right of=C, xscale=.5, yscale=.6, xshift=3.5cm] {$EQ$};
+\node (rightEQ) [right of=EQ, xshift=1.5cm] {$\scr{A}_L(x) = \lambda \Longleftrightarrow x \in L$};
+
+\draw [arrow] (leftC) -- (C);
+
+\draw [arrow] (C) -- node[above=2.5mm] {$x_1\$x_2$} node[below=2.5mm] {$x_1x_2 = x$}
+    node[below=5mm] {$ ||x_1| - |x_2|| \le 1$} (EQ);
+
+\draw [arrow] (EQ) -- (rightEQ);
+\end{tikzpicture}
+
+Также стоит заметить, что здесь $\scr{A}_L = \scr{C} + EQ$. Запись формальная и Белоусов
+может не понять, что здесь написано. А написано здесь то, что алгорифм $\scr{A}_L$ состоит
+из $\scr{C}$ и $EQ$.
+\[
+\underbrace{\scr{C} \to EQ}_{\scr{A}_L}
+\] 
 
 \begin{definition}
-НА $\widetilde{\scr{A}_L}$ называется полуразрешимым для языка $L \subseteq V^{*}$, если
+НА $\widetilde{\scr{A}_L}$ называется полуразрешимым для\newline языка $L \subseteq V^{*}$, если
 \[
 !\widetilde{\scr{A}_L}(x) \Longleftrightarrow x \in L\\
 \] 
