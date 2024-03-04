@@ -28,6 +28,23 @@ if [ ! -f ./"$directory"/lectures/lec_"$uniform_num".tex ]; then
     exit 1
 fi
 
+#Updating old branch -> commiting whatever was made
+git add .
+
+git status
+
+git commit -m "${dd} switching to _${directory}"
+
+echo -e "${WHITE}Switching${RED} to ${BLUE}_${directory}${RESET}"
+
+git checkout _$directory 2> /dev/null
+return=$?
+
+if [ $return -ne 0 ]; then
+    echo -e "${RED}No branch before${RESET}"
+    git branch _$directory
+    git checkout _$directory
+fi
 
 #Symlinks created here
 ln -sf ./"$directory"/lectures/lec_"$uniform_num".tex ./current.tex
