@@ -48,10 +48,17 @@ done
 
 #Updating old branch -> commiting whatever was made
 git add .
+echo "Adding"
+
+git status
 
 git commit -m "${dd} switching to ${directory}"
 
+echo "Switching to ${directory}"
+
 git checkout $directory
+
+echo $?
 
 if [ $? -ne 0 ]; then
     git branch $directory
