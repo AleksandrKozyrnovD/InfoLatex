@@ -1,6 +1,7 @@
 #!/bin/bash
 
 UNIFORM_LENGHT=4
+dd=`date +"%D %T"`
 
 
 if [ "$#" -ne 1 ]; then
@@ -14,6 +15,7 @@ if [ ! -d "$directory" ]; then
     echo Directory "$directory" does not exists!
     exit 1
 fi
+
 
 num=0
 maxnum=0
@@ -43,6 +45,18 @@ uniform_num=$num_for_next_lecture
 while [ ${#uniform_num} -lt "$UNIFORM_LENGHT" ]; do
     uniform_num="0""$uniform_num"
 done
+
+#Updating old branch -> commiting whatever was made
+git add .
+
+git commit -m "${dd} switching to ${directory}"
+
+git checkout $directory
+
+if [ $? -ne 0 ]; then
+    git branch $directory
+    git checkout $directory
+fi
 
 #New tex file
 touch ./"$directory"/lectures/lec_"$uniform_num".tex
