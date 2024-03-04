@@ -61,12 +61,10 @@ git commit -m "${dd} switching to _${directory}"
 
 echo -e "${WHITE}Switching${RED} to ${BLUE}_${directory}${RESET}"
 
-git checkout _$directory
+git checkout _$directory 2> /dev/null
+return=$?
 
-echo $?
-
-if [ "$?" != "0" ]; then
-    echo "Im here!!!"
+if [ $return -ne 0 ]; then
     echo -e "${RED}No branch before${RESET}"
     git branch _$directory
     git checkout _$directory
