@@ -4,6 +4,7 @@ WHITE='\033[0;37m'
 BLUE='\033[0;34m'
 RED='\033[0;31m'
 GREEN='\033[0;32m'
+BOLD='\033[0;1m'
 RESET='\033[0;0m'
 
 UNIFORM_LENGHT=4
@@ -59,7 +60,7 @@ git status
 
 git commit -m "${dd} switching to _${directory}"
 
-echo -e "${WHITE}Switching${RED} to ${BLUE}_${directory}${RESET}"
+echo -e "${BOLD}${WHITE}Switching${RED} to ${BLUE}_${directory}${RESET}"
 
 git checkout _$directory 2> /dev/null
 return=$?
