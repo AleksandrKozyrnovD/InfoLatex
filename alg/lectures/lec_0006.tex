@@ -5,5 +5,298 @@
 \date{\today}
 
 \begin{document}
-asd
+
+\begin{myproof}
+От противного. Предполагаем, что для языка L невозможен полуразрешающий, то возможен разрешающий НА.
+
+Пусть $\scr{A}_L$ - разрешающий НА для $L \subseteq V^{*}$ 
+
+По теореме о разветвлении строим
+\[
+    \scr{B}_L = {}_{\scr{A}_L}(\scr{A}_L \lor Null),
+\] 
+где
+\[
+Null: \begin{cases}
+    \to 
+\end{cases}
+\]
+
+\medskip
+
+Если $\scr{A}_L(x) = \lambda$, то есть $x \in L$, то $\scr{B}_L(x) = \scr{A}_L(x) = \lambda$.
+
+Если $\scr{A}_L(x) \neq \lambda$, то есть $x \not\in L$, отсюда $\lnot !\scr{B}_L(x)$, так как
+$\lnot ! Null(x)$ 
+
+Итак, $!\scr{B}_L(x) \Longleftrightarrow x \in L$, то есть $\scr{B}_L$ - полуразрешающий НА для
+$L$ вопреки условию теоремы.
+\end{myproof}
+
+\begin{theorem}
+Если язык $L$ разрешим, то и разрешимо его дополнение.
+ \[
+     \scr{A}_L(x) = \lambda \Longleftrightarrow x \in L\text{, то есть } \scr{A}_L \neq \lambda
+     \Longleftrightarrow x \not\in L\text{ при } (\forall x)!\scr{A}_L(x)
+\] 
+\end{theorem}
+
+\medskip
+
+Для универсального языка:
+\[
+L = V^{*} \quad \scr{A}_{V^{*}}: \begin{cases}
+    \xi \to \text{ //}\xi \in V\\
+    \to \bigcdot
+\end{cases}
+\] 
+Отсюда следует, что и пустой язык тоже разрешим, потому что он - дополнение универсального.
+
+\begin{definition}
+Конструктивное натуральное число (КНЧ) - это слово вида $0\underbrace{11\ldots 1}_{n\ge 0}$. Ноль
+кодирует ноль, 01 кодирует 1 и так далее. КНЧ $x \in V_0^{*}$
+\[
+0 \to 0; \quad 01 \to 1; \quad 011 \to 2; \quad \ldots
+\] 
+\end{definition}
+
+\begin{definition}
+    Конструктивное целое число (КЦЧ) - это слово вида $[-]n$, где  $n$ - КНЧ.
+\end{definition}
+
+\begin{definition}
+Конструктивное рациональное число (КРЧ): $m / n$, где $m,n$ - КЦЧ, то есть слово в
+ $\{0, 1, -, /\} $ и $n \neq 0$
+\end{definition}
+
+\begin{definition}
+Язык $L \subseteq V^{*}$ называется алгорифмически перечислимым, если может быть построен НА 
+$N_L$ такой, что для любого КНЧ  $n$ $!N_L(n)$ и $N_L(n) \in L$, и $(\forall x \in L)$
+\underline{осуществимо} КНЧ $n$ такое, что  $x = N_L(n)$
+\end{definition}
+
+\medskip
+
+\begin{definition}
+$A, \quad \nu: \mathbb{N}_0 \to A$ сюръективно, то есть\newline
+$(\forall x \in A)(\exists n \in \mathbb{N}_0)(x = \nu(n))$.
+Это называется нумерацией множества $A$.
+\end{definition}
+
+Далее будем предполагать, что отображение $\nu$ будет биективной.
+
+\medskip
+
+Проведем нумерацию целых чисел
+
+рис1
+
+Можно записать в виде формулы:
+\[
+\gamma(n) = \begin{cases}
+    -\frac{n}{2}\text{, если $n$ четное}\\
+    \frac{n+1}{2}\text{, если $n$ нечетное}
+\end{cases}
+\] 
+
+\medskip
+
+Сначала сделаем 3 алгорифма, нужных для следующей задачи (?)
+
+\[
+\scr{C}: \begin{cases}
+    11 \to \\
+    0 \to \bigcdot
+\end{cases}
+\] 
+Можем заметить, что $\scr{C}(n) = \lambda \Longleftrightarrow n$ четное
+
+\[
+    N_L = {}_{\scr{C}}(\scr{A} \lor \scr{B})
+\]
+
+Схема $\scr{A}$:
+ \[
+\scr{A}: \begin{cases}
+    \alpha 11 \to 1\alpha\\
+    \alpha \to \bigcdot\\
+    01 \to -0\alpha 1\\
+    0 \to \bigcdot 0\\
+\end{cases}
+\]
+Причем $\alpha \not\in V_0$
+
+Схема $\scr{B}$
+\[
+\scr{B}: \begin{cases}
+    \alpha 11 \to 1\alpha\\
+    \alpha \to \bigcdot\\
+    01 \to  0\alpha 11\\
+    \to \bigcdot\\
+\end{cases}
+\]
+
+\medskip
+
+Нужно пронумеровать рациональные числа. Это по факту пары двух целых.
+Значит, учимся упорядочивать пары.
+
+рис2
+
+\begin{definition}
+Область применимости НА $\scr{A}$ относительно алфавита $V$: пусть
+ $\scr{A} = (V' \supset V, S, P)$ - НА над $V$; Тогда область применимости НА
+ относительно алфавита  $V$ есть множество  $\scr{M}^{V}_{\scr{A}} \leftrightharpoons 
+ \{x: x \in V^{*} \text{ и } !\scr{A}(x)\}$, причем $\scr{A}: V^{*} \underset{\bigcdot}{\to } V^{*}$.
+ $\scr{M}^{V}_{\scr{A}}$ и есть область применимости.
+\end{definition}
+
+\begin{theorem}
+Язык $L \subseteq V^{*}$ перечислим тогда и только тогда, когда он является областью применимости
+относительно алфавита $V$ некоторого НА.
+\end{theorem}
+
+\paragraph*{Следствие.} Всякий разрешимый язык перечислим.
+\begin{myproof}
+    (следствия). Пусть $L$ - разрешимый язык и  $\scr{A}_L$ - разрешающий НА.
+
+    Строим такой НА $\scr{B}_L = Empty \circ \scr{A}_L$, где $Empty$ применим только к пустому
+    слову.
+     \[
+    Empty: \begin{cases}
+        \xi \to \xi\text{ //}\xi \in V\\
+        \to \bigcdot\\
+    \end{cases}
+    \]
+
+    Отсюда получаем
+    \[
+        !\scr{B}_L(x) \Longleftrightarrow !\scr{A}_L(x)\text{ и } \scr{A}_L(x) = \lambda,
+    \] 
+    то есть $L = \scr{M}^{V}_{\scr{B}_L}$ 
+
+    Однако обратное неверно!
+\end{myproof}
+
+\section{Проблема применимости нормальных алгорифмов Маркова}
+
+\paragraph*{Частная проблема применимости.}
+Дан НА $\scr{A}$ в алфавите $V$. Можно ли построить НА  $\scr{B}$ над
+алфавитом $V$ такой, что  $(\forall x \in V^{*})!\scr{B}(x)\text{ и } \scr{B}(x) = \lambda
+\Longleftrightarrow \lnot ! \scr{A}(x)$. Алгорифм Б задуман для того, чтобы расширить область
+применимости алгорфима А.
+
+\paragraph*{Общая проблема применимости.}
+Дан алфавит $V$,  $\$ \not\in V \cup V_0$. Можно ли построить НА $\scr{B}$ над
+алфавитом $V \cup V_0$ так, что для любых НА $\scr{A}$ в алфавите $V$ и слова $x \in V^{*}$
+\[
+    ! \scr{B}(\zap{\scr{A}}\$ x)\text{ и } \scr{B}(\zap{\scr{A}}\$ x) = \lambda \Longleftrightarrow
+    \lnot ! \scr{A}(x)
+\] 
+
+\subsection{Проблема самоприменимости.}
+
+Рассмотрим проблему самоприменимости. Мы хотим, чтобы алгорифм работал со своей
+собственной записью.
+
+\paragraph*{Соглашение.}
+В дальнейшем, не оговаривая это особо, мы считаем, что алгорифм в алфавите $V$ заменяем его в
+алфавит  $V \cup V_0$ 
+\[
+V \to V \cup V_0
+\]
+\[
+V_1 = V \cup V_0 \cup \{\alpha,\beta\};\alpha, \beta \not\in V \cup V_0 
+\]
+\[
+    \scr{A}: (V \cup V_0)^{*} \subset{\bigcdot}{\to } (V \cup V_0)^{*}
+\]
+\[
+V_2 = V_0 \cup \{\alpha,\beta\} 
+\] 
+
+
+Дан алфавит $V$. Можно ли построить НА  $\scr{B}$ над алфавитом $V_0$ такой, что
+для любого НА $\scr{A}$ в $V \cup V_0$ будет верно
+\[
+!\scr{B}(\zap{\scr{A}})\text{ и } \scr{B}(\zap{\scr{A}}) = \lambda \Longleftrightarrow
+\lnot ! \scr{A}(\zap{\scr{A}})
+\] 
+
+\paragraph*{Примеры.} 
+Построим как самоприменимые, так и несамоприменимые НА.
+
+\[
+\scr{A}_0: \begin{cases}
+    \# a \to a \#\\
+    \# b \to b\# \\
+    \# \to \bigcdot aba\\
+    \to \# \\
+\end{cases}
+\] 
+Дадим ему на вход свою же запись:
+\[
+    \scr{A}_0: \zap{\scr{A}_0} \step \# \zap{\scr{A}_0}\step\bigcdot aba\zap{\scr{A}_0}
+\]
+Причем $V_0 \cap \{\#, a, b\} = \void$. Этот алгорифм самоприменим.
+
+
+\[
+\scr{A}_{0}^{f}: \begin{cases}
+    0 \to 0 \\
+    1 \to 1\\
+    \text{Схема $\scr{A}_0$}
+\end{cases}
+\]
+ 
+Дадим ему на вход свою же запись:
+\[
+    \scr{A}_{0}^{f}: \zap{\scr{A}^{f}_0} \step \zap{\scr{A}^{f}_0} \step \ldots
+\]
+То есть $\lnot! \scr{A}^{f}_0(\zap{\scr{A}^{f}_0})$
+
+
+\paragraph*{Лемма.}
+Невозможен НА $\scr{B}$ в алфавите $V \cup V_0$ такой, что для любого
+НА $\scr{A}$ в алфавите $V \cup V_0$ имело бы место
+\[
+    !\scr{B}(\zap{\scr{A}}) \Longleftrightarrow \lnot ! \scr{A}(\zap{\scr{A}})
+\] 
+\begin{myproof}
+Пусть алгорифм $\scr{B}$ построен. Тогда при $\scr{A} = \scr{B}$ имеем:
+\[
+    !\scr{B}(\zap{\scr{B}}) \Longleftrightarrow \lnot ! \scr{B}(\zap{\scr{B}})
+\]
+что является противоречием. То есть он применим тогда, когда не применим?)
+\end{myproof}
+
+\begin{theorem}
+Невозможен НА $\scr{B}$ над алфавитом $V_0$ так, что для любого НА $\scr{A}$ в алфавите
+$V_1$ имело бы место
+\[
+    !\scr{B}(\zap{\scr{A}}) \Longleftrightarrow \lnot ! \scr{A}(\zap{\scr{A}})
+\] 
+\end{theorem}
+
+\begin{myproof}
+По теореме о переводе может быть построен НА $\scr{B}_1$ в алфавите $V_0 \cup \{\alpha,\beta\}$ так,
+что $(\forall x \in V^{*}_0)\scr{B}_1(x) \simeq \scr{B}(x)$.
+
+Строим НА $\scr{B}_2$ как естественное распространение НА $\scr{B}_1$ на алфавит $V_1$.
+
+\medskip
+
+Пусть
+\[
+    !\scr{B}(\zap{\scr{A}}) \Longleftrightarrow \lnot !\scr{A}(\zap{\scr{A}}),
+\]
+но тогда $!\scr{B}(\zap{\scr{A}}) \Longleftrightarrow !\scr{B}_1(\zap{\scr{A}})
+\Longleftrightarrow !\scr{B}_2(\zap{\scr{A}}) \Longleftrightarrow \lnot !\scr{A}(\zap{\scr{A}})$,
+что невозможно в силу самой леммы.
+\end{myproof}
+
+Итак, мы доказали невозможность полуразрешимость самоприменимости.
+
+Проблема самоприменимости для алгорифмов алгорифмически неразрешима.
+
 \end{document}

@@ -28,18 +28,18 @@ if [ ! -f ./"$directory"/template_master.tex ]; then
 fi
 
 #Updating old branch -> commiting whatever was made
-git add .
-git status
-git commit -m "${dd} switching to _${directory}"
-echo -e "${WHITE}Switching${RED} to ${BLUE}_${directory}${RESET}"
-git checkout _$directory 2> /dev/null
-return=$?
+#git add .
+#git status
+#git commit -m "${dd} switching to _${directory}"
+#echo -e "${WHITE}Switching${RED} to ${BLUE}_${directory}${RESET}"
+#git checkout _$directory 2> /dev/null
+#return=$?
 
-if [ $return -ne 0 ]; then
-    echo -e "${RED}No branch before${RESET}"
-    git branch _$directory
-    git checkout _$directory
-fi
+#if [ $return -ne 0 ]; then
+#    echo -e "${RED}No branch before${RESET}"
+#    git branch _$directory
+#    git checkout _$directory
+#fi
 
 rm ./"$directory"/master/*.tex 2> /dev/null
 
