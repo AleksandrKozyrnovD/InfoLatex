@@ -1,0 +1,182 @@
+\input{preamble}
+
+\title{}
+\author{Козырнов Александр Дмитриевич, ИУ7-32Б}
+\date{\today}
+
+\begin{document}
+
+\begin{theorem}
+Язык записей несамоприменимых НА неперечислим.
+\end{theorem}
+
+\begin{myproof}
+    Пусть указанный язык $L = \{\zap{\scr{A}}: \lnot!\scr{A}(\zap{\scr{A}})\} $ перечислим.
+    Тогда $L$ есть область применимости относительно алфавита  $V_0$ некоторого НА $\scr{B}$,
+    то есть
+    \[
+        !\scr{B}(\zap{\scr{A}}) \Longleftrightarrow \lnot !\scr{A}(\zap{\scr{A}}),
+    \]
+    что невозможно!
+\end{myproof}
+
+\paragraph*{Один вспомогательный НА.}
+Нам нужен такой НА:
+\[
+Double^{\$}(x) = x\$ x,\quad x \in V^{*},\quad \$ \not\in V
+\]
+
+Его схема:
+\[
+Double^{\$}: \begin{cases}
+    \alpha\xi \to \xi\beta\xi\alpha\\
+    \beta\xi\eta \to \eta\beta\xi\\
+    \alpha \to \$\\
+    \beta\xi\$ \to \$ \xi\\
+    \$ \to \bigcdot \$\\
+    \to \alpha\\
+\end{cases}
+\]
+причем $\alpha,\beta,\# \not\in V; \quad \xi,\eta \in V$
+
+\paragraph*{Пример его работы.} Несколько примеров.
+
+\circlesign{1} $\lambda \step \alpha \step \$ \step\bigcdot \$$
+
+\circlesign{2}  $a \step \alpha a\step a\beta a\alpha \step a\beta a\$ \step a\$ a \step\bigcdot a\$ a$
+
+\begin{align*}
+    abc &\step\\
+              &\step \alpha abc \step a\beta a\alpha bc \step a\beta ab\beta b\alpha c \step\\
+              & \step \ldots \step abc\$ abc \\
+              &\step\bigcdot abc\$ abc
+\end{align*}
+
+
+\begin{theorem}
+Может быть построен НА $\scr{A}$ в алфавите $V_2$ так, что невозможен НА $\scr{B}$ над
+алфавитом $V_2$, для которого выполнялось бы $$!\scr{B}(y) \Longleftrightarrow
+\lnot!\scr{A}(y), y \in V_2^{*}$$
+\end{theorem}
+\begin{myproof}
+По теореме об универсальном НА построим НА $U$ над алфавитом  $V_2$ так, что для любых
+НА $D$ в алфавите  $V_2$ и слово $y \in V_2^{*}$ выполняется
+\[
+    U(\zap{D}\$ y) \simeq D(y).
+\]
+
+Определим НА $U_1$ так, что
+$$(\forall y \in V_2^{*})(U_1(y) \simeq U(y\$ y)),$$ то есть $U_1 = U \circ Double^{\$}$.
+
+Тонкий момент здесь! Алгорифм $U_1$ будучи НА над алфавитом $V_2$ тем самым является и НА
+над алфавитом $V_0$ ($V_2$ - расширение $V_0$). По теореме о переводе он может быть заменен
+вполне эквивалентным ему относительно алфавита $V_0$
+НА $U_2$ в алфавите $V_2$ (то есть в двухбуквенном расширении $V_0$).
+\[
+    U_2(x) \simeq U_1(x)\text{, где } x \in V_0^{*},
+    U_2\text{ - НА в } V_2 = V_0 \cup \{\alpha,\beta\} 
+\]
+
+Предположим, что такой НА ${\cal B}$ нашелся.
+\[
+    !{\cal B}(\zap{D}) \Longleftrightarrow \lnot!U_2(\zap{D}) \Longleftrightarrow
+    \lnot!U_1(\zap{D}) \Longleftrightarrow \lnot!U(\zap{D}\$\zap{D}) \Longleftrightarrow
+    \lnot !D(\zap{D})
+\] 
+
+Он будет полуразразрешающим НА для несамоприменимых НА в языке $V_2$, что невозможно.
+\end{myproof}
+
+\paragraph*{Следствие.} Может быть построен НА с неразрешимой частной
+проблемой применимости, следовательно его область применимости будет перечислимая, но
+неразрешимая (множество?).
+
+
+\paragraph*{Примеры неразрешимых проблем.} Проблема соответствия Поста.
+
+$\rho = \{(x_1,y_1), (x_2,y_2), \ldots, (x_{n},y_{n})\} \subseteq V^{+^{2}}$
+
+Существует ли $$(x_{i1}, y_{i1}), (x_{i 2}, y_{i 2}), \ldots, (x_{im}, y_{im}): 
+x_{i 1}x_{i 2}\ldots x_{im} = y_{i1}y_{i 2}\ldots y_{im}?$$
+
+\section{Порождающие грамматики}
+
+\begin{definition}
+${\cal J} = (V, N, S \in N, \Phi), V \cap N = \void$
+\end{definition}
+
+Правило вывода: $\alpha \to \beta, \quad \to \not\in V \cup N$
+
+Левая часть $\alpha \in (V \cup N)^{*}N(V \cup N)^{*}$, N - детерминал.
+
+\medskip
+
+Пусть $\gamma, \delta \in (V \cup N)^{*}$. Тогда
+\[
+    \gamma \underset{{\cal J}}{\step} \delta \leftrightharpoons\text{сущ правило вывода $\alpha
+    \to \beta$ в системе $\Phi$ и } \gamma=\gamma_1\alpha\gamma_2, \delta=\gamma_1\beta\gamma_2  
+\] 
+
+\begin{definition}
+Вывод в порождающей грамматике ${\cal J}$ - это последовательность $\alpha_0, \alpha_1, \ldots,
+\alpha_{n}, \ldots$, где $(\forall i \ge 0)(\alpha_{i} \in (V \cup N)^{*})$ и $(\forall i \ge 0)
+(\alpha_i \underset{{\cal J}}{\step} \alpha_{i+1})$, если $\alpha_{i+1}$ определен в
+последовательности.
+\end{definition}
+
+\begin{definition}
+$\gamma \step_{{\cal J}}^{*} \delta \leftrightharpoons$ существует вывод \newline$\gamma = 
+\alpha_0 \step \alpha_1 \step \ldots \step \alpha_{n} = \delta, n \ge 0$ - длина вывода (к-рая
+конечна). 
+\end{definition}
+
+\begin{definition}
+$L({\cal J}) \leftrightharpoons \{x: x \in V^{*}, S \step_{{\cal J}}^{*}x\} $
+\end{definition}
+
+\paragraph*{Примеры грамматик.} ${}$
+
+\begin{itemize}
+    \item[1)] $S \to  aSb\big|\lambda$
+
+        $S \step aSb \step aaSbb \step \ldots \step a^{n}Sb^{n} \step a^{n}b^{n}$
+
+        ${\cal J}_1 = (\{a,b\}, \{S\}, S, \Phi_1)$ 
+
+        Тогда язык, порожденный такой грамматикой \newline $L({\cal J}_1) = \{a^{n}b^{n}:n \ge 0\} $ 
+    \item[2)] $\Phi_2: S \to aSa \big| bSb \big| aa \big| bb \big| a \big| b \big| \lambda$
+
+        $S \step aSa \step aba$
+
+        $S \step aSa \step abSba \step abbSbba \step abbbba$
+
+        $L({\cal J}_2) = \{x: x = x^{R}, x \in \{a,b\}^{*} \}$ - палиндром
+    \item[3)] $S \to ()\big|(S)\big|SS$ - правильная скобочная структура
+    \item[4)] ${\cal J}_4 = (\{a,b\}, \{S,A,B,C,D\}, S, \Phi_4)$ 
+        \[
+        \Phi_4: \begin{cases}
+            S \to CD\\
+            c \to aCA\big|bcD\big|\lambda\\
+            AD \to aD\\
+            BD \to bD\\
+            Aa \to aA\\
+            Ab \to bA\\
+            Ba \to aB\\
+            Bb \to bB\\
+            D \to \lamda
+        \end{cases}
+        \]
+
+        $S \step CD \step \lambda D \step \lambda\lambda = \lambda$
+
+         $S \step CD \step aCAD \step abcBAD \step abbCBBAD \step abbBBAD \step \newline
+         \step abbBBaD \step abbBaBD \step abbaBBD \step abbaBbD \step abbabBD \step \newline
+         \step abbabbD \step abbabb$
+
+          $L({\cal J}_4) \supseteq \{\omega\omega: \omega \in \{a,b\}^{*} \} $. Можно доказать,
+          что такой язык будет состоять только из двойных слов.
+
+          $L({\cal J}_4) = \{\omega\omega: \omega \in \{a,b\}^{*} \} $
+\end{itemize}
+
+\end{document}
