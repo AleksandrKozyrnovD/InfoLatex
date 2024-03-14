@@ -75,7 +75,8 @@ DoubleDel: \begin{cases}
   слова $u$ алгорифм завершает работу на \newline (12) $\to$ (10) формулах. В случае
   вхождения какого-то слова $\omega$ до слова  $u$ завершаем НА формулой (12) $\to $ (10).
 
-  \section{Прогонка}
+\newpage
+\section{Прогонка}
 
 \subsection{Положительный результат работы НА}
 
@@ -87,8 +88,8 @@ DoubleDel: \begin{cases}
 
 Тогда
 \begin{align*}
-    DoubleDel(a\$a) = &\\
-    = & a\$a \underset{(12)}{\step} \square a\$a 
+    DoubleDel(a\$a)
+    = a\$a \underset{(12)}{\step} \square a\$a 
                       \underset{(9)}{\step} a\#\$a \underset{(6)}{\step} a\$ a\nabla
     \underset{(2)}{\step} a\$a\gamma \underset{(3),(4)}{\models}^{3} \gamma 
     \underset{(5)}{\step}\bigcdot \lambda
@@ -101,10 +102,10 @@ DoubleDel: \begin{cases}
 
 Тогда
 \begin{align*}
-    DoubleDel(abba\$abba) = &\\
-    = & abba\$abba \underset{(12)}{\step} \square abba\$abba \underset{(9)}{\step} abba\#\$abba
-    \underset{(6)}{\step}\\
-    \underset{(6)}{\step} & abba\$ abba\nabla \underset{(2)}{\step} abba\$abba\gamma
+    DoubleDel(abba\$abba)
+    = abba\$abba \underset{(12)}{\step} \square abba\$abba \underset{(9)}{\step} abba\#\$abba
+    \underset{(6)}{\step}
+     & abba\$ abba\nabla \underset{(2)}{\step} abba\$abba\gamma
     \underset{(3),(4)}{\models}^{9} \gamma \underset{(5)}{\step}\bigcdot \lambda
 \end{align*}
 
