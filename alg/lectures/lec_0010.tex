@@ -1,0 +1,170 @@
+\input{preamble}
+
+\title{}
+\author{Козырнов Александр Дмитриевич, ИУ7-32Б}
+\date{\today}
+
+\begin{document}
+Пусть дана булева алгебра $\scr{B} = (B, \lor,\land, \Theta, I, \overline{\phantom{A}})$ 
+
+$\scr{B}^{n} = (B^{n},\lor,\land, \widetilde{\Theta}, \widetilde{I})$ 
+
+Тогда пусть $\widetilde{\alpha}, \widetilde{\beta} \in \scr{B}^{n}$;
+$\bigtilde{\alpha} = (\alpha_1,\ldots,\alpha_{n})$ 
+
+$\bigtilde{\beta} = (\beta_1,\ldots,\beta_{n})$ 
+
+Отсюда 
+\begin{align*}
+    &\widetilde{\alpha} \lor \widetilde{\beta} \leftrightharpoons
+    (\alpha_1 \lor \beta_1, \ldots, \alpha_{n} \lor \beta_{n})
+\end{align*}
+
+Аналогично и для $\widetilde{\alpha} \land \widetilde{\beta}$.
+
+\medskip
+
+Также  $\widetilde{\Theta} = (\Theta, \ldots, \Theta)$ и
+$\widetilde{I} = (I, \ldots, I)$
+
+ \begin{definition}
+ Булев куб размерности n: ${\cal B}^{n} = (\{0,1\}^{n}, \lor, \land,
+ \widetilde{0}, \widetilde{1})$
+ \end{definition}
+
+
+\medskip
+
+Рассмотрим всевозможные отображения Х в носитель булевой алгебры
+\[
+f: X \to B
+\]
+
+Тогда можно сказать такое:
+\begin{itemize}
+    \item[1)] $(f \lor g)(x) \leftrightharpoons f(x) \lor g(x)$
+    \item[2)] $(f \land g)(x) \leftrightharpoons f(x) \land g(x)$
+    \item[3)] $\overline{f}(x) \leftrightharpoons \overline{f(x)}$ 
+    \item(4) $\sigma(x) \leftrightharpoons \Theta \quad (\forall x)$ 
+    \item[5)] $\xi(x) = I(\forall x)$
+\end{itemize}
+
+
+\medskip
+
+\begin{definition}
+Так обозначается булева алгебра функций:
+\[
+\scr{B}^{X} = (B^{X}, \lor,\land, \sigma, \xi)
+\] 
+\end{definition}
+
+Булево кольцо, соответствующее булевой алгебре $\scr{B}$ 
+\[
+    \scr{R}_{B} = (B, \oplus, \cdot,\Theta, I)
+\] 
+
+Отсюда
+\begin{align*}
+    &a \oplus b \leftrightharpoons a \overline{b} \lor \overline{a}b\\
+    &a\cdot b \leftrightharpoons a \land b
+\end{align*}   
+
+
+$\scr{S}_M = (2^{M}, \cup, \cap, \void, M)$ 
+
+$\scr{R}_M = (2^{M}, \triangle, \cap, \void, M)$
+
+\section{Булевые функции. Основные понятия}
+
+\begin{definition}
+Булева функция от n переменных:
+\[
+f: \{0,1\}^{n} \to \{0,1\}  
+\] 
+\end{definition}
+
+Булева переменная - это $x_1,x_2,\ldots,x_{n}$. Функция выглядит обычно:
+$y = f(x_1,\ldots,x_{n})$
+
+\medskip
+
+Множество всех булевых функций:
+\[
+\scr{P}_2 = \scr{P}_2^{(0)} \cup \scr{P}_2^{(1)} \cup \ldots \cup \scr{P}_2^{(n)} \cup \ldots
+\] 
+
+Нам известно определение н-арной операции: $\omega: A^{n} \to A$. То есть булевы функции
+своего рода н-арные операции.
+
+$$
+\begin{matrix}
+    & f_1 & f_2 & f_3 & f_4\\
+    0 & 0 & 1 & 0 & 1\\
+    1 & 0 & 1 & 1 & 0
+\end{matrix}
+$$
+
+Можно заметить, что $\overline{x} = x \oplus 1 = x \sim 0$
+
+\medskip
+
+$h = (0011 1110 1010 1110) \Longleftrightarrow h = \{2,3,4,5,6,8,10,12,13,14\} $
+
+
+\section{Равенство булевых функций. Фиктивные переменные}
+
+\begin{definition}
+Пусть есть $f,g: \{0,1\}^{n} \to \{0,1\}$. Тогда функции равны, если
+
+\[
+    f = g \leftrightharpoons (\forall \widetilde{\alpha} \in \{0,1\}^{n})(f(\widetilde{\alpha})
+    = g (\widetilde{\alpha}))
+\] 
+\end{definition}
+
+$f(x_1,x_2) = x_1 \lor x_2$
+
+$g(x_1,x_2,x_3) = x_1x_3 \lor x_1\overline{x_3} \lor x_2x_3 \lor x_2\overline{x_3} = 
+x_1(x_2 \lor \overline{x_3}) \lor x_2(x_3 \lor \overline{x_3}) = x_1 \lor x_2$
+
+\begin{definition}
+Булевы функции считаются равными, если они отличаются друг от друга, может быть, только
+фиктивными переменными.
+\end{definition}
+
+
+Можно переформулировать так предыдущее определение.
+
+\begin{definition}
+Булевы функции равны, если они существенно зависят от одних и тех же переменных
+и на каждом наборе значений этих переменных принимают одинаковые значения
+\end{definition}
+
+\medskip
+
+Пусть дан набор значений $X = \{x_1,\ldots,x_{n}\} $.
+Тогда селектор $pr_i(x_1,\ldots,x_{i},\ldots,x_{n}) = x_{n}$ и иногда называется
+$i$-селектором.
+
+\medskip
+
+Так можно добавит фиктивные переменные:
+\[
+    y = f(x_1,\ldots,x_{n}) \quad \widetilde{y} = (x_{n+1} \lor \overline{x_{n+1}})
+    f(x_1,\ldots,x_{n}) = y
+\] 
+
+\section{Суперпозиции и формулы}
+
+\begin{definition}
+Пусть у нас есть $f \in \scr{P}_2^{(n)}, \quad g_1,\ldots,g_n \in \scr{P}_2^{(m)}$
+\[
+    f(g_1,\ldots,g_n)(\widetilde{\alpha}) = f(g_1(\widetilde{\alpha}), \ldots,
+    g_n(\widetilde{\alpha})), \quad \widetilde{\alpha} \in  \{0,1\}^{m} 
+\]
+и это называется суперпозицией.
+\end{definition}
+
+
+\end{document}
