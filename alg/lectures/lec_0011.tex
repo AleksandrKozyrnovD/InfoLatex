@@ -1,0 +1,159 @@
+\input{preamble}
+
+\title{}
+\author{Козырнов Александр Дмитриевич, ИУ7-32Б}
+\date{\today}
+
+\begin{document}
+
+\section{Дизъюнктивная и конъюнктивная нормальные формы (ДНФ и КНФ)}
+
+\begin{definition}
+Литерал - это формула, в которой есть либо переменная, либо отрицание переменной.
+\[
+x^{\sigma} \leftrightharpoons \begin{cases}
+    x_{i}\text{, если } \sigma = 1\\
+    \overline{x_{i}}\text{, если } \sigma = 0
+\end{cases}
+\]
+
+Обозначение $\widetilde{x_{i}}$ - это возможное отрицание.
+\end{definition}
+
+\begin{definition}
+Элементарная конъюнкция - это конъюнкция каких-то литералов.
+\[
+\widetilde{x_{i_1}}\widetilde{x_{i_2}}\ldots \widetilde{x_{ik}}
+\] 
+\end{definition}
+
+\begin{definition}
+ДНФ - это $k_1 \lor k_2 \lor \ldots \lor k_{m}$ от $x_1,x_2,\ldots,x_3$, где 
+$k_{i}$ - элементарная конъюнкция.
+\end{definition}
+
+\begin{definition}
+В СДНФ в каждую элементарную конъюнкцию входит каждый из $x_1,x_2,\ldots,x_{n}$ либо сам,
+либо как отрицание.
+\end{definition}
+
+\medskip
+
+ДНФ: $\{x_1,x_2,x_3\}:\quad \overline{x_1}x_2 \lor x_2 \lor x_1\overline{x_2}\overline{x_3} $ 
+
+СДНФ: $\{x_1,x_2,x_3\}:\quad x_1x_2x_3 \lor x_1\overline{x_2}x_3 \lor \overline{x_1}x_2x_3$
+
+\begin{definition}
+Элементарная дизъюнкция - это дизъюнкция каких-то литералов.
+\end{definition}
+
+\begin{definition}
+    КНФ от $x_1,x_2,\ldots, x_{n}$: $D_1 * D_2 * \ldots * D_m, m\ge 1$
+\end{definition}
+
+\begin{definition}
+В СКНФ в каждую элементарную дизъюнкцию входит каждый из $x_1,x_2,\ldots,x_{n}$ либо сам,
+либо как отрицание.
+\end{definition}
+
+\begin{theorem}
+Любая функция, отличная от константы 0, может быть представлена в виде ДНФ.
+Любая функция, отличная от константы 1, может быть представлена в виде КНФ.
+\end{theorem}
+\begin{myproof}
+    1) Так как $ f \not \equiv 0$, то  $\exists \widetilde{\alpha} \in \{0,1\}^{n}:
+    f(\widetilde{\alpha})$ = 1 - называется это конституента 1 функции $f$.
+
+    Тогда
+    $$
+    C^{1}_{f} \leftrightharpoons \{\widetilde{\alpha}:
+    f(\widetilde{\alpha}) = 1\} \neq \void, \widetilde{\alpha} = 
+    (\alpha_1, \ldots, \alpha_n)
+    .$$
+    $K_{\widetilde{\alpha}} = x_1^{\alpha_1}
+    x_2^{\alpha_2}\ldots x_{n}^{\alpha_n}$ 
+
+    Заметим, что
+    \[
+        K_{\widetilde{\alpha}}(\widetilde{\beta}) = 1 \Longleftrightarrow \widetilde{\beta} =
+        \widetilde{\alpha}
+    \] 
+    Отсюда получаем:
+    $$
+    \boxed{
+    f(x_1,\ldots,x_n) = \underset{{\cal Z} \in C^{1}_f}{\bigvee}K_{\widetilde{\alpha}}
+    }
+    $$
+
+    Заметим, что если
+    \[
+        f(x_1,\ldots,x_m) = 1 \implies (\exists \widetilde{\alpha} \in C^{1}_f)(f(\widetilde{\alpha})
+        = 1) \implies k_{\widetilde{\alpha}} = 1 \implies \underset{{\cal Z} \in C^{1}_f}{\biglor}
+        k_{\widetilde{\alpha}} = 1,
+    \]
+    то есть $f(\widetilde{\alpha}) = 1$. Аналогично для КНФ.
+\end{myproof}
+\paragraph*{Следствие.} Любая булевая функция может быть представлена некоторой формулой над
+стандартным базисом. То есть стандартным базисом является полным множеством булевых функций.
+
+\section{Полином Жегалкина}
+
+${\cal F}_1 = \{\oplus, *, 1\} $ 
+
+Отсюда $\overline{x} = x\oplus 1$ и $x_1 \lor x_2 = x_1x_2 \oplus x_1\oplus x_2$.
+
+
+
+\begin{definition}
+Полиномом Жегалкина является
+\[
+P(x_1,x_2,\ldots,x_{n}) = \sum\limits (mod 2) a_{i_1i_2\ldots i_k}x_{i_1}x_{i_2}\ldots x_{ik},
+\quad \{i_1,i_2,\ldots,i_k\} \subseteq \{1,2,\ldots,n\}  
+.\] Здесь $2^{n}$ слагаемых. $a_{i_1i_2\ldots i_k} \in \{0,1\}$ 
+\end{definition}
+
+Общий вид полинома Жегалкина от двух переменных:
+\[
+P(x_1,x_2) = a_{12}x_1x_2 \oplus a_1x_1 \oplus a_2x_2 \oplus a_0
+\]
+
+Общий вид от трех:
+\[
+P(x_1,x_2,x_3) = a_{123}x_1x_2x_3 \oplus a_{12}x_1x_2 \oplus a_{13}x_1x_3 \oplus a_{23}x_2x_3 \oplus
+a_1x_1 \oplus x_2x_2 \oplus a_3x_3 \oplus a_0
+\] 
+
+\begin{theorem}
+Каждая булева функция однозначно представима в виде полинома Жегалкина.
+\end{theorem}
+
+\paragraph*{Метод неопределенных коэффициентов.} ${}$ \newline
+
+$f = (00010111)$
+
+$f(0,0,0) = a_0 = 0$
+
+$f(1,0,0) = a_1\oplus a_0 = 0 \implies a_1 = 0$
+
+$f(0,1,0) = a_2 \oplus a_0 = 0 \implies a_2 = 0$
+
+$f(0,0,1) = a_3 \oplus a_0 = 0 \implies a_3 = 0$
+
+$f(1,1,0) = a_{12} \oplus a_2 \oplus a_1 \oplus a_0 = 1 \implies a_{12} = 1$
+
+$f(1,0,1) = a_{13} \oplus a_1 \oplus a_3 \oplus a_0 \implies a_{13} = 1$
+
+$f(0,1,1) = a_{23} \oplus a_2 \oplus a_3 \oplus 3 \implies a_{23} = 1$
+
+$f(1,1,1) = a_{123} \oplus a_{12} \oplus a_{13} \oplus a_{23} \oplus a_1 \oplus a_2 \oplus a_3
+\oplus a_0 = 1 \implies a_{123} \oplus 1 = 1 \implies a_{123} = 0$
+
+\begin{definition}
+Булева функция называется линейной, если она может быть представлена полиномом Жегалкина
+первой степени.
+\[
+f \in L \leftrightharpoons f(x_1,\ldots,x_{n}) = \sum\limits_{i=1}^{n}(mod2)a_{i}x_{i}\oplus a_0
+\] 
+\end{definition}
+
+\end{document}
