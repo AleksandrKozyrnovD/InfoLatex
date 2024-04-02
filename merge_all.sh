@@ -18,5 +18,5 @@ git checkout master 2> /dev/null
 
 
 for branch in $(git for-each-ref --format='%(refname:short)'); do
-     git merge $branch -f
+     git merge $branch
 done
