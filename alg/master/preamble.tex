@@ -86,6 +86,13 @@
 \newcommand*\bigcdot@[2]{\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\bullet$}}}}}
 \makeatother
 
+\makeatletter
+\newcommand{\tildaa}{\widetilde{\alpha}}
+\makeatother
+
+\makeatletter
+\newcommand{\tildab}{\widetilde{\beta}}
+\makeatother
 
 %\newcommand*\pathto[1]{ \Rightarrow^{*}_{#1} }
 
@@ -135,13 +142,25 @@ fill=green!30]
 %\newcommand{\void}{\varnothing}
 \let\void\varnothing
 
+
 \renewcommand{\phi}{\varphi}
 \renewcommand{\epsilon}{\varepsilon}
 \newcommand{\scr}[1]{\mathscr{#1}}
-%\newcommand{\ka}{K_{\widetilde{\alpha}}}
-%\newcommand{\da}{D_{\widetilde{\alpha}}}
-%\newcommand{\biglor}{\bigvee}
-%\newcommand{\bigland}{\bigwedge}
-%\newcommand{\tild_a}{\widetilde{\alpha}}
+
+\makeatletter
+\newcommand{\ka}{K_{\widetilde{\alpha}}}
+\makeatother
+
+\makeatletter
+\newcommand{\da}{D_{\widetilde{\alpha}}}
+\makeatother
+
+\makeatletter
+\newcommand{\biglor}{\bigvee}
+\makeatother
+
+\makeatletter
+\newcommand{\bigland}{\bigwedge}
+\makeatother
 
 
