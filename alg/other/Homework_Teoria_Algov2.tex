@@ -1,0 +1,179 @@
+\input{preamble}
+
+\usepackage{karnaugh-map}
+
+\title{Домашнее задание №2\\ Логика и Теория Алгоритмов}
+\author{Козырнов Александр Дмитриевич\\ ИУ7-42Б\\Вариант 6}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\chapter{Задача 1}
+
+\section{Условие}
+
+Для булевой функции f, заданной в таблице 1:
+
+а) найти сокращенную ДНФ; б) найти ядро функции;
+
+в) получить все тупиковые ДНФ и указать, какие из них являются минимальными;
+
+г) на картах Карно указать ядро и покрытия, соответствующие минимальным ДНФ.
+
+\medskip
+
+Сама функция $f$, заданная в виде вектора значений:
+ \[
+     \boxed{f(1100\text{ }1101\text{ }1101\text{ }1001)}
+\] 
+
+\section{Решение}
+
+
+\subsection{Карты Карно}
+
+%Uncolored Variant. For colored variant make \begin{karnaught-map}[4][4]][1][..][..]
+\begin{karnaugh-map}[4][4][1][$X_3X_4$][$X_1X_2$]
+    \minterms{0,1,
+                4,5,7,
+                8,9,11,
+                12,15}
+    \implicant{0}{8}
+    \implicant{0}{5}
+    \implicant{5}{7}
+    \implicant{7}{15}
+    \implicant{15}{11}
+    \implicant{9}{11}
+    \implicantedge{0}{1}{8}{9}
+\end{karnaugh-map}
+
+\subsection{Ядро функции и сокращенная ДНФ}
+
+Ядром функции будет являться $\bar{x}_3 \bar{x}_4$ 
+
+\medskip
+
+Сокращенная ДНФ:
+\[
+    \boxed{
+\bar{x}_3\bar{x}_4 \lor \bar{x}_2 \bar{x}_3 \lor \bar{x}_1 \bar{x}_3 \lor x_2x_3x_4 \lor x_1x_3x_4 \lor
+x_1 \bar{x}_2 x_4 \lor \bar{x}_1 x_2x_4
+}
+\] 
+
+\subsection{Поиск Тупиковых ДНФ. Функция Патрика}
+
+$
+\begin{matrix}
+    K_1 = \bar{x}_3 \bar{x}_4 && K_2 = \bar{x}_2 \bar{x}_3\\ \\
+    K_3 = \bar{x}_1 \bar{x}_3 && K_4 = x_2x_3x_4\\ \\
+    K_5 = x_1x_3x_4 && K_6 = x_1 \bar{x}_2 x_4\\ \\
+    K_7 = \bar{x}_1x_2x_4\\
+\end{matrix}
+$
+
+\medskip
+
+Тогда изначальная функция Патрика будет выглядеть так:
+\[
+    (K_2 \lor K_3) \land (K_3 \lor K_7) \land (K_7 \lor K_4) \land (K_4 \lor K_5) \land (K_5 \lor K_6) \land (K_6 \lor K_2)
+\] 
+
+
+Вычислим (упростим) найденную функцию Патрика:
+\begin{align*}
+    &(K_2 \lor K_3) \land (K_3 \lor K_7) \land (K_7 \lor K_4) \land (K_4 \lor K_5) \land (K_5 \lor K_6) \land (K_6 \lor K_2) =\\
+    &= (K_3 \lor K_3K_7 \lor K_2K_3 \lor K_2K_7) \land (K_7K_4 \lor K_7K_5 \lor K_4 \lor K_4K_5) 
+    \land (K_5K_6 \lor K_2K_5 \lor K_6 \lor K_6K_2) = \\
+    &= (K_3 \lor K_2K_7) \land (K_4 \lor K_5K_7) \land (K_6 \lor K_2K_5) = \\
+    &= (K_3K_4 \lor K_3K_5K_7 \lor K_2K_4K_7 \lor K_2K_5K_7) \land (K_6 \lor K_2K_5) =\\
+    &= K_3K_4K_6 \lor K_3K_4K_5 \lor K_2K_3K_4 \lor \bcancel{K_3K_5K_6K_7} \lor K_3K_5K_7 \bcancel{\lor K_2K_3K_5L_7} \lor\\
+    &\lor \bcancel{K_2K_4K_6K_7} \lor \bcancel{K_2K_4K_5K_7} \lor K_2K_4K_7 \lor \bcancel{K_4K_5K_6K_7} \lor
+    K_2K_5K_7 \lor \bcancel{K_2K_5K_7} = \\
+    & = K_3K_4K_6 \lor K_3K_4K_5 \lor K_2K_3K_4 \lor K_3K_5K_7 \lor K_2K_4K_7 \lor K_2K_5K_7
+\end{align*}
+
+
+Получаем из вышенайденного
+\[
+    \underbrace{\bar{x}_3 \bar{x}_4}_{\text{Ядро}} \lor
+    \underbrace{
+        \begin{cases}
+            \bar{x}_1 \bar{x}_3 \lor x_2x_3x_4 \lor x_1\bar{x}_2x_4\\
+            \bar{x}_1 \bar{x}_3 \lor x_2x_3x_4 \lor x_1x_3x_4\\
+            \bar{x}_1 \bar{x}_3 \lor x_2x_3x_4 \lor \bar{x}_2 \bar{x}_3\\
+            \bar{x}_1 \bar{x}_3 \lor x_1x_3x_4 \lor \bar{x}_1x_2x_4\\
+            \bar{x}_2\bar{x}_3 \lor x_2x_3x_4 \lor \bar{x}_1x_2x_4\\
+            \bar{x}_2\bar{x}_3 \lor x_1x_3x_4 \lor \bar{x}_1x_2x_4
+        \end{cases}}_{\text{Тупиковые ДНФ}}
+\] 
+
+
+\subsection{Минимальная ДНФ}
+В итоге можем получить минимальную ДНФ:
+\[
+    \boxed{ \underbrace{\bar{x}_3\bar{x}_4}_{\text{Ядро}}
+    \lor \underbrace{\bar{x}_2\bar{x}_3}_{K_2} \lor \underbrace{\bar{x}_1 \bar{x}_3}_{K_3} \lor \underbrace{x_2x_3x_4}_{K_4}}
+\]
+
+\chapter{Задача 2}
+\section{Условие}
+
+Даны функции $f$ (таблица 2) и $w$ (таблица 3).
+
+а) Вычислить таблицу значений функции $f$. б) Найти минимальные ДНФ функций $f$ и $w$.
+
+в) Выяснить полноту системы $\{f, w\}$. Если система не полна, дополнить систему функцией
+$g$ до полной системы.
+
+\emph{Указание.} Запрещается дополнять систему константами, отрицанием и базовыми функциями
+двух переменных ($\oplus, \lor, \land, |, \downarrow$ и т.д.)
+Не допускается дополнение функцией, образующей
+с $f$ или $w$ полную подсистему, кроме случаев, когда иное невозможно.
+
+г) Из функциональных элементов, реализующих функции полной системы $\{f, w\}$ или $\{f, w, g\}$,
+построить функциональные элементы, реализующие базовые функции $(\lor, \land, \overline{\phantom{A}},
+0, 1)$.
+
+\medskip
+
+\begin{center}
+    
+\begin{matrix}
+    \text{Функция $f$:} && \text{Вектор значений функции $w$:}\\
+     \boxed{(x_3 \Rightarrow (x_2 \sim \bar{x}_3)) \lor (x_1 \oplus \bar{x}_2) \oplus x_1x_2}
+                        && \boxed{w(1101\text{  }0100)}
+\end{matrix}
+\end{center}
+
+\section{Решение}
+\subsection{Нахождение таблицы значений функции $f$}
+$
+     f = \underbrace{(x_3 \Rightarrow (x_2 \sim \bar{x}_3))}_{B} \lor
+     \underbrace{(x_1 \oplus \bar{x}_2) \oplus x_1x_2}_{A}
+$
+
+
+\begin{center}
+    \begin{tabular}{||c | c | c | c | c | c | c | c | c||}
+        \hline
+        x_1 & x_2 & x_3 & x_1x_2 & x_1\oplus \bar{x}_2 & A & x_2\sim \bar{x}_3 & B & f\\
+        \hline\hline
+    \end{tabular}
+\end{center}
+
+
+\subsection{Нахождение минимальных ДНФ}
+\subsubsection{Минимальная ДНФ функции $f$}
+
+\begin{karnaugh-map}[4][2][1][$X_2X_3$][$X_1$]
+\end{karnaugh-map}
+
+\subsubsection{Минимальная ДНФ функции $w$}
+
+\subsection{Выяснение полноты системы}
+
+\end{document}
