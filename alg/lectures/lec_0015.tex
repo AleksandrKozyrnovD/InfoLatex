@@ -252,14 +252,34 @@ A \to B)$, тогда по R9 $\Gamma \step B$
 A \lor \Phi \step B \lor \Phi$
 \begin{myproof}
 ${}$
-\paragraph*{1 случай.} ${}$ \newline
+\paragraph*{1 пункт.} ${}$ \newline
 
 1) $A$ - гипотеза
 
 2)  $A \to (\lnot A \to B) = A \to (A \lor B)$ - секвенция 5
 
 3) $\lnot A \to B = A \lor B$
+
+\paragraph*{2 пункт.} ${}$ \newline
+
+1) $A \lor B = \lnot A \to B$ - гипотеза
+
+2) $\lnot B \to \lnot\lnot A$ - R7, (1)
+
+3) $\lnot\lnot A \to A$ - секвенция 3
+
+4) $\lnot B \to A$ - R1, (2) и (3) (= $B \lor A$)
+
+\paragraph*{3 пункт.} ${}$ \newline
+
+1) $A \to B$ - теорема, так как  $A \step B$ 
+
+2) $\Phi \lor A = \lnot \Phi \to A$ - гипотеза
+
+3) $\lnot\Phi \to B = \Phi \lor B$ - R1, (2) и (1)
+
 \end{myproof}
+
 
 
 \end{document}
