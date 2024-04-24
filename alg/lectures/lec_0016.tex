@@ -6,4 +6,255 @@
 
 \begin{document}
 
+\paragraph*{Следствие 3.}
+(Свойства конъюнкции). 
+
+1) $A,B \step A\band B$
+
+2)  $A\band B \step A,B$
+
+3)  $A\band B \step B\band A$
+
+\begin{myproof}
+    ${}$
+
+\paragraph*{1 пункт.} ${}$ \newline
+
+1) $A$ - гипотеза
+
+2) $B$ - гипотеза
+
+3) $\lnot\lnot B$ - R4, (2)
+
+4)  $\lnot(A \to \lnot B)$ - R8, (1) и (3)
+
+\paragraph*{2 пункт} ${}$ \newline
+
+1) $\lnot A$ - гипотеза
+
+2)  $\lnot A \to (A \to \lnot B)$ - секвенция 5
+
+3) $A \to \lnot B$ - MP, (1) и (2)
+
+4) $\lnot\lnot(A \to \lnot B)$ - R4, (3)
+
+\paragraph*{3 пункт.} ${}$ \newline
+
+1) $B \to \lnot A$ - гипотеза
+
+2) $\lnot\lnot A \to \lnot B$ - R7, (1)
+
+3) $A \to \lnot\lnot A$ - секвенция 4
+
+4) $A \to \lnot B$ - R1, (3) и (2)
+
+\end{myproof}
+
+\section{Непротиворечивость и полнота теории L}
+
+\begin{theorem}
+Любая теорема теории $L$ есть тавтология.
+\end{theorem}
+\begin{myproof}
+Легко проверить, что каждая формула, получаемая из схемы аксиомы, будет тавтологией.
+
+$\Phi$ - тавтология,  $\Phi \to \Psi$ - тавтология.
+
+Пусть $\Psi$ - не есть тавтология.
+
+ \[
+     (\forall \widetilde{\alpha})\Phi(\widetile{\alpha}) = T,\quad 
+     (\Phi \to \Psi)(\widetile{\alpha}) = \Phi(\widetilde{\alpha}) \to \Psi(\widetilde{\alpha}) = T
+\] 
+
+То есть
+ \[
+     \Phi(\widetilde{\alpha}) \to \Psi(\widetilde{\alpha}) = T \to F
+\]
+есть противоречие.
+\end{myproof}
+
+\paragraph*{Следствие.}
+В теории $L$ нельзя доказать формулу и ее отрицание.
+
+
+\begin{theorem}
+Любая тавтология доказуема в теории $L$.
+\end{theorem}
+
+\begin{myproof}
+Будем считать, что
+\[
+    \Phi = \Phi(x_1,\ldots,x_{n});\quad \widetilde{\alpha} = (\alpha_1,\ldots,\alpha_n);
+    \quad \Phi^{\widetilde{\alpha}} \leftrightharpoons
+    \begin{cases}
+        \Phi,\text{ если } \Phi(\widetilde{\alpha}) = T\\
+        \lnot\Phi\text{, если } \Phi(\widetilde{\alpha}) = F
+    \end{cases}
+\]
+
+\paragraph*{Лемма (Кальмара)}.
+$x^{\alpha_1}_1, \ldots,x_{n}^{\alpha_n} \step \Phi^{\widetilde{\alpha}}$ 
+\begin{myproof}
+    (Док-во леммы).
+    Индукция по числу $l(\Phi)$ логических связок в формуле  $\Phi$.
+
+    \medskip
+
+    Базис: $l(\Phi) = 0$, значит формула  $\Phi$ есть переменная.
+     $\Phi = x_{i}$ - переменная.
+
+     Тогда очевидна такая секвенция
+     $x_{i}^{\alpha_i} \step x_{i}^{\alpha_i}$, то есть
+     $x_{i}\step x_{i}$ или $\lnot x_{i} \step \lnot x_{i}$ - очевидно
+     В силу $\step(A \to A)$.
+    
+     \medskip
+
+     Предположение: Пусть утверждение леммы справедливо при любом значении $l(\Phi) \le n-1,
+     n \ge 1$
+
+     \medskip
+
+     Переход: Полагаем, что $l(\Phi) = n$.
+
+     \paragraph*{1 случай.} ${}$ \newline
+
+      $\Phi = \lnot \Psi$, где  $l(\Psi) = n - 1$
+
+      1.1  $\Psi(\widetilde{\alpha}) = F$
+
+      $\Phi(\widetilde{\alpha}) = n, \Phi^{\widetilde{\alpha}} = \Phi, \Psi^{\widetilde{\alpha}} =
+      \lnot \Psi$ 
+
+      По предположению индукции $x_1^{\alpha_1}, \ldots, x_{n}^{\alpha_n} \step
+      \Psi^{\widetilde{\alpha}} = \lnot\Psi = \Phi = \Phi^{\widetilde{\alpha}}$ 
+
+      \medskip
+
+      1.2 $\Psi(\widetilde{\alpha}) = T$
+
+      $\Phi(\widetilde{\alpha}) = F, \quad \Phi^{\widetilde{\alpha}} = \Phi, \quad
+      \Psi^{\widetilde{\alpha}} = \Psi$ 
+        
+      $x_1^{\alpha_1},\ldots,x_{n}^{\alpha_n} \step \Psi^{\widetilde{\alpha}} \step \lnot\lnot\Psi =
+      \lnot\Phi = \Phi^{\widetilde{\alpha}}$
+        
+      \paragraph*{2 случай.} ${}$ \newline
+      
+      $\Phi = q \to \psi$, где $l(Q) + l(\Psi) = n - 1, \quad l(Q), l(\Psi) < n$.
+
+      \medskip
+
+      2.1  $Q(\widetilde{\alpha}) = \Psi(\widetilde{\alpha}) = F$
+
+      $Q^{\widetilde{\alpha}} = \lnot Q, \Psi^{\widetilde{\alpha}} = \lnot\Psi,
+      \Phi(\widetilde{\alpha}) = F \to F = T$
+
+      По предположению индукции:
+
+      $x_1^{\alpha_1},\ldots,x_{n}^{\alpha_n} \step \lnot Q, \lnot \Psi; \quad \lnot Q \to 
+      (Q \to \Psi)$ - секвенция 5; $Q \to \Psi$ - MP
+
+      $x_1^{\alpha_1},\ldots, x_{n}^{\alpha_n} \step Q \to \Psi = \Phi = \Phi^{\widetilde{\alpha}}$
+
+      \medskip
+
+      2.2  $Q(\widetilde{\alpha}) = F \quad \Psi(\widetilde{\alpha}) = T$
+
+      $Q^{\widetilde{\alpha}} = \lnot Q, \Psi^{\widetilde{\alpha}} = \Psi,
+      \Phi(\widetilde{\alpha}) = F \to T = T$
+
+      По предположению индукции:
+
+      $x_1^{\alpha_1},\ldots,x_{n}^{\alpha_n} \step \lnot Q, \Psi; \quad \lnot Q \to 
+      (Q \to \Psi)$ - секвенция 5; $Q \to \Psi$ - MP
+
+      $x_1^{\alpha_1},\ldots, x_{n}^{\alpha_n} \step Q \to \Psi = \Phi = \Phi^{\widetilde{\alpha}}$
+
+      \medskip
+
+      2.3  $Q(\widetilde{\alpha}) = T \quad \Psi(\widetilde{\alpha}) = F$
+
+      $Q^{\widetilde{\alpha}} = Q, \Psi^{\widetilde{\alpha}} = \lnot\Psi,
+      \Phi(\widetilde{\alpha}) = T \to F = F$
+
+      По предположению индукции:
+
+      $x_1^{\alpha_1},\ldots,x_{n}^{\alpha_n} \step Q, \lnot \Psi; \lnot(Q \to \Psi)$ - по R8 
+
+      $x_1^{\alpha_1},\ldots, x_{n}^{\alpha_n} \step \lnot(Q \to \Psi) = \lnot \Phi
+      = \Phi^{\widetilde{\alpha}}$
+
+      \medskip
+
+      2.4  $Q(\widetilde{\alpha}) = T \quad \Psi(\widetilde{\alpha}) = T$
+
+      $Q^{\widetilde{\alpha}} = Q, \Psi^{\widetilde{\alpha}} = \Psi,
+      \Phi(\widetilde{\alpha}) = T \to T = T$
+
+      По предположению индукции:
+
+      $x_1^{\alpha_1},\ldots,x_{n}^{\alpha_n} \step Q, \Psi; \Psi \to (\Phi \to \Psi),
+      Q \to \Psi$ - MP 
+
+      $x_1^{\alpha_1},\ldots, x_{n}^{\alpha_n} \step (Q \to \Psi) = \Phi
+      = \Phi^{\widetilde{\alpha}}$
+     
+\end{myproof}
+
+Продолжаем доказательство теоремы.
+
+Пусть $\Phi$ - тавтология, то есть  $(\forall \widetilde{\alpha})(\Phi(\widetilde{\alpha}) = T)$.
+
+В силу леммы: $x_1^{\alpha_1}, \ldots, x_{n}^{\alpha_n} \step \Phi \left[ 
+(\forall \widetilde{\alpha}) Phi^{\widetilde{\alpha}} = \Phi\right]$ 
+
+$$\widetilde{\alpha}_1 = (\alpha_1,\ldots,\alpha_{n-1}, \lnot \alpha_n) \quad
+x_1^{\alpha_1},\ldots,x_{n}^{\alpha_n-1}, x_{n-1}^{\alpha_n} \step \Phi$$
+
+То есть 
+\[
+x_1^{\alpha_1},\ldots,x_{n-1}^{\alpha_{n-1}} \step \Phi,
+\]
+где стало на 1 меньше. Так отсчипываем, пока не получим:
+\[
+x_1^{\alpha_1} \step \Phi_1, \lnot x_1^{\alpha_1} \step \Phi
+\]
+\[
+\step \Phi
+\] 
+
+\end{myproof}
+
+\paragraph*{Следствие.} Формула является тавтологией тогда и только тогда, когда она доказуема
+в теории $L.$
+
+\section{Эквивалентные формулы}
+
+\begin{definition}
+Две формулы называют эквивалентными, если они выводимы друг из друга
+\[
+\Phi \equiv \Psi \leftrightharpoons \Phi \step \Psi \quad \Psi \step \Phi
+\]
+\[
+\Phi \equiv \Psi \Longleftrightarrow \step (\Phi \to \Psi)\band (\Psi \to \Phi)
+\]
+\end{definition}
+
+Также $\Phi \equiv \Psi \Longleftrightarrow \lnot \Phi \equiv \lnot \Psi$
+
+\paragraph*{Утверждение.} Если $\Phi \equiv \Psi$, то  $(\forall \widetilde{\alpha})
+(\Phi(\widetilde{\alpha}) = \Psi(\widetilde{\alpha}))$
+
+
+\paragraph*{Примеры эквивалентности.} ${}$ \newline
+
+1) $\lnot\lnot A \equiv A$
+
+2)  $(A \to B) \equiv (\lnot B \to \lnot A)$
+
+3) $\lnot ( A \lor B) \equiv \lnot A \band \lnot B \quad 
+\lnot(A\band B) \equiv \lnot A \lor \lnot B$
+
 \end{document}
