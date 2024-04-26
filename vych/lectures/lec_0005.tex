@@ -1,0 +1,195 @@
+\input{preamble}
+
+\title{}
+\author{Козырнов Александр Дмитриевич, ИУ7-32Б}
+\date{\today}
+
+\begin{document}
+
+\section{Диффуры, решение, пример?}
+
+Пусть дано
+\[
+u''(x) = p(x)u'(x) + g(x) + f(x)
+\] 
+не имеет аналитического решения.
+
+Область, в которой надо найти решение: $a \le x \le b$
+
+\medskip
+
+$$
+\begin{matrix}
+    x = a & L_au = A & (\alpha u'(a) + \beta u(a) = A)\\
+    x = b & u = B\\
+          &y(x) = \underbrace{u_0(x)}_{\text{Произвольная ф-я}}
+          + \sum\limits_{k=1}^{n}C_k * \underbrace{u_k(x)}_{\text{Произвольные ф-и}}
+\end{matrix}
+$$
+
+$u_0$ и $u_k$ удовлетворяют краевым условиям дифф. уравнения.
+
+Далее делаем такую невязку:
+\[
+R(x,C_1,\ldots, C_n)
+\] 
+
+\[
+\Phi(C_1,C_2,\ldots,C_n) = \sum\limits R^{2}(x_{i}, C_1,\ldots,C_n) \to min
+\] 
+
+
+Причем помним, что $C_k$ ищутся так:
+\[
+    \pdx{\Phi}{C_k} = 0, \quad k = 1,2\ldots, n
+\] 
+
+
+Мы сначала выбираем $u_0, u_k$. Выбираются произвольные функции, удовлетворяющие
+краевым условиям. Далее находим невязку:
+\[
+    R(x,C_1,\ldots,C_n) = y''(x) - p(x)y'(x) - g(x)y - f(x) \quad y(x) = u(x) \text{ замена}
+\]
+
+\section{Что-то про решение нелинейных систем уравнений?}
+
+Матрица Якоби:
+$$
+\begin{pmatrix}
+    \pdx{f_1}{x_1} & \pdx{f_1}{x_2} & \ldots & \pdx{f_1}{x_{n}}\\
+    \\
+    \pdx{f_2}{x_1} & \pdx{f_2}{x_2} & \ldots & \pdx{f_2}{x_{n}}\\
+    \vdots & \vdots\\
+    \pdx{f_n}{x_1} & \pdx{f_n}{x_2} & \ldots & \pdx{f_n}{x_{n}}\\
+\end{pmatrix} 
+$$
+
+$\overline{x}^{(1+1)} \quad \overline{x} = \begin{pmatrix} x_1\\ \vdots \\ x_{n} \end{pmatrix} $
+
+
+\medskip
+
+\[
+\Phi(x_1,\ldots,x_{n}) = \sum\limits_{k=1}^{n}f_k^{2}(x_1,\ldots,x_{n}) \to min \quad \Phi(x_1,\ldots,
+x_{n}) = 0 
+\] 
+
+\paragraph*{Пример.} ${}$ \newline
+
+\[
+\begin{cases}
+    x^{2} + x\cos xy + \frac{x}{y} = 5\\
+    8xy^{3} + e^{x^{2}y} = 9
+\end{cases}
+\] 
+
+Надо линериазовать (?) систему. Вот как выглядит линеаризованное уравнение 1 выше:
+\[
+    \left(2x + \cos xy - x\sin xy * y + \frac{1}{y}\right)\bigg|_{x^{(s-1)}} \Delta x^{(1)} + 
+    \left(-x \sin xy * x - \frac{x}{y^2}\right) \Delta y^{(1)}
+\] 
+
+Оно также равно:
+\[
+-\left(x^{2} + x \cos xy + \frac{x}{y} - 5\right)\bigg|_{x^{(s-1)}}
+\] 
+
+\paragraph*{Замечание к ЛР 5.} ${}$ \newline
+
+Реализация разностной схемы для краевой задачи метода Ньютона.
+
+\medskip
+
+Пусть дано уравнение:
+\[
+u''(x) = f(x,u) \quad a \le x \le b
+\] 
+Например
+\begin{equation}
+f(x,u) = \cos^{2} xu + u^{3}
+\end{equation}
+
+Также даны условия:
+\[
+u(a) = \alpha_1 \quad u(b) = \alpha_2
+\] 
+
+Сделаем сеточную функцию (?) этой функции.
+\[
+\omega_h = \{x_{n}: x_{n}=a + nh, n = \overline{0,N}, h = \frac{b-a}{N}\} 
+\] 
+
+Функция тогда выглядит в разностном виде так:
+\[
+\frac{y_{n-1} - 2y_{n} + y_{n+1}}{h^2} = f(x_{n},y_{n})
+\]
+
+Или
+\begin{equation}
+y_{n-1} - 2y_{n} + y_{n+1} = h^{2} f(x,u), \quad n = 1,2, \ldots, N-1 \quad (n = \overline{1, N-1})
+\end{equation}
+
+Получилась нелинейная система уравнений (2). Применим для решения этой системы
+рассмотренный выше метод Ньютона, то есть линеаризуем эту систему:
+\begin{align*}
+    &f(y_{n-1}, y_{n}, y_{n+1}) = 0\\
+    &y_{n-1} - 2y_{n} + y_{n+1} - h^{2} f(x_{n},y_{n}) = 0\\
+    &\Delta y_{n-1}^{(s)} - 2\Delta y_{n}^{(s)} + \Delta y_{n+1}^{(s)} - h^{2} f'(x_{n},
+    y_{n}^{(s-1)})\Delta y_{n}^{(s)} = - (y_{n-1} - 2y_{n} + y_{n+1} - h^{2} f(x_{n},y_{n}))
+    \bigg|_{(s-1)}
+\end{align*}
+
+Из третьего можно получить такое:
+\[
+-y_{n-1}^{(s-1)} - 2y_{n}^{(s-1)} + y_{n+1}^{(s-1)} - h^{2} f(x_{n},y_{n}^{(s-1)}), \quad 
+n = \overline{1, N-1}
+\] 
+
+Получили систему с трехдиагональной матрицей, для решения которой применяем известный
+из метода сплайнов метод прогонки . Ищутся $\Delta y$.
+
+\[
+\begin{cases}
+-y_{n-1}^{(s-1)} - 2y_{n}^{(s-1)} + y_{n+1}^{(s-1)} - h^{2} f(x_{n},y_{n}^{(s-1)}), \quad 
+n = \overline{1, N-1}\\
+    \Delta y_0 = 0\\
+    \Delta y_N = 0
+\end{cases}
+\] 
+
+$y_k^{(s)} = y_k^{(s-1)} + \Delta y_k^{(s)}, \quad k = \overline{1, N-1}$
+
+\medskip
+
+Условие окончания итераций:
+\[
+    \underset{1 \le n \le N-1}{max} \left| \frac{\Delta y_k^{(s)}}{y_k^{(s)}} \right| < \eps = 1o^{-4} 
+\]
+
+\paragraph*{Применительно} к $f(x,u) = \cos^{2} xu + u^{3}$ 
+
+$f'_u(x,u) = -2 \cos xu \sin xu * x + 3u^{2}$ 
+
+$f'_u(x_{n},y_{n}) = -2 \cos x_{n}y_{n} * \sin x_{n}y_{n} * x_{n} + 3y_{n}^{2}$
+
+$\left| y_{n} - u(x_{n}) \right| \to 0$ при $n \to 0$
+
+Тут в виду имеется $\cos (xu)$.
+
+\medskip
+
+Методы решения одного нелинейного уравнения, $f(x) = 0$.
+ \begin{itemize}
+    \item Метод простой итерации
+
+        $x^{(s)} = \phi(x^{(s-1)})$
+
+    \item Дихотомия. Нужно чтобы f(a) и f(b) имели разные знаки.
+    \item Метод Ньютона
+    \item Метод секущих
+    \item Метод Хорд
+    \item Метод парабол
+    \item И другие
+\end{itemize}
+
+\end{document}
