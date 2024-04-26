@@ -36,7 +36,7 @@
 \subsection{Карты Карно}
 
 %Uncolored Variant. For colored variant make \begin{karnaught-map}[4][4]][1][..][..]
-\begin{karnaugh-map}[4][4][1][$X_3X_4$][$X_1X_2$]
+\begin{karnaugh-map}*[4][4][1][$X_3X_4$][$X_1X_2$]
     \minterms{0,1,
                 4,5,7,
                 8,9,11,
@@ -151,17 +151,34 @@ $g$ до полной системы.
 
 \section{Решение}
 \subsection{Нахождение таблицы значений функции $f$}
-$
-     f = \underbrace{(x_3 \Rightarrow (x_2 \sim \bar{x}_3))}_{B} \lor
-     \underbrace{(x_1 \oplus \bar{x}_2) \oplus x_1x_2}_{A}
-$
+$$
+\boxed{
+     f = (x_3 \Rightarrow (x_2 \sim \bar{x}_3)) \lor
+ (x_1 \oplus \bar{x}_2) \oplus x_1x_2}
+$$
 
 
 \begin{center}
-    \begin{tabular}{||c | c | c | c | c | c | c | c | c||}
+    \begin{tabular}{||c | c | c | c||}
         \hline
-        x_1 & x_2 & x_3 & x_1x_2 & x_1\oplus \bar{x}_2 & A & x_2\sim \bar{x}_3 & B & f\\
+        x_{1} & x_{2} & x_{3} & f \\
         \hline\hline
+        0 & 0 & 0 & 1 \\
+        \hline
+        0 & 0 & 1 & 1 \\
+        \hline
+        0 & 1 & 0 & 1 \\
+        \hline
+        0 & 1 & 1 & 0 \\
+        \hline
+        1 & 0 & 0 & 1 \\
+        \hline
+        1 & 0 & 1 & 1 \\
+        \hline
+        1 & 1 & 0 & 0 \\
+        \hline
+        1 & 1 & 1 & 0\\
+        \hline
     \end{tabular}
 \end{center}
 
@@ -169,11 +186,127 @@ $
 \subsection{Нахождение минимальных ДНФ}
 \subsubsection{Минимальная ДНФ функции $f$}
 
-\begin{karnaugh-map}[4][2][1][$X_2X_3$][$X_1$]
+\begin{karnaugh-map}*[4][2][1][$X_2X_3$][$X_1$]
+    \minterms{0,1,2,
+                4,5}
+
+    \implicant{0}{5}
+    \implicantedge{0}{0}{2}{2}
 \end{karnaugh-map}
+
+Так как все склейки находятся в ядре функции, то найденная ДНФ будет минимальной:
+\[
+    \boxed{\bar{x}_2 \lor \bar{x}_1 \bar{x}_3}
+\] 
 
 \subsubsection{Минимальная ДНФ функции $w$}
 
+
+\begin{karnaugh-map}*[4][2][1][$X_2X_3$][$X_1$]
+    \minterms{0,1,3,
+                5}
+
+    \implicant{0}{1}
+    \implicant{1}{3}
+    \implicant{1}{5}
+\end{karnaugh-map}
+
+Аналогично функции $f$ функция  $w$ имеет все склейки в ядре, отчего минимальная ДНФ:
+ \[
+     \boxed{
+         \bar{x}_{1} \bar{x}_{2} \lor \bar{x}_{2} x_{3} \lor \bar{x}_{1} x_{3}
+     }
+\]
+
 \subsection{Выяснение полноты системы}
+
+
+\begin{center}
+    \begin{tabular}{|c | c | c | c | c | c|}
+        \hline
+        & $T_0$ & $T_1$ & S & M & L \\
+        \hline\hline
+        $f$ & - & - & - & - & -\\
+        \hline
+        $w$ & - & - & + & - & -\\
+        \hline
+    \end{tabular}
+\end{center}
+
+
+Легко понять, что обе функции не сохраняют констант $1$ и  $0$.  $f \not\in S$, то есть
+не является самодвойственной, потому что ее набор значений как минимум является несимметричным.
+У функции $w$ вектор значений является симметричным (1101 - 0100). То есть $Revers(0100) = 0010$, а
+$\overline{0010} = 1101$, что равно левой части. Функция $f$ немонотонна, например есть значение
+$010 = 1$ и  $011 = 0$. Обе функции нелинейны, так как их полиномы Жегалкина нелинейны.
+
+\subsubsection{Полином Жегалкина функции f}
+$$
+\begin{align}
+ & f(0,0,0) = a_{0} = 1 & \implies a_{0} = 1 \\
+ & f(1,0,0) = a_{0} \oplus a_{1} = 1 & \implies a_{1} = 0  \\
+ & f(0,1,0) = a_{0} \oplus a_{2} = 1  & \implies a_{2} = 0 \\
+ & f(0,0,1) = a_{0} \oplus a_{3} = 1 & \implies a_{3} = 0 \\
+ & f(1,1,0) = a_{0} \oplus\cancel{  a_{1} } \oplus \cancel{ a_{2} } \oplus a_{12} = 0 & \implies a_{12} = 1 \\
+ & f(1,0,1) = a_{0} \oplus \cancel{ a_{1} } \oplus \cancel{ a_{3} } \oplus a_{13} = 1 & \implies a_{13} = 0 \\
+ & f(0,1,1) = a_{0} \oplus a_{2} \oplus a_{3} \oplus a_{23} = 0  & \implies a_{23} = 1 \\ 
+ & f(1,1,1) = a_{0} \oplus \cancel{ a_{1} } \oplus \cancel{ a_{2} } \oplus \cancel{ a_{3} } \oplus a_{12} \oplus \cancel{ a_{13} } \oplus a_{23} \oplus a_{123} = 0  & \implies a_{123} = 1
+\end{align}
+$$
+
+Полином Жегалкина:
+$
+\boxed{
+x_{1}x_{2} \oplus x_{2}x_{3} \oplus x_{1}x_{2}x_{3} \oplus 1
+}
+$
+
+
+\subsubsection{Полином Жегалкина функции w}
+
+$$
+\begin{align}
+ & w(0,0,0) = a_{0} = 1  & \implies a_{0} = 1 \\
+ & w(1,0,0) = a_{0} \oplus a_{1} = 0 & \implies a_{1} = 1 \\
+ & w(0,1,0) = a_{0} \oplus a_{2} = 0 & \implies a_{2} = 1 \\
+ & w(0,0,1) = a_{0} \oplus a_{3} = 1 & \implies a_{3} = 0 \\
+ & w(1,1,0) = a_{0} \oplus a_{1} \oplus a_{2} \oplus a_{12} = 0 & \implies a_{12} = 1 \\
+ & w(1,0,1) = a_{0} \oplus a_{1} \oplus \cancel{ a_{3} } \oplus a_{13} =1  & \implies a_{13} = 1 \\
+ & w(0,1,1) = a_{0} \oplus a_{2} \oplus \cancel{ a_{3} } \oplus a_{23} = 1  & \implies a_{23} = 1 \\
+ & w(1,1,1) = a_{0} \oplus a_{1} \oplus a_{2} \oplus \cancel{ a_{3} } \oplus a_{12} \oplus a_{13} \oplus a_{23} \oplus a_{123} = 0 & \implies a_{123} = 0
+\end{align}
+$$
+
+Полином Жегалкина:
+$
+\boxed{
+x_{1} \oplus x_{2} \oplus x_{1}x_{2} \oplus x_{1}x_{3} \oplus x_{2}x_{3} \oplus 1
+}
+$
+
+\subsection{Построение функциональных элементов, образующих базовые функции}
+
+\paragraph*{Конъюнкция} ${}$ \newline
+
+$f(x_1,x_2,0) = x_1x_2 \oplus 1$ - штрих Шеффера (отрицание конъюнкции)
+
+\medskip
+
+Отсюда конъюнкция - это $x_1x_2 = \overline{f(x_1,x_2,0)}$ 
+
+
+\paragraph*{Дизъюнкция} ${}$ \newline
+
+$x_1 \lor x_2 = \overline{x_1x_2} = f(\bar{x}_1, \bar{x}_2, 0)$ 
+
+\paragraph*{Константа 0 и 1. Отрицание} ${}$ \newline
+
+$
+1 = f(1,0,x) \quad
+0 = w(1,1,x) \quad
+\overline{x} = w(x,x,x)
+$
+
+
 
 \end{document}
