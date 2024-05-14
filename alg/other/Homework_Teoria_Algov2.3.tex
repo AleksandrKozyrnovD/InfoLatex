@@ -1,0 +1,74 @@
+\input{preamble}
+
+\usepackage{karnaugh-map}
+
+\begin{document}
+\chapter{Задача 3}
+
+\section{Условие}
+
+Доказать в исчислении высказываний (буквы обозначают произвольные
+формулы):
+\[
+    \boxed{
+        \lnot((X\band Y)\band \lnot Z) \step (\lnot(\lnot X \to \lnot Y) \lor (Y \to Z))
+    }
+\] 
+
+
+\section{Решение}
+
+Нам известно, что
+\[
+\begin{matrix}
+    A\band B = \lnot(A \to \lnot B) && A \lor B = \lnot A \to B
+\end{matrix}
+\] 
+Перепишем формулу:
+\[
+\lnot\lnot(\lnot(X \to \lnot Y) \to \lnot\lnot Z) \step \lnot\lnot(\lnot X \to \lnot Y) \to (Y \to Z)
+\] 
+
+
+Доказательство:
+
+1) $\lnot\lnot(\lnot(X \to \lnot Y) \to \lnot\lnot Z)$ - Гипотеза
+
+2) $\lnot\lnot(\lnot(X \to \lnot Y) \to \lnot\lnot Z) \to (\lnot(\lnot X \to \lnot Y) \to \lnot\lnot Z)$ -
+секвенция 3 при $A := \lnot(X \to \lnot Y) \to \lnot\lnot Z$
+
+3) $\lnot(\lnot X \to \lnot Y) \to \lnot\lnot Z$ - modus ponens, (1) и (2)
+
+4) $\lnot\lnot(\lnot X \to \lnot Y)$ - Гипотеза
+
+5) $\lnot\lnot(\lnot X \to \lnot Y) \to (\lnot X \to \lnot Y)$ - секвенция 3 при $A := 
+(\lnot X \to \lnot Y)$
+
+6) $\lnot X \to \lnot Y$ - modus ponens, (4) и (5)
+
+7) $Y$ - Гипотеза
+
+8) $(\lnot X \to \lnot Y) \to (Y \to X)$ - секвенция 6 при $ A:= Y, B := X$
+
+9)  $Y \to X$ - modus pomems, (6) и (8)
+
+10) $X$ - modus ponens, (7) и (9)
+
+11)  $X \to (\lnot \lnot Y\to \lnot(X \to \lnot Y))$ - секвенция 9 при $A:=X, B:=\lnot Y$
+
+12) $\lnot \lnot Y\to \lnot(X \to \lnot Y)$ - modus ponens, (10) и (11)
+
+13)  $Y \to \lnot\lnot Y$ - секвенция 4 при $A:=Y$
+
+14)  $Y \to \lnot(X \to \lnot Y)$ - секвенция 1, (12) и (13) при $A:=Y,B:=\lnot\lnot Y,
+C:=\lnot(X \to \lnot Y)$
+
+15) $\lnot(X \to \lnot Y)$ - modus ponens, (7) и (14)
+
+16) $\lnot\lnot Z$ - modus ponens, (3) и (15)
+
+17)  $\lnot\lnot Z \to Z$ - секвенция 3 при $A := Z$
+
+18)  $Z$ - modus ponens, (16) и (17)
+
+\end{document}
